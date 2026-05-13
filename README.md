@@ -23,8 +23,8 @@ End-to-end, correctness-first implementations of real protocols.
 
 | Repo | What | Status |
 |---|---|---|
-| [**zeth**](https://github.com/SMC17/zeth) | Ethereum Virtual Machine in Zig. 263 tests, 142/143 opcodes dispatched, precompiles 0x01–0x09, state journaling, WASM + RISC-V cross-compile. | active |
-| [**rippled-zig**](https://github.com/SMC17/rippled-zig) | XRPL protocol toolkit — canonical transaction encoding, signing-hash, secp256k1/Ed25519 verification, live testnet RPC conformance. Quality gates A–E green. | active |
+| [**zeth**](https://github.com/SMC17/zeth) | Ethereum Virtual Machine in Zig. 263 tests, 142/143 opcodes dispatched, precompiles 0x01–0x09, state journaling, WASM + RISC-V cross-compile. | `v0.1.0` |
+| [**rippled-zig**](https://github.com/SMC17/rippled-zig) | XRPL protocol toolkit — canonical transaction encoding, signing-hash, secp256k1/Ed25519 verification, live testnet RPC conformance. Quality gates A–E green. | `v1.0.0` |
 
 ### Sovereign Stack — infrastructure I can run without a vendor
 
