@@ -12,10 +12,10 @@ Building blocks. Each is meant to be lifted into other Zig projects without drag
 
 | Repo | What | Status |
 |---|---|---|
-| [**zig-h3**](https://github.com/SMC17/zig-h3) | H3 v4 spatial index — idiomatic libh3 wrapper **+ a 100% pure-Zig port** with 142 cross-validation tests against the C reference. | `v0.1.0` |
-| [**zig-cobs**](https://github.com/SMC17/zig-cobs) | Consistent Overhead Byte Stuffing framing — zero-alloc, no-dependency, embedded-friendly. | `v0.1.0` |
-| [**zig-graph**](https://github.com/SMC17/zig-graph) | Sparse undirected graph + spectral algorithms (eigenvector centrality, PageRank, cut/conductance). | `v0.1.0` |
-| [**zig-frame-protocol**](https://github.com/SMC17/zig-frame-protocol) | Versioned binary frame protocol — COBS-framed, CRC32, opaque kind byte. Composes with `zig-cobs`. | `v0.1.0` |
+| [**zig-h3**](https://github.com/SMC17/zig-h3) | H3 v4 spatial index — idiomatic libh3 wrapper **+ a 100% pure-Zig port** with 142 cross-validation tests against the C reference. Pure-Zig path benchmarks at 0.43-0.84× libh3 (faster, bit-identical outputs). | `v1.0.0` |
+| [**zig-cobs**](https://github.com/SMC17/zig-cobs) | Consistent Overhead Byte Stuffing framing — zero-alloc, no-dependency, embedded-friendly. 21 tests + 10k random fuzz + bench. | `v1.0.0` |
+| [**zig-graph**](https://github.com/SMC17/zig-graph) | Sparse undirected graph + spectral algorithms (eigenvector centrality, PageRank, cut/conductance). | `v1.0.0` |
+| [**zig-frame-protocol**](https://github.com/SMC17/zig-frame-protocol) | Versioned binary frame protocol — COBS-framed, CRC32, opaque kind byte. Composes with `zig-cobs`. 98.4% single-bit-flip detection measured. | `v1.0.0` |
 
 ### Protocol implementations — full execution surfaces in Zig
 
@@ -33,14 +33,14 @@ Each of these targets a piece of the stack that's normally rented from a hypersc
 | Repo | What | Status |
 |---|---|---|
 | [**sovereign-edge**](https://github.com/SMC17/sovereign-edge) | Open Cloudflare-class edge bundle as composable NixOS modules: Caddy + Coraza WAF + rate-limiting + observability. | active |
-| [**sentinel-sbom**](https://github.com/SMC17/sentinel-sbom) | Nix `flake.lock` → SPDX 2.3 SBOM emitter. Single Zig binary, in-tree `narHash` verification. AGPL-3.0. | `v0.5.x` |
+| [**sentinel-sbom**](https://github.com/SMC17/sentinel-sbom) | Nix `flake.lock` → SPDX 2.3 SBOM emitter. Single Zig binary, in-tree `narHash` verification + SPDX 2.3 compound expressions. AGPL-3.0. | `v1.0.0` |
 | [**sovereign-offense-harness**](https://github.com/SMC17/sovereign-offense-harness) | Adversary-emulation runner — safety-gated, allow-listed targets, signed audit envelopes. | active |
 
 ### Knowledge bases — research substrate that gets cited, not just read
 
 | Repo | What | Status |
 |---|---|---|
-| [**oceanman**](https://github.com/SMC17/oceanman) | Submarine cable expert knowledge base — physics, owners, geopolitics, economics. 693 cables ingested with independent-agent verification of Type-I errors. | active |
+| [**oceanman**](https://github.com/SMC17/oceanman) | Submarine cable expert knowledge base — physics, owners, geopolitics, economics. 693 cables ingested with independent-agent verification of Type-I errors. | `v1.0.0` |
 
 ---
 
