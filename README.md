@@ -26,6 +26,20 @@ End-to-end, correctness-first implementations of real protocols.
 | [**zeth**](https://github.com/SMC17/zeth) | Ethereum Virtual Machine in Zig. 263 tests, 142/143 opcodes dispatched, precompiles 0x01–0x09, state journaling, WASM + RISC-V cross-compile. | `v0.1.0` |
 | [**rippled-zig**](https://github.com/SMC17/rippled-zig) | XRPL protocol toolkit — canonical transaction encoding, signing-hash, secp256k1/Ed25519 verification, live testnet RPC conformance. Quality gates A–E green. | `v1.0.0` |
 
+### Editor substrate — the appliance-layer surface
+
+The editor surface is one of the eight axes of the appliance-layer thesis. This is the one I commit to in running code under AGPL.
+
+| Repo | What | Status |
+|---|---|---|
+| [**mast**](https://github.com/SMC17/mast) | Single-binary editor kernel. Buffer-as-protocol, Janet embedded for extensibility, AGPL-3.0-or-later. Linux x86_64 + Apple Silicon arm64. Composes with the stax CLI fleet through built-in `M-x` commands. | `v0.1.0` |
+
+### Public writing — the merchant lens applied
+
+| Repo | What | Status |
+|---|---|---|
+| [**stax-blog**](https://github.com/SMC17/stax-blog) | *Stax — The Journal of Quantitative Mercantilism.* The Mercantile Thesis plus the Anti-Edison / Lineage / Doctrine arcs. Live at [smc17.github.io/stax-blog](https://smc17.github.io/stax-blog/). | live |
+
 ### Sovereign Stack — infrastructure I can run without a vendor
 
 Each of these targets a piece of the stack that's normally rented from a hyperscaler or SaaS, and replaces it with something I can host myself.
