@@ -12,10 +12,10 @@ Building blocks. Each is meant to be lifted into other Zig projects without drag
 
 | Repo | What | Status |
 |---|---|---|
-| [**zig-h3**](https://github.com/SMC17/zig-h3) | H3 v4 spatial index — idiomatic libh3 wrapper **+ a 100% pure-Zig port** with 142 cross-validation tests against the C reference. | `v0.1.0` |
-| [**zig-cobs**](https://github.com/SMC17/zig-cobs) | Consistent Overhead Byte Stuffing framing — zero-alloc, no-dependency, embedded-friendly. | `v0.1.0` |
-| [**zig-graph**](https://github.com/SMC17/zig-graph) | Sparse undirected graph + spectral algorithms (eigenvector centrality, PageRank, cut/conductance). | `v0.1.0` |
-| [**zig-frame-protocol**](https://github.com/SMC17/zig-frame-protocol) | Versioned binary frame protocol — COBS-framed, CRC32, opaque kind byte. Composes with `zig-cobs`. | `v0.1.0` |
+| [**zig-h3**](https://github.com/SMC17/zig-h3) | H3 v4 spatial index — idiomatic libh3 wrapper **+ a 100% pure-Zig port** with 142 cross-validation tests against the C reference. | `v1.0.0` |
+| [**zig-cobs**](https://github.com/SMC17/zig-cobs) | Consistent Overhead Byte Stuffing framing — zero-alloc, no-dependency, embedded-friendly. | `v1.0.0` |
+| [**zig-graph**](https://github.com/SMC17/zig-graph) | Sparse undirected graph + spectral algorithms (eigenvector centrality, PageRank, cut/conductance). | `v1.0.0` |
+| [**zig-frame-protocol**](https://github.com/SMC17/zig-frame-protocol) | Versioned binary frame protocol — COBS-framed, CRC32, opaque kind byte. Composes with `zig-cobs`. | `v1.0.0` |
 
 ### Protocol implementations — full execution surfaces in Zig
 
@@ -38,7 +38,8 @@ The editor surface is one of the eight axes of the appliance-layer thesis. This 
 
 | Repo | What | Status |
 |---|---|---|
-| [**stax-blog**](https://github.com/SMC17/stax-blog) | *Stax — The Journal of Quantitative Mercantilism.* The Mercantile Thesis plus the Anti-Edison / Lineage / Doctrine arcs. Live at [smc17.github.io/stax-blog](https://smc17.github.io/stax-blog/). | live |
+| [**stax-blog**](https://github.com/SMC17/stax-blog) | *Stax — The Journal of Quantitative Mercantilism.* The Mercantile Thesis plus the Anti-Edison / Lineage / Doctrine arcs. Live at [smc17.github.io/stax-blog](https://smc17.github.io/stax-blog/). | `v1.0.0` |
+| [**stax-doctrine**](https://github.com/SMC17/stax-doctrine) | The operating playbook of Quantitative Mercantilism — doctrine essays + frontier-lab playbooks for sovereign engineering teams. | `v1.0.0` |
 
 ### Sovereign Stack — infrastructure I can run without a vendor
 
@@ -46,15 +47,15 @@ Each of these targets a piece of the stack that's normally rented from a hypersc
 
 | Repo | What | Status |
 |---|---|---|
-| [**sovereign-edge**](https://github.com/SMC17/sovereign-edge) | Open Cloudflare-class edge bundle as composable NixOS modules: Caddy + Coraza WAF + rate-limiting + observability. | active |
-| [**sentinel-sbom**](https://github.com/SMC17/sentinel-sbom) | Nix `flake.lock` → SPDX 2.3 SBOM emitter. Single Zig binary, in-tree `narHash` verification. AGPL-3.0. | `v0.5.x` |
-| [**sovereign-offense-harness**](https://github.com/SMC17/sovereign-offense-harness) | Adversary-emulation runner — safety-gated, allow-listed targets, signed audit envelopes. | active |
+| [**sovereign-edge**](https://github.com/SMC17/sovereign-edge) | Open Cloudflare-class edge bundle as composable NixOS modules: Caddy + Coraza WAF + rate-limiting + observability. | `v1.0.0` |
+| [**sentinel-sbom**](https://github.com/SMC17/sentinel-sbom) | Nix `flake.lock` → SPDX 2.3 SBOM emitter. Single Zig binary, in-tree `narHash` verification. AGPL-3.0. | `v1.0.0` |
+| [**sovereign-offense-harness**](https://github.com/SMC17/sovereign-offense-harness) | Adversary-emulation runner — safety-gated, allow-listed targets, signed audit envelopes. | `v1.0.0` |
 
 ### Knowledge bases — research substrate that gets cited, not just read
 
 | Repo | What | Status |
 |---|---|---|
-| [**oceanman**](https://github.com/SMC17/oceanman) | Submarine cable expert knowledge base — physics, owners, geopolitics, economics. 693 cables ingested with independent-agent verification of Type-I errors. | active |
+| [**oceanman**](https://github.com/SMC17/oceanman) | Submarine cable expert knowledge base — physics, owners, geopolitics, economics. 693 cables ingested with independent-agent verification of Type-I errors. | `v1.0.0` |
 
 ---
 
