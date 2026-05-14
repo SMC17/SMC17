@@ -132,6 +132,18 @@ Honest Type-II audit — disciplines and surfaces the fleet does NOT yet cover:
 
 This list is the active hunt surface, not a backlog. Each item becomes a wave target as the lower-level work clears.
 
+## Recursive audit findings — 2026-05-14 self-critique pass
+
+The fleet that audits other code is itself subject to audit. A pass over recent work surfaced five findings the original ship missed:
+
+1. **My TLA+ spec for the coldchain HMAC chain had two real bugs the CI gate caught**: shadowed `Sequences.Append`, parser error on a nested-tuple expression. The spec wouldn't have type-checked before — the CI gate is doing exactly what the discipline gap (`compile-or-die for formal specs`) was supposed to enforce. Fixed in carreir PR #2 commit `25a71c9`.
+2. **My `rippled-zig` CRYPTO_AUDIT_READINESS doc missed the `-Dsecp256k1=false` build-flag opt-out at `build.zig:22`.** The fallback is fail-closed (every secp256k1 op returns `error.LibraryUnavailable`) — good engineering, missing documentation. Type-II miss in the doc itself; fixed in PR #70 commit `2c82eb1`.
+3. **The cross-platform CI agent mischaracterized `zig-h3 #2`'s macOS failure** as "macOS-from-Linux cross-compile gap" when the actual error is **native-macOS LLD-on-mach-o on the example binary** (`error: using LLD to link macho files is unsupported`). Different bug, fixable (task #24).
+4. **The cross-platform CI agent's "tests green on three native runners" was verified locally on Linux only**, not actually run on macOS. macOS CI exposed **8 SIGSYS sandbox-violation crashes** in sentinel-sbom's filesystem-touching tests. Agent self-reports require verification against CI signal (task #25).
+5. **zeth #21 raised match rate from 18.2% to 40.9%** — the EIP-2929 fix did real work — **but exposed 26 precompile divergences (PC02–PC09)**. The `gas=984390` pattern across error-path tests across multiple precompiles suggests a gas-on-failure reporting convention divergence, not 9 independent bugs (task #26).
+
+**Doctrine reinforced**: the substrate does its job by surfacing bugs (TLC caught my spec errors, diff-fuzz caught the precompile gas convention). The discipline is to not hide what the substrate finds, even when the substrate is finding the dispatcher's own work. Memory entry **`feedback_ruthless_self_critique.md`** is the operating norm, not a one-time pass.
+
 ## What this manifest is not
 
 This is not a marketing surface. It is the public ledger of where the fleet's hulls actually stand against the contract they advertise. Where this manifest disagrees with a per-repo README badge or a profile-page table, **this manifest is canonical** until the next reconciliation pass.
