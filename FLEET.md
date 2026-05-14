@@ -124,7 +124,7 @@ Honest Type-II audit — disciplines and surfaces the fleet does NOT yet cover:
 7. **No compiled README examples** — code blocks in READMEs aren't CI-verified; rot is inevitable.
 8. **No regulatory mapping for coldchain** — HACCP, FDA 21 CFR Part 11 (audit-trail), EU FSMA — the substrate's value depends on naming the regulation it satisfies.
 9. **No second-reference differential testing** — `zig-h3` vs libh3 only (could also diff against h3-py); `zeth` vs PyEVM only (could also diff against go-ethereum).
-10. **Cryptographic protocol audit readiness** — ~~`rippled-zig` needs~~ ✅ `rippled-zig` has `CRYPTO_AUDIT_READINESS.md` ([PR #70](https://github.com/SMC17/rippled-zig/pull/70)). `zeth` still needs the equivalent document.
+10. **Cryptographic protocol audit readiness** — ✅ both protocol substrates now have crypto-audit-readiness docs: `rippled-zig` [PR #70](https://github.com/SMC17/rippled-zig/pull/70) (key-confidentiality threat model + libsecp256k1 binding) and `zeth` [PR #22](https://github.com/SMC17/zeth/pull/22) (consensus-correctness threat model + pure-Zig stdlib). The two are explicitly framed against each other so reviewers see the architectural contrast as an audit surface.
 
 11. **Regulatory mapping for coldchain** — ~~not surfaced~~ ✅ `carreir` PR #1 now includes `src/coldchain/REGULATORY_MAP.md` mapping the hull to FDA 21 CFR Part 11 + HACCP + EU GDP with 9 explicit "what this does NOT cover" surfaces.
 
