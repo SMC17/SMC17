@@ -74,7 +74,7 @@ Every repo entry names both failure modes:
 
 | Repo | Tier | Tag | CI | Evidence | Honest summary |
 |---|---|---|---|---|---|
-| [sovereign-edge](https://github.com/SMC17/sovereign-edge) | A — Wave-4 PR open | v1.0.0 | ✓ + `sbom` job ([PR #3](https://github.com/SMC17/sovereign-edge/pull/3)) | `compiled` (Phase 2) + `unit-tested` (sentinel-sbom byte-determinism asserted across 2 emit runs) | Caddy + Coraza + Knot DNS NixOS bundle. Wave-4 sentinel-sbom self-application landed; nixos-test integration in flight. **Action: nixos-test (in flight) raises this to `integration-tested`; real-VPS deployment is the final earn for honest v1.0.** |
+| [sovereign-edge](https://github.com/SMC17/sovereign-edge) | A — substantially evolved during Wave-4 (FLEET row was stale) | v1.4.0 (per parallel work during this session) | ✓ + multiple `nixos-test` runs | `compiled` + `unit-tested` + **`integration-tested`** (nftables v1.1.0 + Caddy v1.2.0 + Knot DNS v1.3.0 + Coraza WAF SQLi→403 v1.4.0, all in-tree `nixos-test`) + `sbom` self-application ([PR #3](https://github.com/SMC17/sovereign-edge/pull/3)) | Caddy + Coraza WAF + nftables + Knot DNS + CrowdSec NixOS bundle. **Wave-4 nixos-test scenario #5 (CrowdSec) shipped on [PR #4](https://github.com/SMC17/sovereign-edge/pull/4) as `scaffold` — test FAILED honestly and caught a real upstream nixpkgs bug** (`services.crowdsec` ExecStartPre calls `cscli hub update` unconditionally → DNS fail in hermetic VMs → `mkdir EACCES` cascade). Two upstream fix locations proposed. CrowdSec stays at `compiled` + `scaffold`, NOT `integration-tested`, until upstream is fixed. |
 | [sentinel-sbom](https://github.com/SMC17/sentinel-sbom) | **S** (Wave 1 verified, Wave 3 v1.0.3 shipped, Wave 4 cross-platform) | v1.0.3 | ✓ across 3 native runners ([PR #2](https://github.com/SMC17/sentinel-sbom/pull/2)) | `unit-tested` (64/64) + `property-tested` (1500-trial determinism) + `audited` (NAR encoder, one corpus) + `hardware-verified` | Nix `flake.lock` → SPDX 2.3 SBOM. Wave-1 overclaim cleanup + Wave-3 v1.0.2 + v1.0.3 releases + Wave-4 cross-platform with `sha256sum`→`shasum` macOS compat. |
 | [sovereign-offense-harness](https://github.com/SMC17/sovereign-offense-harness) | A — Wave-4 PR open | v1.0.0 (README reconciled to v0.4.0) | ✓ | `unit-tested` (24/24) + `integration-tested` (12/12 TTP smoke runs) | Adversary-emulation runner with safety gates. [PR #2](https://github.com/SMC17/sovereign-offense-harness/pull/2) — 2 TTPs / 1 column → 12 TTPs / 6 of 14 ATT&CK tactic columns. New `THREAT_COVERAGE.md` matrix as audit surface (covers ~1.8% of ATT&CK Enterprise v17.1; 8 columns empty + named). Vanity v1.0.0 closed: README reconciled to v0.4.0 to match substrate. Refuse-by-default gate enforced on all 10 new TTPs. |
 
@@ -142,7 +142,23 @@ The fleet that audits other code is itself subject to audit. A pass over recent 
 4. **The cross-platform CI agent's "tests green on three native runners" was verified locally on Linux only**, not actually run on macOS. macOS CI exposed **8 SIGSYS sandbox-violation crashes** in sentinel-sbom's filesystem-touching tests. Agent self-reports require verification against CI signal (task #25).
 5. **zeth #21 raised match rate from 18.2% to 40.9%** — the EIP-2929 fix did real work — **but exposed 26 precompile divergences (PC02–PC09)**. The `gas=984390` pattern across error-path tests across multiple precompiles suggests a gas-on-failure reporting convention divergence, not 9 independent bugs (task #26).
 
-**Doctrine reinforced**: the substrate does its job by surfacing bugs (TLC caught my spec errors, diff-fuzz caught the precompile gas convention). The discipline is to not hide what the substrate finds, even when the substrate is finding the dispatcher's own work. Memory entry **`feedback_ruthless_self_critique.md`** is the operating norm, not a one-time pass.
+**Doctrine reinforced**: the substrate does its job by surfacing bugs (TLC caught my spec errors, diff-fuzz caught the precompile gas convention, sovereign-edge's nixos-test caught a real upstream nixpkgs bug). The discipline is to not hide what the substrate finds, even when the substrate is finding the dispatcher's own work — or an upstream maintainer's. Memory entry **`feedback_ruthless_self_critique.md`** is the operating norm, not a one-time pass.
+
+## Multi-agent coordination findings — 2026-05-14
+
+The fleet operates with multiple Claude sessions and stax himself working in parallel on the same repos. Real coordination failures surfaced during this work:
+
+1. **`main` was force-pushed mid-work** on the carreir profile repo and the sovereign-edge repo. Feature branches in progress went orphan-history and required cherry-pick recovery.
+2. **Parallel agents bundled an in-flight agent's untracked files into their commits** AND **shipped commit messages naming files that didn't exist** in their own diff. This is a stronger failure: the commit message becomes a Type-I overclaim.
+3. **My FLEET.md row for sovereign-edge was stale by the time it was written** — other parallel work had shipped v1.1.0–v1.4.0 nixos-tests during the session.
+
+Hard rules for the next iteration:
+
+- **Never force-push `main`.** Any rewrite of public history breaks downstream work.
+- **Ownership signaling on feature branches** — when a feature branch is in active use by an agent, it should be marked (commit message convention, branch name prefix, or a lock file) so concurrent agents don't bundle it into unrelated commits.
+- **Re-read state before writing** — a FLEET row written without checking the latest repo HEAD is itself a vanity claim.
+
+These belong in agent-harness doctrine (`~/AGENT_HARNESS.md` or a sibling). Surfacing here so the issue is visible.
 
 ## What this manifest is not
 
