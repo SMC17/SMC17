@@ -48,7 +48,7 @@ Each of these targets a piece of the stack that's normally rented from a hypersc
 | Repo | What | Status |
 |---|---|---|
 | [**sovereign-edge**](https://github.com/SMC17/sovereign-edge) | Open Cloudflare-class edge bundle as composable NixOS modules: Caddy + Coraza WAF + rate-limiting + observability. | `v1.0.0` |
-| [**sentinel-sbom**](https://github.com/SMC17/sentinel-sbom) | Nix `flake.lock` → SPDX 2.3 SBOM emitter. Single Zig binary, in-tree `narHash` verification. AGPL-3.0. | `v1.0.0` |
+| [**sentinel-sbom**](https://github.com/SMC17/sentinel-sbom) | Nix `flake.lock` → SPDX 2.3 SBOM emitter. Single Zig binary, in-tree `narHash` verification. AGPL-3.0. | `v1.0.1` |
 | [**sovereign-offense-harness**](https://github.com/SMC17/sovereign-offense-harness) | Adversary-emulation runner — safety-gated, allow-listed targets, signed audit envelopes. | `v1.0.0` |
 
 ### Knowledge bases — research substrate that gets cited, not just read
