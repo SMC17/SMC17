@@ -76,7 +76,7 @@ Every repo entry names both failure modes:
 |---|---|---|---|---|---|
 | [sovereign-edge](https://github.com/SMC17/sovereign-edge) | A — Wave-4 PR open | v1.0.0 | ✓ + `sbom` job ([PR #3](https://github.com/SMC17/sovereign-edge/pull/3)) | `compiled` (Phase 2) + `unit-tested` (sentinel-sbom byte-determinism asserted across 2 emit runs) | Caddy + Coraza + Knot DNS NixOS bundle. Wave-4 sentinel-sbom self-application landed; nixos-test integration in flight. **Action: nixos-test (in flight) raises this to `integration-tested`; real-VPS deployment is the final earn for honest v1.0.** |
 | [sentinel-sbom](https://github.com/SMC17/sentinel-sbom) | **S** (Wave 1 verified) | v0.6.0 (HEAD commit-stamped 1.0.2; tag not yet pushed) | ✓ | `unit-tested` (62/62) + `audited` (NAR encoder, one corpus) | Nix `flake.lock` → SPDX 2.3 SBOM, narHash verification. Overclaim language ("verified end-to-end", "production") replaced with honest evidence vocab. Path to honest v1.0.2 tag push = stax's call. |
-| [sovereign-offense-harness](https://github.com/SMC17/sovereign-offense-harness) | A — tag/README mismatch | v1.0.0 | ✓ | `unit-tested` (`v0.3.1 early` per README) | Adversary-emulation runner with safety gates. README correctly says `v0.3.1 — early`; tag claims v1.0. **Action: bring the next push under v0.3.x until the threat-model coverage + ART corpus the README names is real.** |
+| [sovereign-offense-harness](https://github.com/SMC17/sovereign-offense-harness) | A — Wave-4 PR open | v1.0.0 (README reconciled to v0.4.0) | ✓ | `unit-tested` (24/24) + `integration-tested` (12/12 TTP smoke runs) | Adversary-emulation runner with safety gates. [PR #2](https://github.com/SMC17/sovereign-offense-harness/pull/2) — 2 TTPs / 1 column → 12 TTPs / 6 of 14 ATT&CK tactic columns. New `THREAT_COVERAGE.md` matrix as audit surface (covers ~1.8% of ATT&CK Enterprise v17.1; 8 columns empty + named). Vanity v1.0.0 closed: README reconciled to v0.4.0 to match substrate. Refuse-by-default gate enforced on all 10 new TTPs. |
 
 ### Knowledge bases
 
@@ -97,9 +97,9 @@ Every repo entry names both failure modes:
 | [steam](https://github.com/SMC17/steam) | B | v1.0.0 | 9,439 SLOC; only 3 commits — suspicious squash. |
 | [stax-doctrine](https://github.com/SMC17/stax-doctrine) | n/a — doc repo | v1.0.0 | Doctrine essays; no testable code surface. Tag is more about content cut than software. |
 | [stax-blog](https://github.com/SMC17/stax-blog) | n/a — content repo | v1.0.0 | Public writing. |
-| [amx-zig](https://github.com/SMC17/amx-zig) | _unaudited_ | — | Not yet on disk; needs clone + audit. |
-| [crpc-core](https://github.com/SMC17/crpc-core) | _unaudited_ | — | Not yet on disk; needs clone + audit. |
-| [fivem-ship-and-sell](https://github.com/SMC17/fivem-ship-and-sell) | _unaudited_ | — | Not yet on disk; needs clone + audit. |
+| [amx-zig](https://github.com/SMC17/amx-zig) | **D — Type-I falsified** | Wave-4 audit: public entry point `projectEnergyMorphismAmx` does NOT compile on aarch64 under Zig 0.16 (old `: "memory"` clobber + wrong `.inst` opcode). Test passes only because it never exercises the inline-asm path. **Falsifiable in 60 seconds.** 124 SLOC, 1 commit, no LICENSE/CHANGELOG/CI/build.zig. Decision needed: substrate week vs extract vs archive. |
+| [crpc-core](https://github.com/SMC17/crpc-core) | **D — Type-I falsified** | Wave-4 audit: README claims "same packet projects to PTX, MSL, GCN" — but `Ribosome.project()` returns the hardcoded string literal `"/* JIT-PROJECTED HARDWARE ISA */"`. No emitters exist. **However the XChaCha20-Poly1305 seal/open IS real and round-trip tested (~70 SLOC) — extractable as `zig-sealed-envelope`.** 183 SLOC, 1 commit. |
+| [fivem-ship-and-sell](https://github.com/SMC17/fivem-ship-and-sell) | **B — Type-II underclaim corrected (Wave-4 PR)** | [PR #5](https://github.com/SMC17/fivem-ship-and-sell/pull/5) — Wave-4 audit found ~2,500 lines of real substrate (396-line Lua scaffold generator + 1,384-line Next/Tailwind/Playwright site + 749 lines buyer-side research) hidden behind a 39-line README. CI green: npm build → Playwright 5×2 visual contracts → generator smoke + `luac5.4 -p`. PR rewrites README with honest evidence vocab + engineering CHANGELOG. No LICENSE yet (operator's call — affects emitted-template redistribution). |
 
 ## Reconciliation plan
 
@@ -124,7 +124,11 @@ Honest Type-II audit — disciplines and surfaces the fleet does NOT yet cover:
 7. **No compiled README examples** — code blocks in READMEs aren't CI-verified; rot is inevitable.
 8. **No regulatory mapping for coldchain** — HACCP, FDA 21 CFR Part 11 (audit-trail), EU FSMA — the substrate's value depends on naming the regulation it satisfies.
 9. **No second-reference differential testing** — `zig-h3` vs libh3 only (could also diff against h3-py); `zeth` vs PyEVM only (could also diff against go-ethereum).
-10. **Cryptographic protocol audit readiness** — `rippled-zig` + `zeth` need a `CRYPTO_AUDIT_READINESS.md` naming the threat model, assumptions, and known cryptographic dependencies before any external review pass.
+10. **Cryptographic protocol audit readiness** — ~~`rippled-zig` needs~~ ✅ `rippled-zig` has `CRYPTO_AUDIT_READINESS.md` ([PR #70](https://github.com/SMC17/rippled-zig/pull/70)). `zeth` still needs the equivalent document.
+
+11. **Regulatory mapping for coldchain** — ~~not surfaced~~ ✅ `carreir` PR #1 now includes `src/coldchain/REGULATORY_MAP.md` mapping the hull to FDA 21 CFR Part 11 + HACCP + EU GDP with 9 explicit "what this does NOT cover" surfaces.
+
+12. **Type-I falsified claims in amx-zig and crpc-core** — Wave-4 audit found two stub repos where the public README claims are physically false (amx-zig: entry point doesn't compile on aarch64; crpc-core: claimed JIT emitter returns a string literal). These are the highest-severity Type-I overclaims in the fleet right now. Decisions pending (tasks #21, #22).
 
 This list is the active hunt surface, not a backlog. Each item becomes a wave target as the lower-level work clears.
 
