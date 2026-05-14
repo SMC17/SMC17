@@ -1,6 +1,7 @@
 # Fleet Manifest
 
 **Field:** Quantitative Mercantilism
+
 **Practice:** Verifiable Fleet Engineering
 
 Composable, correctness-first systems with strong auditability and replaceability — modern equivalents of well-built ships that operate independently, are repaired at sea, and compose into larger fleets. This manifest is the honest register of every public repo against the *honest-1.0 contract* below. Where a repo does not yet earn `v1.0`, this document says so plainly; the GitHub tag will be reconciled to match.
