@@ -74,7 +74,7 @@ Every repo entry names both failure modes:
 
 | Repo | Tier | Tag | CI | Evidence | Honest summary |
 |---|---|---|---|---|---|
-| [sovereign-edge](https://github.com/SMC17/sovereign-edge) | A — tag/README mismatch | v1.0.0 | ✓ | `compiled` (Phase 2, not runtime-verified) | Caddy + Coraza + Knot DNS NixOS bundle. README correctly says "closure-builds, not runtime-verified"; tag claims v1.0. **Action: earn v1.0 by deploying to a real VPS and capturing the runtime-verified evidence the README itself names as missing.** |
+| [sovereign-edge](https://github.com/SMC17/sovereign-edge) | A — Wave-4 PR open | v1.0.0 | ✓ + `sbom` job ([PR #3](https://github.com/SMC17/sovereign-edge/pull/3)) | `compiled` (Phase 2) + `unit-tested` (sentinel-sbom byte-determinism asserted across 2 emit runs) | Caddy + Coraza + Knot DNS NixOS bundle. Wave-4 sentinel-sbom self-application landed; nixos-test integration in flight. **Action: nixos-test (in flight) raises this to `integration-tested`; real-VPS deployment is the final earn for honest v1.0.** |
 | [sentinel-sbom](https://github.com/SMC17/sentinel-sbom) | **S** (Wave 1 verified) | v0.6.0 (HEAD commit-stamped 1.0.2; tag not yet pushed) | ✓ | `unit-tested` (62/62) + `audited` (NAR encoder, one corpus) | Nix `flake.lock` → SPDX 2.3 SBOM, narHash verification. Overclaim language ("verified end-to-end", "production") replaced with honest evidence vocab. Path to honest v1.0.2 tag push = stax's call. |
 | [sovereign-offense-harness](https://github.com/SMC17/sovereign-offense-harness) | A — tag/README mismatch | v1.0.0 | ✓ | `unit-tested` (`v0.3.1 early` per README) | Adversary-emulation runner with safety gates. README correctly says `v0.3.1 — early`; tag claims v1.0. **Action: bring the next push under v0.3.x until the threat-model coverage + ART corpus the README names is real.** |
 
@@ -110,6 +110,23 @@ The vanity-push problem is corrected by doing the work the tag promised, in this
 3. **Expand the substrate.** For stub repos (carreir, sovereign-emacs) carrying a tag the SLOC can't justify: scale the substrate to match. The substrate, not the tag, is what's load-bearing.
 
 No silent downgrades. Every reconciliation is committed with a CHANGELOG entry that names what changed and why. When a downgrade is unavoidable, it is honest, public, and accompanied by a concrete plan to re-earn the version.
+
+## Fleet-wide gaps surfaced by Wave 4
+
+Honest Type-II audit — disciplines and surfaces the fleet does NOT yet cover:
+
+1. **sentinel-sbom only reads `flake.lock`** — but only 1 of 9 Tier S/A repos uses Nix flakes. The other 8 consume their supply chain via `build.zig.zon`. Until sentinel-sbom has a `build.zig.zon` sibling emitter, fleet-wide SBOM coverage is structurally incomplete.
+2. **No SBOM aggregator** — per-repo SBOM uploads have no consumer. A `fleet-sbom-index` repo that pulls each artifact, indexes by commit-sha, and cross-verifies shared hashes (catches one repo pinning stale `nixpkgs` while others have moved) would close this loop.
+3. **No coverage measurement** — we cite test counts (166, 50, 22, 64, …) without naming what % of code those tests actually exercise.
+4. **No mutation testing** — we don't know if any of our test suites would catch a regression.
+5. **No formal property statements** — protocol substrates (rippled-zig, zig-frame-protocol) carry differential and property tests but no TLA+-style invariant statement.
+6. **No cross-fleet integration tests** — composition is asserted in prose, not in code. `zig-cobs` + `zig-frame-protocol`, or `coldchain` SBOMed by `sentinel-sbom`, would be the obvious first integrations.
+7. **No compiled README examples** — code blocks in READMEs aren't CI-verified; rot is inevitable.
+8. **No regulatory mapping for coldchain** — HACCP, FDA 21 CFR Part 11 (audit-trail), EU FSMA — the substrate's value depends on naming the regulation it satisfies.
+9. **No second-reference differential testing** — `zig-h3` vs libh3 only (could also diff against h3-py); `zeth` vs PyEVM only (could also diff against go-ethereum).
+10. **Cryptographic protocol audit readiness** — `rippled-zig` + `zeth` need a `CRYPTO_AUDIT_READINESS.md` naming the threat model, assumptions, and known cryptographic dependencies before any external review pass.
+
+This list is the active hunt surface, not a backlog. Each item becomes a wave target as the lower-level work clears.
 
 ## What this manifest is not
 
