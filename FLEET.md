@@ -119,7 +119,7 @@ Honest Type-II audit — disciplines and surfaces the fleet does NOT yet cover:
 2. **No SBOM aggregator** — per-repo SBOM uploads have no consumer. A `fleet-sbom-index` repo that pulls each artifact, indexes by commit-sha, and cross-verifies shared hashes (catches one repo pinning stale `nixpkgs` while others have moved) would close this loop.
 3. **No coverage measurement** — we cite test counts (166, 50, 22, 64, …) without naming what % of code those tests actually exercise.
 4. **No mutation testing** — we don't know if any of our test suites would catch a regression.
-5. **No formal property statements** — protocol substrates (rippled-zig, zig-frame-protocol) carry differential and property tests but no TLA+-style invariant statement.
+5. **No formal property statements** — ~~protocol substrates carry differential and property tests but no TLA+-style invariant statement~~ ✅ **First formal spec landed**: `carreir/src/coldchain/SPEC.tla` ([PR #2](https://github.com/SMC17/carreir/pull/2)) — three safety invariants on the HMAC chain (WriterLogIsAlwaysValid, TamperDetection, ReorderingDetected). The coldchain hull is now the densest in the fleet: substrate + threat model + regulatory mapping + formal spec. Pattern available for rippled-zig, zig-frame-protocol.
 6. **No cross-fleet integration tests** — composition is asserted in prose, not in code. `zig-cobs` + `zig-frame-protocol`, or `coldchain` SBOMed by `sentinel-sbom`, would be the obvious first integrations.
 7. **No compiled README examples** — code blocks in READMEs aren't CI-verified; rot is inevitable.
 8. **No regulatory mapping for coldchain** — HACCP, FDA 21 CFR Part 11 (audit-trail), EU FSMA — the substrate's value depends on naming the regulation it satisfies.
