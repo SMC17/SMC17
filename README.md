@@ -2,7 +2,8 @@
 
 **Quantitative Mercantilism through Verifiable Fleet Engineering.**
 
-I design and implement composable, correctness-first systems with strong auditability and replaceability — modern equivalents of well-built ships that operate independently, are repaired at sea, and compose into larger fleets.
+I design and implement composable, correctness-first systems with strong auditability and replaceability
+The modern equivalents of well-built ships that operate independently, are repaired at sea, and compose into larger fleets.
 
 Drawn to the intersections of human behavior, decision systems, and market mechanisms as drivers of innovation and long-term progress. I build verifiable substrates at these intersections by combining systems engineering rigor with data science, economics, and cognitive science.
 
