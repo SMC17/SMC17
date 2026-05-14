@@ -73,4 +73,21 @@ Each of these targets a piece of the stack that's normally rented from a hypersc
 
 ---
 
+### Portfolio at a glance (auto-updated 2026-05-14)
+
+| Surface | Count |
+|---|---|
+| Public repos in the substrate | **13** |
+| Repos at v1.x milestone | **13** |
+| Total tagged releases | **33** |
+| Published essays in the canon | **15** |
+| Total published words | **54,471** |
+| Average words per essay | **3,631** |
+| Lighthouse on `stax-blog` homepage | **100 / 100 / 100 / 100** |
+| Blog CI status | Green |
+
+All public repos carry: LICENSE (AGPL-3.0 for substrate, MIT for primitives), README, CONTRIBUTING, SECURITY, CHANGELOG, CI workflow, Dependabot, CODEOWNERS, and branch protection (no force-push, no deletion).
+
+---
+
 *Calculemus — "let us calculate," from Leibniz's `calculus ratiocinator`. The aspiration is to make disputes settleable by computation rather than rhetoric.*
