@@ -32,7 +32,7 @@ The editor surface is one of the eight axes of the appliance-layer thesis. This 
 
 | Repo | What | Status |
 |---|---|---|
-| [**mast**](https://github.com/SMC17/mast) | Single-binary editor kernel. Buffer-as-protocol, Janet embedded for extensibility, AGPL-3.0-or-later. Linux x86_64 + Apple Silicon arm64. Composes with the stax CLI fleet through built-in `M-x` commands. | `v1.0.0` |
+| [**mast**](https://github.com/SMC17/mast) | Single-binary editor kernel. Buffer-as-protocol, Janet embedded for extensibility, AGPL-3.0-or-later. Linux x86_64 + Apple Silicon arm64. Composes with the stax CLI fleet through built-in `M-x` commands. | `v1.1.0` |
 
 ### Public writing — the merchant lens applied
 
