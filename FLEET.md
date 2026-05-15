@@ -128,7 +128,7 @@ Honest Type-II audit — disciplines and surfaces the fleet does NOT yet cover:
 
 11. **Regulatory mapping for coldchain** — ~~not surfaced~~ ✅ `carreir` PR #1 now includes `src/coldchain/REGULATORY_MAP.md` mapping the hull to FDA 21 CFR Part 11 + HACCP + EU GDP with 9 explicit "what this does NOT cover" surfaces.
 
-12. **Type-I falsified claims in amx-zig and crpc-core** — Wave-4 audit found two stub repos where the public README claims are physically false (amx-zig: entry point doesn't compile on aarch64; crpc-core: claimed JIT emitter returns a string literal). These are the highest-severity Type-I overclaims in the fleet right now. Decisions pending (tasks #21, #22).
+12. **Type-I falsified claims in amx-zig and crpc-core** — ~~Wave-4 audit found two stub repos where the public README claims are physically false~~ ✅ both shipped as honest v0.1.0 substrate-cuts on 2026-05-15. `amx-zig` v0.1.0 gates the inline-asm body to aarch64-macos via a `comptime` check on `builtin.target.cpu.arch` / `.os.tag`; non-Apple targets now `@panic` rather than emitting undecodable opcodes. Tests 1 → 5; full hygiene set landed. `crpc-core` v0.1.0 replaces the hardcoded-string `Ribosome.project()` with an honest `@panic` and exposes `Ribosome.parse()` as the working AST-validation half; tests 1 → 11 with seal/open + four adversarial tamper invariants. The "highest-severity Type-I overclaims" framing is no longer accurate; both repos are now A-tier substrate awaiting either real emitters (substrate-week direction) or extraction into smaller libraries (e.g. `zig-sealed-envelope` carved out of crpc-core).
 
 This list is the active hunt surface, not a backlog. Each item becomes a wave target as the lower-level work clears.
 
