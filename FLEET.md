@@ -143,6 +143,22 @@ This list is the active hunt surface, not a backlog. Each item becomes a wave ta
 
 ## Wave-7 push — 2026-05-18 (PRs MERGED, releases tagged, second-reference live)
 
+> **CI BILLING NOTICE:** `rippled-zig` + `zerotheta-evm` are CI-blocked
+> at the account level (the billing failure documented in
+> [`CI_BILLING_BLOCK.md`](CI_BILLING_BLOCK.md)). Action items are
+> documented there; no code change unblocks this.
+
+**🟢 zeth vs go-ethereum 1.17.2 — byte-for-byte match on ERC-20 transfer**
+([zerotheta-evm PR #25](https://github.com/SMC17/zerotheta-evm/pull/25)).
+gas_used = 27127 on both. slot 0: 1000→999, slot 1: 0→1 on both. This is
+the SECOND independent reference (after PyEVM-Berlin) — and where the
+two oracles disagreed (the 2800-gas EIP-2200 delta from round 9),
+**go-ethereum sides with zeth**, confirming PyEVM's harness was the
+quirk and zeth's spec interpretation was correct. Cross-implementation
+triangulation: live.
+
+
+
 The Wave-6 work shipped, merged, tagged, and got its first cross-implementation
 validation:
 
