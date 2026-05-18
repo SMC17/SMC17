@@ -141,6 +141,26 @@ Honest Type-II audit — disciplines and surfaces the fleet does NOT yet cover:
 
 This list is the active hunt surface, not a backlog. Each item becomes a wave target as the lower-level work clears.
 
+## Wave-7 push — 2026-05-18 (PRs MERGED, releases tagged, second-reference live)
+
+The Wave-6 work shipped, merged, tagged, and got its first cross-implementation
+validation:
+
+- **All 4 coverage PRs merged + tagged + released:**
+  - [zig-cobs v1.2.0](https://github.com/SMC17/zig-cobs/releases/tag/v1.2.0) — 100% coverage
+  - [zig-frame-protocol v0.2.0](https://github.com/SMC17/zig-frame-protocol/releases/tag/v0.2.0) — 100% coverage
+  - [zig-graph v1.2.0](https://github.com/SMC17/zig-graph/releases/tag/v1.2.0) — 86.98% coverage
+  - [sentinel-sbom v1.1.0](https://github.com/SMC17/sentinel-sbom/releases/tag/v1.1.0) — 97.50% coverage on spdx.zig + zon.zig
+  - CI fixed twice along the way: (1) `kcov` was dropped from Ubuntu 24.04 → pinned coverage job to `ubuntu-22.04`; (2) older kcov writes coverage.json only to a hashed subdir → script uses `find` to locate it.
+
+- **zerotheta-evm PR #24 admin-merged (97512dc on main).** The full 9-round audit-fix-validate loop landed:
+  stack-pop convention fix + G_copy + BN256 prime + leftover-gas-return + memory zero-init + 3 declared-divergence markers + ERC-20 smoke test. Differential against PyEVM = 0. PR #23 (audit-only) closed as superseded.
+  - CI on zerotheta-evm is **billing-blocked** (same GitHub Actions account-state issue as rippled-zig); local verification is exhaustive (411/414 tests + 0 PyEVM diff + ERC-20 storage-state match).
+
+- **zeth round 9: EIP-2200 ERC-20 harness-quirk root-caused.** The 2800-gas delta on the ERC-20 transfer was NOT a zeth bug: PyEVM's `state.set_storage` from the test harness bypasses the journal init, so EIP-2200's `get_storage(..., from_journal=False)` returns 0 instead of the pre-tx-committed 1000. zeth follows the spec (mainnet semantics). Added `known_pyevm_state_setup_divergence` marker.
+
+- **zig-h3 vs h3-py second-reference differential (Wave-7 line 1) [PR #4](https://github.com/SMC17/zig-h3/pull/4)**: 24 lines (3 per fixture × 8 global fixtures) match byte-for-byte between zig-h3 and h3-py 4.4.2. First Wave-7 cross-implementation reference outside the in-tree libh3 binding — confirms zig-h3's wrapper-level glue matches what an external Python consumer sees.
+
 ## Wave-6 push — 2026-05-18 (the audit-fix-validate loop + coverage-pattern pollination)
 
 Five lanes shipped same-day across four repos, compounding on the Wave-5 zeth audit:
