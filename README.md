@@ -53,9 +53,9 @@ I'm building **ZeroTheta** — a sovereign Layer-0 hyperstructure. Zig at the me
 | Repo | Function | Status |
 |:---|:---|:---|
 | [**mast**](https://github.com/SMC17/mast) 🚢 | Single-binary editor kernel. Buffer-as-protocol. Janet embedded. AGPL. 7,200-trial property corpus + buffer-protocol benchmark. | `v1.2.0` |
-| [**zig-h3**](https://github.com/SMC17/zig-h3) | H3 v4 spatial index. Idiomatic Zig wrapper covering all 70 public functions + 7,280-line pure-Zig port. 190 tests across wrapper, cross-validation matrix, fuzz, property, mutation, resolution sweep. CI on Linux x86_64 + Linux aarch64 + macOS arm64. | `v1.3.0` |
+| [**zig-h3**](https://github.com/SMC17/zig-h3) | H3 v4 spatial index. Idiomatic Zig wrapper covering all 70 public functions + 7,280-line pure-Zig port. 190 tests across wrapper, cross-validation matrix, fuzz, property, mutation, resolution sweep. CI on Linux x86_64 + Linux aarch64 + macOS arm64. | `v1.4.1` |
 | [**sovereign-edge**](https://github.com/SMC17/sovereign-edge) | Cloudflare-shaped edge in NixOS modules. Caddy + Coraza WAF + nftables + Knot DNS + CrowdSec. Multi-scenario `nixos-test` integration matrix. | `v1.4.0` |
-| [**sentinel-sbom**](https://github.com/SMC17/sentinel-sbom) | Nix `flake.lock` → SPDX 2.3 SBOM. Single Zig binary. 64 tests + 1,500-trial determinism harness + in-tree narHash verify. | `v1.0.3` |
+| [**sentinel-sbom**](https://github.com/SMC17/sentinel-sbom) | Nix `flake.lock` → SPDX 2.3 SBOM. Single Zig binary. 64 tests + 1,500-trial determinism harness + in-tree narHash verify. | `v1.1.0` |
 | [**sovereign-offense-harness**](https://github.com/SMC17/sovereign-offense-harness) | Adversary-emulation runner. Refuse-by-default unless `--target <IP>` matches a whitelist. Deterministic-shape JSON audit envelopes with per-stream SHA-256. EXPERIMENTAL Atomic Red Team adapter. | `v1.0.0` |
 | [**agent-app-control**](https://github.com/SMC17/agent-app-control) | Linux desktop computer-use CLI. Hyprland + wtype + ydotool substrate. Capability gates, intent flags, trace log. | `v0.6.0` |
 
@@ -89,10 +89,10 @@ Quarterly capsule format: object + essay + software + audio, the same idea expre
 
 | Repo | Function | Status |
 |:---|:---|:---|
-| [**zig-cobs**](https://github.com/SMC17/zig-cobs) | Consistent Overhead Byte Stuffing in pure Zig. Zero alloc, no deps. 22 tests + 117k-trial fuzz/push. | `v1.1.0` |
-| [**zig-frame-protocol**](https://github.com/SMC17/zig-frame-protocol) | Versioned binary frame protocol on COBS. CRC32, opaque kind byte. 100k random-wire fuzz + ~11k bit-flip sweep at 98.4% catch. | `v1.0.0` |
-| [**zig-graph**](https://github.com/SMC17/zig-graph) | Sparse undirected graph + spectral algorithms (centrality, PageRank, conductance). 50 tests + 10k random-graph property suite. Closed-form `λ₁` match to 1e-6 on canonical graphs. | `v1.1.0` |
-| [**fleet-sbom-index**](https://github.com/SMC17/fleet-sbom-index) | Cross-fleet SPDX SBOM divergence detector. Companion to `sentinel-sbom`. Exits non-zero on any `(name, version) → SHA256` disagreement across documents (CI gate). | `v0.1.0` |
+| [**zig-cobs**](https://github.com/SMC17/zig-cobs) | Consistent Overhead Byte Stuffing in pure Zig. Zero alloc, no deps. 22 tests + 117k-trial fuzz/push. | `v1.2.0` |
+| [**zig-frame-protocol**](https://github.com/SMC17/zig-frame-protocol) | Versioned binary frame protocol on COBS. CRC32, opaque kind byte. 100k random-wire fuzz + ~11k bit-flip sweep at 98.4% catch. | `v0.2.0` |
+| [**zig-graph**](https://github.com/SMC17/zig-graph) | Sparse undirected graph + spectral algorithms (centrality, PageRank, conductance). 50 tests + 10k random-graph property suite. Closed-form `λ₁` match to 1e-6 on canonical graphs. | `v1.2.0` |
+| [**fleet-sbom-index**](https://github.com/SMC17/fleet-sbom-index) | Cross-fleet SPDX SBOM divergence detector. Companion to `sentinel-sbom`. Exits non-zero on any `(name, version) → SHA256` disagreement across documents (CI gate). | `v0.2.0` |
 | [**aac-launch**](https://github.com/SMC17/aac-launch) | Zig-native argv-safe app launcher. Parses `.desktop` `Exec=` into real argv. Replaces eval/setsid shell-string launchers. | `v0.4.0` |
 
 §
@@ -103,19 +103,31 @@ Quarterly capsule format: object + essay + software + audio, the same idea expre
 
 §
 
+## NOW
+
+Currently shipping: **rippled-zig** Zig 0.14.1 → 0.16.0 toolchain upgrade (PR #72, local test-green, ~80 ArrayList API sites, std.io / std.crypto.random / Ed25519.generate / std.time.Timer all migrated). **zerotheta-evm** Type-I differential fix loop in progress (26 → 20 → 10 residuals across two rounds). Next: rpc.zig std.net → std.Io.net follow-up + zerotheta-evm BN256 math.
+
+§
+
 ## INSTRUMENTATION
 
 <p>
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=SMC17&show_icons=true&hide_border=true&bg_color=121212&title_color=FFD6A0&icon_color=FFD6A0&text_color=E8E4E0&include_all_commits=true&count_private=true" alt="github stats" />
-  <img height="170" src="https://github-readme-streak-stats.herokuapp.com/?user=SMC17&hide_border=true&background=121212&stroke=666666&ring=FFD6A0&fire=F85F5F&currStreakLabel=FFD6A0&sideLabels=E8E4E0&currStreakNum=E8E4E0&sideNums=E8E4E0&dates=666666" alt="streak" />
+  <img src="https://img.shields.io/github/followers/SMC17?label=followers&style=flat-square&color=FFD6A0&labelColor=121212" alt="followers" />
+  <img src="https://img.shields.io/github/stars/SMC17?affiliations=OWNER&style=flat-square&color=FFD6A0&labelColor=121212" alt="stars" />
+  <img src="https://img.shields.io/github/last-commit/SMC17/mast?style=flat-square&label=mast&color=FFD6A0&labelColor=121212" alt="mast last commit" />
+  <img src="https://img.shields.io/github/last-commit/SMC17/zig-h3?style=flat-square&label=zig-h3&color=FFD6A0&labelColor=121212" alt="zig-h3 last commit" />
+  <img src="https://img.shields.io/github/last-commit/SMC17/sovereign-edge?style=flat-square&label=sovereign-edge&color=FFD6A0&labelColor=121212" alt="sovereign-edge last commit" />
 </p>
 
 <p>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=SMC17&layout=compact&hide_border=true&bg_color=121212&title_color=FFD6A0&text_color=E8E4E0&langs_count=8" alt="top langs" />
+  <img src="https://img.shields.io/badge/Zig-0.16.0-orange?style=flat-square&labelColor=121212" alt="Zig 0.16.0" />
+  <img src="https://img.shields.io/badge/license-AGPL--3.0-blue?style=flat-square&labelColor=121212" alt="AGPL-3.0" />
+  <img src="https://img.shields.io/badge/substrate-Zig%20%2B%20Elixir%20%2B%20Nix-FFD6A0?style=flat-square&labelColor=121212" alt="substrate: Zig + Elixir + Nix" />
+  <img src="https://img.shields.io/badge/discipline-evidence%20vocabulary-FFD6A0?style=flat-square&labelColor=121212" alt="discipline: evidence vocabulary" />
 </p>
 
 <p>
-  <img src="https://github-profile-trophy.vercel.app/?username=SMC17&theme=nord&no-frame=true&no-bg=true&margin-w=6&column=7" alt="trophies — public-legible contributor roadmap" />
+  <img src="https://github-profile-trophy.vercel.app/?username=SMC17&theme=nord&no-frame=true&no-bg=true&margin-w=6&column=7" alt="trophies" />
 </p>
 
 §
