@@ -163,7 +163,7 @@ The fleet that audits other code is itself subject to audit. A pass over recent 
 
 ## Multi-agent coordination findings — 2026-05-14
 
-The fleet operates with multiple Claude sessions and stax himself working in parallel on the same repos. Real coordination failures surfaced during this work:
+The fleet operates with multiple parallel agent sessions and stax himself working in parallel on the same repos. Real coordination failures surfaced during this work:
 
 1. **`main` was force-pushed mid-work** on the carreir profile repo and the sovereign-edge repo. Feature branches in progress went orphan-history and required cherry-pick recovery.
 2. **Parallel agents bundled an in-flight agent's untracked files into their commits** AND **shipped commit messages naming files that didn't exist** in their own diff. This is a stronger failure: the commit message becomes a Type-I overclaim.
