@@ -148,14 +148,25 @@ This list is the active hunt surface, not a backlog. Each item becomes a wave ta
 > [`CI_BILLING_BLOCK.md`](CI_BILLING_BLOCK.md)). Action items are
 > documented there; no code change unblocks this.
 
-**🟢 zeth vs go-ethereum 1.17.2 — byte-for-byte match on ERC-20 transfer**
-([zerotheta-evm PR #25](https://github.com/SMC17/zerotheta-evm/pull/25)).
-gas_used = 27127 on both. slot 0: 1000→999, slot 1: 0→1 on both. This is
+**🟢 zeth vs go-ethereum 1.17.2 — 7/7 bytecodes byte-for-byte match**
+([zerotheta-evm PR #25 MERGED](https://github.com/SMC17/zerotheta-evm/pull/25)).
+ERC-20 transfer: gas_used = 27127 on both, slot 0: 1000→999, slot 1: 0→1.
+Plus 6 more bytecodes covering each audit-driven fix category (ADD/DIV/SUB/LT/EXP
+exercising the stack-pop convention fix; CALLDATACOPY exercising the
+G_copy=3 gas/word fix). **All 7 match go-ethereum byte-for-byte.** This is
 the SECOND independent reference (after PyEVM-Berlin) — and where the
 two oracles disagreed (the 2800-gas EIP-2200 delta from round 9),
 **go-ethereum sides with zeth**, confirming PyEVM's harness was the
-quirk and zeth's spec interpretation was correct. Cross-implementation
-triangulation: live.
+quirk and zeth's spec interpretation was correct.
+
+**zig-h3 vs h3-py: PR #4 MERGED** — 24-line byte-for-byte match across
+8 global fixtures. First Wave-7 cross-implementation reference outside
+the in-tree libh3 binding. (PR #4 admin-merged 2026-05-18; the only red
+CI job was the pre-existing `go-binding` failure unrelated to the
+h3-py work.)
+
+Cross-implementation triangulation: live on both EVM (zeth ⊕ PyEVM ⊕
+go-ethereum) and H3 (zig-h3 ⊕ libh3 ⊕ h3-py).
 
 
 
