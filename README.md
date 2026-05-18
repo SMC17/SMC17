@@ -76,6 +76,15 @@ Quarterly capsule format: object + essay + software + audio, the same idea expre
 
 §
 
+## METHODOLOGY
+
+| Repo | Function | Status |
+|:---|:---|:---|
+| [**stax-harness**](https://github.com/SMC17/stax-harness) | Public methodology for multi-agent engineering. Three docs: operating model, response standard, 8-level proof vocabulary + Type-I/Type-II audit lens. The substrate the fleet runs on. | `v0.1.0` |
+| [**stax-experiment**](https://github.com/SMC17/stax-experiment) | Append-only experiment register. Single Zig binary, flock-protected JSONL. Forces pre-registered hypothesis + falsifier before tests, tracks Type-1 (overclaim) and Type-2 (missed-risk) catches on the agent's own work. | `v0.2.0` |
+
+§
+
 ## SUBSTRATE PRIMITIVES
 
 | Repo | Function | Status |
