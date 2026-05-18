@@ -88,19 +88,6 @@ Quarterly capsule format: object + essay + software + audio, the same idea expre
 
 §
 
-## ACTIVE R&D — PRIVATE
-
-Capability lanes — substrate work that earns public release only when the Honest-1.0 contract holds end-to-end. Named here, no links.
-
-- **EVM execution semantics in Zig** — correctness-first execution, differential validation against canonical Yellow Paper + py-evm. Recursive in-session audit caught a stack-pop-order inversion across 12 non-commutative opcodes; fix + post-fix differential measured same day.
-- **XRPL protocol toolkit (Zig)** — canonical transaction encoding, signing-hash generation, secp256k1 + Ed25519 verification, live testnet RPC conformance.
-- **Submarine cable expert knowledge base** — 693 cables, 1,910 landings, 13,883 geo points, 3,161 landing references. 17 schema / integrity checks, 0 orphans, 0 ID collisions. Type-I-audited.
-- **Physical-intelligence substrate (HVAC / cold-chain)** — ASHRAE 2021 psychrometric primitives, NIST refrigerant P-T tables (R-134a/R-410A/R-32/R-1234yf/R-744), HMAC-SHA256 append-only reefer log with replay tamper-detection.
-- **Append-only experiment register** — pre-registers hypothesis + falsifier *before* tests run; tracks Type-1 / Type-2 catches on the agent's own work. JSONL store, flock-protected, Zig binary in flight.
-- **Decipherment-methodology lane** — symbol-system analysis substrate; constraints and methodology over claim. F-finding register.
-
-§
-
 ## WRITING
 
 [**stax-blog**](https://github.com/SMC17/stax-blog) — *The Journal of Quantitative Mercantilism.* Essays + audits backing the appliance-layer thesis. AGPL.
