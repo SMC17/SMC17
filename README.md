@@ -63,6 +63,19 @@ Full ledger with Honest-1.0 contract per repo: [`FLEET.md`](FLEET.md).
 
 §
 
+## STAX EDITIONS — DROP HOUSE
+
+Quarterly capsule format: object + essay + software + audio, the same idea expressed in four substrates.
+
+| № | Capsule | Object spec | Companion essay | Software | Audio | Status |
+|:---|:---|:---|:---|:---|:---|:---|
+| **I** | Phonograph | [/objects/phonograph](https://stax.dev/objects/phonograph) | [Sonos S2 touchscreen monoculture](https://stax.dev/posts/sonos-s2-touchscreen-monoculture) | Music client PWA (AGPL) | Phonograph Object Lesson (40 min) | shipped |
+| **II** | Almanac | [/objects/almanac](https://stax.dev/objects/almanac) | [Daily page as computation](https://stax.dev/posts/daily-page-as-computation) | Almanac universal display | January Rockefeller (34 min); Feb-Apr in production | spec + display + 1/12 audio |
+| **III** | Lineage Album Vol I | [/objects/lineage-album-vol-i-anti-edison](https://stax.dev/objects/lineage-album-vol-i-anti-edison) | [10-essay Anti-Edison arc](https://stax.dev/canon/anti-edison/) | — | 90-min LP in production | spec + arc shipped |
+| **IV** | The Codex Deck | [/objects/codex-deck](https://stax.dev/objects/codex-deck) | The card as the smallest useful unit of canon | Companion PWA | 12 figure-audios | spec only |
+
+§
+
 ## SUBSTRATE PRIMITIVES
 
 | Repo | Function | Status |
