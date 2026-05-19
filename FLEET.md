@@ -146,7 +146,12 @@ This list is the active hunt surface, not a backlog. Each item becomes a wave ta
 > **CI BILLING NOTICE:** `rippled-zig` + `zerotheta-evm` are CI-blocked
 > at the account level (the billing failure documented in
 > [`CI_BILLING_BLOCK.md`](CI_BILLING_BLOCK.md)). Action items are
-> documented there; no code change unblocks this.
+> documented there; no code change unblocks this. **Mitigation shipped
+> 2026-05-18:** the same CI trim pattern is now in place on both
+> repos — heavy jobs gated to `push || workflow_dispatch`, macOS leg
+> gated to non-PR events (zeth: PR #25 + PR #26; rippled-zig: PR #73).
+> Cuts PR-time CI minutes by ~60% on each repo; doesn't unblock the
+> account-state issue but reduces re-run cost once it clears.
 
 **🟢 zeth vs go-ethereum 1.17.2 — 7/7 bytecodes byte-for-byte match**
 ([zerotheta-evm PR #25 MERGED](https://github.com/SMC17/zerotheta-evm/pull/25)).
@@ -187,6 +192,25 @@ validation:
 - **zeth round 9: EIP-2200 ERC-20 harness-quirk root-caused.** The 2800-gas delta on the ERC-20 transfer was NOT a zeth bug: PyEVM's `state.set_storage` from the test harness bypasses the journal init, so EIP-2200's `get_storage(..., from_journal=False)` returns 0 instead of the pre-tx-committed 1000. zeth follows the spec (mainnet semantics). Added `known_pyevm_state_setup_divergence` marker.
 
 - **zig-h3 vs h3-py second-reference differential (Wave-7 line 1) [PR #4](https://github.com/SMC17/zig-h3/pull/4)**: 24 lines (3 per fixture × 8 global fixtures) match byte-for-byte between zig-h3 and h3-py 4.4.2. First Wave-7 cross-implementation reference outside the in-tree libh3 binding — confirms zig-h3's wrapper-level glue matches what an external Python consumer sees.
+
+### Wave-7 next-layer line — real-block-replay corpus
+
+**The 7-bytecode geth match is necessary but not sufficient.** Synthetic
+bytecodes (ADD/DIV/SUB/LT/EXP/CALLDATACOPY + ERC-20 transfer) exercise
+named opcode paths — but a real Ethereum mainnet block exercises
+sequencing, gas accounting under nested CALLs, refund-cap interaction
+across multiple transactions, and the full state-transition function.
+The next-layer evidence is **block-replay against go-ethereum traces**:
+pick N Berlin-era mainnet blocks, fetch the per-transaction trace from
+a geth archive node (or use vendored fixtures), replay each transaction
+in zeth, byte-compare the resulting state diff. The corpus is the moat;
+the 7 synthetic cases were the precondition.
+
+Substrate to build: `zeth/validation/block_replay/` — fixture loader,
+geth-trace JSON schema, per-tx state-diff comparator, multi-block
+driver. Sized to start small (5 Berlin blocks, mostly ETH transfers +
+ERC-20 calls) and grow as each new opcode/precompile gets a real-world
+witness.
 
 ## Wave-6 push — 2026-05-18 (the audit-fix-validate loop + coverage-pattern pollination)
 
