@@ -266,9 +266,36 @@ for Cancun-fork completeness.**
 | CodeDiff | 2 | 2 | 0 | 0 |
 | BalanceDiff | 8 | 8 | 8 | 8 (root cause isolated) |
 
-**Residual filed as [#36](https://github.com/SMC17/zerotheta-evm/issues/36)**: 1202-gas underage per CREATE tx in zeth's EVM execution + adjacent bug in `warmAccessList` storage-key shape. Each diagnostic component documented (hand-trace, 4 hypotheses, reproduction recipe). **All NonceDiff/CodeDiff/StorageDiff resolved.**
+**Residual filed as [#36](https://github.com/SMC17/zerotheta-evm/issues/36)**: 1202-gas underage per CREATE tx in zeth's EVM execution + adjacent bug in `warmAccessList` storage-key shape. Each diagnostic component documented (hand-trace, 4 hypotheses, reproduction recipe). **All NonceDiff/CodeDiff/StorageDiff resolved on `bcExample/`.**
 
 zeth full test suite preserved across all 4 PRs: 412/415 pass / 3 skipped.
+
+### Corpus-wide measured baseline (2026-05-19 same session)
+
+The 4-case `bcExample/` subdir was understating coverage. Two more PRs landed to surface the **full `BlockchainTests/ValidBlocks/` baseline**:
+
+| PR | Move |
+|---|---|
+| [#37](https://github.com/SMC17/zerotheta-evm/pull/37) | EVM bounds-check helper + 3 opcode patches (writeCallReturn / opLog / opSha3) — refuse OutOfGas on offset>2^32, matches go-ethereum/revm. Surfaced by fuzz-bytecode fixtures. |
+| [#39](https://github.com/SMC17/zerotheta-evm/pull/39) | Per-fixture-subprocess runner (`validation/bctests/run_corpus.sh`) — isolates panics so a single bad bytecode doesn't blind the whole sweep. |
+
+**First measured baseline against the full ValidBlocks corpus** (213 of 216 fixtures, 3 panicked → [#38](https://github.com/SMC17/zerotheta-evm/issues/38) audit lane):
+
+```
+total_cases:     876
+cancun_run:      438     (50% Cancun, 50% Prague-skipped)
+cancun_passed:   5       ← canonical anchor
+cancun_failed:   433
+by_kind:
+  BalanceDiff:   524     (mostly #36 — 1202-gas underage replicating)
+  StorageDiff:   129
+  NonceDiff:     9
+  Execution:     1
+```
+
+**Cancun pass rate: 5 / 438 = 1.14%.** That's the load-bearing number every future audit-fix-validate round is anchored to. Top-failing fixtures are `bcStateTests/testOpcode_*` (16 failures each) — opcode-coverage gaps that the audit register now names by file path.
+
+The headline shift: we went from "0 passing" (an artifact of in-process panic propagation) to a **real measured baseline** in the same session. The corpus runner is the substrate primitive that made this possible — process isolation as a first-class fuzz-corpus tool.
 
 ## Wave-6 push — 2026-05-18 (the audit-fix-validate loop + coverage-pattern pollination)
 
