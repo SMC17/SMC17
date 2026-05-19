@@ -201,16 +201,30 @@ named opcode paths — but a real Ethereum mainnet block exercises
 sequencing, gas accounting under nested CALLs, refund-cap interaction
 across multiple transactions, and the full state-transition function.
 The next-layer evidence is **block-replay against go-ethereum traces**:
-pick N Berlin-era mainnet blocks, fetch the per-transaction trace from
-a geth archive node (or use vendored fixtures), replay each transaction
-in zeth, byte-compare the resulting state diff. The corpus is the moat;
+pick N mainnet blocks, fetch the per-transaction trace from a geth
+archive node (or use vendored fixtures), replay each transaction in
+zeth, byte-compare the resulting state diff. The corpus is the moat;
 the 7 synthetic cases were the precondition.
 
-Substrate to build: `zeth/validation/block_replay/` — fixture loader,
-geth-trace JSON schema, per-tx state-diff comparator, multi-block
-driver. Sized to start small (5 Berlin blocks, mostly ETH transfers +
-ERC-20 calls) and grow as each new opcode/precompile gets a real-world
-witness.
+**Scaffold shipped 2026-05-19 ([zerotheta-evm PR #27 MERGED](https://github.com/SMC17/zerotheta-evm/pull/27))**:
+v1 fixture schema + Zig loader (3/3 unit tests pass) + comparator
+(state-diff equality across balance/nonce/storage/return-data/logs) +
+multi-fixture driver (`zig build block-replay`) + archive-node fetch
+script + single synthetic harness self-test labeled
+`synthetic_placeholder: true`. Anti-vanity exit code 3 fires when only
+synthetic fixtures run. Honest scope: this is `scaffold`, NOT
+`integration-tested` against real-corpus.
+
+**Next concrete move ([zerotheta-evm #28](https://github.com/SMC17/zerotheta-evm/issues/28))**:
+BlockchainTests adapter — consume `ethereum/tests/BlockchainTests/ValidBlocks/`
+directly (the no-archive-node path; ~216 files, ~882 test cases, all
+Cancun + Prague). zeth already has `executeBlock()` so the adapter is a
+~300-line parser-loop-comparator wedge. Posture progresses
+`scaffold` → `integration-tested` after one fixture parses + runs
+cleanly → `differential-tested` after Cancun subset green. The
+`mainnet-compatible` step still requires archive-node mainnet fixtures
+(separate Wave-7 sub-lane); BlockchainTests verifies spec conformance,
+not real-world representativeness.
 
 ## Wave-6 push — 2026-05-18 (the audit-fix-validate loop + coverage-pattern pollination)
 
