@@ -249,6 +249,27 @@ Each is a small focused PR. Posture stays `scaffold` until the first
 Cancun case is green end-to-end. **The harness IS the audit register
 for Cancun-fork completeness.**
 
+**Audit-fix-validate sweep same session 2026-05-19**:
+
+| PR | Closes | Move | Surfaced by |
+|---|---|---|---|
+| [#33](https://github.com/SMC17/zerotheta-evm/pull/33) | #30 | EIP-4788 beacon-root pre-block system call | bctests #29 |
+| [#34](https://github.com/SMC17/zerotheta-evm/pull/34) | #31 | CREATE addr = keccak(rlp([sender, nonce])) — YP §7 (Type-I correctness, internal test only asserted `!= null`) | bctests #29 |
+| [#35](https://github.com/SMC17/zerotheta-evm/pull/35) | (adapter) | `liftTx` access-list passthrough + detailed BalanceDiff (isolates residual to exactly 1202-gas-per-tx) | bctests detail |
+
+**bctests trajectory on `bcExample/`**:
+
+| Category | #29 baseline | After #33 | After #34 | After #35 |
+|---|---|---|---|---|
+| StorageDiff | 10 | 3 | 0 | 0 |
+| NonceDiff | 3 | 3 | 0 | 0 |
+| CodeDiff | 2 | 2 | 0 | 0 |
+| BalanceDiff | 8 | 8 | 8 | 8 (root cause isolated) |
+
+**Residual filed as [#36](https://github.com/SMC17/zerotheta-evm/issues/36)**: 1202-gas underage per CREATE tx in zeth's EVM execution + adjacent bug in `warmAccessList` storage-key shape. Each diagnostic component documented (hand-trace, 4 hypotheses, reproduction recipe). **All NonceDiff/CodeDiff/StorageDiff resolved.**
+
+zeth full test suite preserved across all 4 PRs: 412/415 pass / 3 skipped.
+
 ## Wave-6 push — 2026-05-18 (the audit-fix-validate loop + coverage-pattern pollination)
 
 Five lanes shipped same-day across four repos, compounding on the Wave-5 zeth audit:
