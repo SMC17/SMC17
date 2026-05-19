@@ -226,6 +226,29 @@ cleanly → `differential-tested` after Cancun subset green. The
 (separate Wave-7 sub-lane); BlockchainTests verifies spec conformance,
 not real-world representativeness.
 
+**Adapter shipped same session 2026-05-19 ([zerotheta-evm PR #29 MERGED](https://github.com/SMC17/zerotheta-evm/pull/29))**:
+891 lines (loader + comparator + driver + README), 2/2 loader unit
+tests pass, full zeth suite 412/415. Wired as `zig build bctests`.
+
+**Honest result on `bcExample/`**:
+`total=8 cancun_run=4 passed=0 failed=4 skipped_fork=4` with structured
+failure categories: BalanceDiff 8 / NonceDiff 3 / CodeDiff 2 /
+StorageDiff 10. **These are real Cancun-fork-completeness gaps, not
+harness bugs** — the adapter surfacing them is the substrate doing its
+job. Three sub-issues filed against the findings:
+
+- [#30](https://github.com/SMC17/zerotheta-evm/issues/30) — EIP-4788
+  beacon-root pre-block system call (drops 10 StorageDiff to 0)
+- [#31](https://github.com/SMC17/zerotheta-evm/issues/31) — contract-
+  creation nonce + runtime-code deploy path (drops 3 NonceDiff + 2
+  CodeDiff)
+- [#32](https://github.com/SMC17/zerotheta-evm/issues/32) — coinbase
+  reward / EIP-1559 fee distribution path (drops 8 BalanceDiff)
+
+Each is a small focused PR. Posture stays `scaffold` until the first
+Cancun case is green end-to-end. **The harness IS the audit register
+for Cancun-fork completeness.**
+
 ## Wave-6 push — 2026-05-18 (the audit-fix-validate loop + coverage-pattern pollination)
 
 Five lanes shipped same-day across four repos, compounding on the Wave-5 zeth audit:
