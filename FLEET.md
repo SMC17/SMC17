@@ -359,6 +359,30 @@ bash validation/bctests/run_corpus.sh ethereum-tests/BlockchainTests/ValidBlocks
 
 The lesson per the who/what/when/where/why lens: when the bug looks like an EVM gas mystery AND the second oracle returns identical EVM gas, **the gap is at the tx-level mechanic**. Filed as a doctrine note for future audit rounds.
 
+### Biggest move of the session — PR #43 (EIP-1559 base_fee burn on legacy)
+
+[PR #43 merged](https://github.com/SMC17/zerotheta-evm/pull/43) — **the single biggest correctness move in the Wave-7 chain**.
+
+**The bug**: EIP-1559 burns `base_fee` for ALL tx types including legacy. zeth's coinbase-payment switch had `legacy => gas_price` (full payment), double-counting `base_fee` as both burn AND priority. One-line switch arm.
+
+**How it was localized**: `bcStateTests/testOpcode_*` (16 legacy-tx fixtures) had got/want ratio on coinbase balance = `gas_price / (gas_price - base_fee)` = exactly `20/11 ≈ 1.818` on every BalanceDiff. Pattern was unmistakable once detail was visible (PR #35's verbose BalanceDiff format earned its keep).
+
+**Internal test ratified the bug**: `expectEqual(21_000 * gas_price, coinbase_bal)` codified the wrong behavior as expected. Updated to `21_000 * (gas_price - base_fee)`.
+
+**Result**:
+
+```
+bash validation/bctests/run_corpus.sh ethereum-tests/BlockchainTests/ValidBlocks/
+  Before #43: cancun_passed=7   failed=434 BalanceDiff=517 StorageDiff=127
+  After  #43: cancun_passed=360 failed=81  BalanceDiff=145 StorageDiff=125
+```
+
+**Cancun pass rate: 1.59% → 81.6%** in a single one-line PR.
+
+**Doctrine banked**: when a test asserts equality with the implementation it was written alongside, it can only catch *regressions from current behavior*, never *miscalibrations from canonical*. Spec-authoritative reference fixtures (BlockchainTests, geth's `evm`) are the load-bearing oracle.
+
+**Wave-7 session total: 11 PRs merged on zerotheta-evm** (#27, #29, #33, #34, #35, #37, #39, #40, #41, #42, #43) + 1 on rippled-zig (#73). Issues: 5 filed, 2 closed.
+
 ## Wave-6 push — 2026-05-18 (the audit-fix-validate loop + coverage-pattern pollination)
 
 Five lanes shipped same-day across four repos, compounding on the Wave-5 zeth audit:
