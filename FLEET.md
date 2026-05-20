@@ -309,6 +309,25 @@ Test suite now **418/421 pass** (was 412/415; 6 net-new tests including the repa
 
 **Total Wave-7 session count**: 8 PRs merged on zerotheta-evm (#27, #29, #33, #34, #35, #37, #39, #40) + 5 audit issues filed (#28, #30, #31, #36, #38) + 1 closed (#28 via #29) — 1 PR on rippled-zig (#73) — 5 FLEET.md updates pushed.
 
+### Panic-free corpus baseline — PR #41
+
+[PR #41 merged](https://github.com/SMC17/zerotheta-evm/pull/41) closes the panic surface from #38 across 8 more handlers: MLOAD / MSTORE / MSTORE8 / CALLDATACOPY / CODECOPY / EXTCODECOPY / RETURNDATACOPY / MCOPY. All routed through the shared `MEM_WINDOW_MAX` constant from #37. Also removes a buggy prior `@min(offset+length, 0xFFFFFFFF)` pattern from the *COPY family — it capped the result but not the operands, so the @memset/@memcpy still indexed past the capped memory length.
+
+**Zero panics**:
+
+```
+bash validation/bctests/run_corpus.sh ethereum-tests/BlockchainTests/ValidBlocks/
+  fixtures_run:    216 / 216        (was 213; +3 fixtures unlocked)
+  cancun_run:      441              (was 438)
+  cancun_passed:   5                (residual gated on #36)
+  cancun_failed:   436
+  files_panicked:  0                (was 3)
+```
+
+The harness now drives the full corpus end-to-end without losing visibility. **216/216 fixtures execute cleanly.** Process isolation is still the recommended runner mode (the corpus runner stays useful for parallelism + per-fixture attribution), but in-process iteration is now safe — opens the path to a Zig-level integration test once the gas correctness lane (#36) closes.
+
+**Wave-7 PR count this session**: **9** on zerotheta-evm (#27, #29, #33, #34, #35, #37, #39, #40, #41) + 1 on rippled-zig (#73). Issues: 5 filed, 1 closed.
+
 ## Wave-6 push — 2026-05-18 (the audit-fix-validate loop + coverage-pattern pollination)
 
 Five lanes shipped same-day across four repos, compounding on the Wave-5 zeth audit:
