@@ -297,6 +297,18 @@ by_kind:
 
 The headline shift: we went from "0 passing" (an artifact of in-process panic propagation) to a **real measured baseline** in the same session. The corpus runner is the substrate primitive that made this possible — process isolation as a first-class fuzz-corpus tool.
 
+### Trajectory continues — PR #40 (warmAccessList + EIP-3860 + phantom-test repair)
+
+Same-session [PR #40 merged](https://github.com/SMC17/zerotheta-evm/pull/40) closes three correctness gaps surfaced by audit chasing:
+
+1. **`warmAccessList` was pre-warming storage with the wrong key shape** — bare U256 instead of `keccak(address || key)` that SSTORE/SLOAD check against. Tx-supplied access-list keys were never actually warm. Latent bug. Routes through canonical `EVM.storageWarmKey`.
+2. **EIP-3860 init-code-word cost was missing at the tx-level intrinsic** — opcode-level CREATE/CREATE2 had it; tx-level didn't. Closes 2 of the 1202-gas underage in #36 (remaining 1200 still EVM-layer).
+3. **Two phantom tests in `block_replay/comparator.zig`** (from a parallel commit) referenced a non-existent API and were silently uncompilable. Repaired to match current `loader.PreAccount` / `loader.Tx` shape.
+
+Test suite now **418/421 pass** (was 412/415; 6 net-new tests including the repaired ones). Corpus delta: `fixtures_run 213→214` / `panics 3→2` / `StorageDiff 129→127` / `BalanceDiff 524→524` (still gated on #36).
+
+**Total Wave-7 session count**: 8 PRs merged on zerotheta-evm (#27, #29, #33, #34, #35, #37, #39, #40) + 5 audit issues filed (#28, #30, #31, #36, #38) + 1 closed (#28 via #29) — 1 PR on rippled-zig (#73) — 5 FLEET.md updates pushed.
+
 ## Wave-6 push — 2026-05-18 (the audit-fix-validate loop + coverage-pattern pollination)
 
 Five lanes shipped same-day across four repos, compounding on the Wave-5 zeth audit:
