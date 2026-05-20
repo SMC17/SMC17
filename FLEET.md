@@ -328,6 +328,37 @@ The harness now drives the full corpus end-to-end without losing visibility. **2
 
 **Wave-7 PR count this session**: **9** on zerotheta-evm (#27, #29, #33, #34, #35, #37, #39, #40, #41) + 1 on rippled-zig (#73). Issues: 5 filed, 1 closed.
 
+### #36 CLOSED — G_codedeposit (1200-gas root cause), PR #42
+
+[PR #42 merged](https://github.com/SMC17/zerotheta-evm/pull/42) closes the named 1202-gas mystery from #36 (the audit lane that's been load-bearing since the bctests adapter shipped).
+
+**Root cause**: Yellow Paper §11.6 / EIP-2 charges `G_codedeposit (200 gas/byte)` on deployed runtime code. zeth's `executeTransaction` CREATE path was storing returned bytecode via `setCode()` **without ever charging this cost**. For `bcExample/basefeeExample` (6-byte runtime code): 6 × 200 = **exactly 1200 gas**.
+
+**How I localized it**: `nix-shell -p go-ethereum --run "evm run --gas 400000 --statdump <init_code>"` returned EVM gas used = 22130 — **identical to zeth's**. So the gap was NOT in opcode execution. The gap was at the tx-level post-execution code-deposit charge. The bug class had been misattributed twice across the audit chain (looked like an EVM gas mystery; was a tx-level mechanic).
+
+**Measured result**:
+
+```
+bash validation/bctests/run_corpus.sh ethereum-tests/BlockchainTests/ValidBlocks/
+  Before #42: cancun_passed=5  failed=436 BalanceDiff=530 StorageDiff=127 NonceDiff=9
+  After  #42: cancun_passed=7  failed=434 BalanceDiff=517 StorageDiff=127 NonceDiff=9
+
+./zig-out/bin/bctests ethereum-tests/BlockchainTests/ValidBlocks/bcExample/basefeeExample.json
+  → cancun_run=1 passed=1 failed=0    ← FIRST end-to-end Cancun pass on a
+                                        real Foundation fixture, anywhere
+```
+
+**Wave-7 session total: 10 PRs merged on zerotheta-evm** (#27, #29, #33, #34, #35, #37, #39, #40, #41, #42) + 1 on rippled-zig (#73). Issues: 5 filed, **2 closed** (#28 via #29, #36 via #42). 7 FLEET.md updates pushed.
+
+**Cancun pass trajectory** across the session:
+- Start: 0 (in-process panic propagation masked the real count)
+- After corpus runner #39: 5 / 438
+- After #40 (warmAccessList + EIP-3860): 5 / 439
+- After #41 (panic-free baseline): 5 / 441
+- **After #42 (G_codedeposit): 7 / 441 ≈ 1.59%**
+
+The lesson per the who/what/when/where/why lens: when the bug looks like an EVM gas mystery AND the second oracle returns identical EVM gas, **the gap is at the tx-level mechanic**. Filed as a doctrine note for future audit rounds.
+
 ## Wave-6 push — 2026-05-18 (the audit-fix-validate loop + coverage-pattern pollination)
 
 Five lanes shipped same-day across four repos, compounding on the Wave-5 zeth audit:
