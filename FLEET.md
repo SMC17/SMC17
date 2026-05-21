@@ -454,6 +454,12 @@ Standing residuals: BalanceDiff 84, StorageDiff 16, NonceDiff 3, 0 Execution. Mo
 
 **Wave-7 session total: 25 PRs merged on zerotheta-evm** + 1 on rippled-zig. Standing residuals: BalanceDiff 72, StorageDiff 3, NonceDiff 3, 0 Execution.
 
+PR [#58](https://github.com/SMC17/zerotheta-evm/pull/58) (same session): COPY-family handle past-end U256 source offsets. CODECOPY/CALLDATACOPY/EXTCODECOPY/RETURNDATACOPY/MCOPY all used only `.limbs[0]` for the source offset — a `1<<128` source silently aliased to 0, corrupting memory with actual bytes from offset 0 instead of treating as past-end. **+1 pass, StorageDiff -1. 406/441 = 92.1%.**
+
+**Doctrine extends from #54 (MULMOD precision)**: any opcode parameter that's a U256 from the stack MUST check upper limbs explicitly before truncating to u64. Silent truncation produces wrong-but-plausible behavior that only shows up under fuzz-corpus testing.
+
+**Wave-7 session total: 26 PRs merged on zerotheta-evm** + 1 on rippled-zig.
+
 The hardcoded-constant pattern keeps producing wins:
   - #43 (legacy coinbase = full gas_price, no burn) — 7→360
   - #46 (GASPRICE = 20 gwei) — +3
