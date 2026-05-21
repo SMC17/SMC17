@@ -442,6 +442,26 @@ Root-cause findings each had a clean, named, spec-referenced explanation:
 
 Standing residuals: BalanceDiff 84, StorageDiff 16, NonceDiff 3, 0 Execution. Most remaining are small (~100-1200 wei) gas-accounting precision deltas in SELFDESTRUCT-heavy fixtures + a few complex multi-tx EIP-1559 contracts that exercise specific opcode interactions.
 
+### Sweep 5 (2026-05-21 late) — 3 more PRs, 395 → 405 Cancun pass (91.8%)
+
+| PR | Move | Corpus delta |
+|---|---|---|
+| [#55](https://github.com/SMC17/zerotheta-evm/pull/55) | SELFDESTRUCT warm-access adds 0 not 100 (EIP-2929 baseline subtlety) | +6 passes, BalanceDiff -10 |
+| [#56](https://github.com/SMC17/zerotheta-evm/pull/56) | BASEFEE (0x48) reads from context (was: hardcoded 1 gwei) | +3 passes, StorageDiff -12 |
+| [#57](https://github.com/SMC17/zerotheta-evm/pull/57) | CALL return-data no zero-pad of retLen window (EIP-211) | +1 pass, StorageDiff -1 |
+
+**Cancun pass rate: 395 → 405 (89.6% → 91.8%).**
+
+**Wave-7 session total: 25 PRs merged on zerotheta-evm** + 1 on rippled-zig. Standing residuals: BalanceDiff 72, StorageDiff 3, NonceDiff 3, 0 Execution.
+
+The hardcoded-constant pattern keeps producing wins:
+  - #43 (legacy coinbase = full gas_price, no burn) — 7→360
+  - #46 (GASPRICE = 20 gwei) — +3
+  - #49 (withdrawals silently ignored) — +1
+  - #56 (BASEFEE = 1 gwei) — +3
+  Each was a Type-I placeholder protected by an internal test that
+  never exercised the opcode against a non-default block context.
+
 **Doctrine banked**:
 - The `>=` vs `>` gas-limit check is a one-character bug that gated dozens of fixtures. Pre-op checks should be permissive ("let it try"); the post-op check inside each handler catches actual overrun.
 - When SSTORE-class writes "succeed but disappear," the cause is usually a snapshot revert downstream. Trace with a readback immediately after the write to localize.
