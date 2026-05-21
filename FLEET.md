@@ -422,6 +422,26 @@ Corpus delta: cancun_passed 367 → 368, BalanceDiff 141 → 138.
 
 **Wave-7 session total: 19 PRs merged on zerotheta-evm** + 1 on rippled-zig. **368 / 441 = 83.4% Cancun pass.**
 
+### Sweep 4 (2026-05-21): 3 PRs, 368 → 395 Cancun pass (89.6%)
+
+| PR | Move | Corpus delta |
+|---|---|---|
+| [#52](https://github.com/SMC17/zerotheta-evm/pull/52) | BLOCKHASH ancestor chain plumbed (consensus driver → BlockContext → EVM) | +4 passes, BalanceDiff -10, StorageDiff -8 |
+| [#53](https://github.com/SMC17/zerotheta-evm/pull/53) | OOG/EVM-error catch path REVERTS tx state (was: committed silently — sister bug to #51) | +11 passes, BalanceDiff -28 |
+| [#54](https://github.com/SMC17/zerotheta-evm/pull/54) | MULMOD + ADDMOD use full 512-bit intermediates (was: truncated before mod) | +12 passes, BalanceDiff -16, StorageDiff -5 |
+
+**Cancun pass rate: 368 → 395 (83.4% → 89.6%) in three focused PRs.**
+
+Root-cause findings each had a clean, named, spec-referenced explanation:
+
+- **#52 (BLOCKHASH)**: EVM had `block_hashes` field but no caller was populating it. Classic dangling-feature pattern only catchable via external corpus.
+- **#53 (OOG revert)**: zeth had three failure paths (REVERT, message-call OOG, CREATE OOG) with three different revert behaviors. The REVERT/OOG distinction is meaningless from the state-mutation perspective — both must revert ALL post-snapshot state.
+- **#54 (MULMOD precision)**: The "natural" implementation `(a*b).mod(m)` silently truncates 256-bit overflow before applying the modulus. Zig's native `u512` makes the spec-correct implementation a one-liner.
+
+**Wave-7 session total: 22 PRs merged on zerotheta-evm** + 1 on rippled-zig. Issues: 5 filed, 2 closed. 12 FLEET.md updates pushed.
+
+Standing residuals: BalanceDiff 84, StorageDiff 16, NonceDiff 3, 0 Execution. Most remaining are small (~100-1200 wei) gas-accounting precision deltas in SELFDESTRUCT-heavy fixtures + a few complex multi-tx EIP-1559 contracts that exercise specific opcode interactions.
+
 **Doctrine banked**:
 - The `>=` vs `>` gas-limit check is a one-character bug that gated dozens of fixtures. Pre-op checks should be permissive ("let it try"); the post-op check inside each handler catches actual overrun.
 - When SSTORE-class writes "succeed but disappear," the cause is usually a snapshot revert downstream. Trace with a readback immediately after the write to localize.
