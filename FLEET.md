@@ -410,6 +410,18 @@ The 364/441 baseline opened the door to a series of targeted findings, each with
 
 Standing residuals (each a named audit lane): BalanceDiff 141, StorageDiff 29, NonceDiff 3, Execution 0, 0 panics. **367 / 441 = 83.2% Cancun pass.**
 
+### Then: PR #51 — EVM REVERT undoes tx-level value transfer (EIP-140)
+
+[PR #51 merged](https://github.com/SMC17/zerotheta-evm/pull/51): the tx-level value transfer at line 315-316 of `executeTransaction` was inside the snapshot but the snapshot was being COMMITTED on `evm_result.success=false` (i.e. REVERT). Spec (Yellow Paper / EIP-140): REVERT undoes ALL post-snapshot state, including tx-level value transfer.
+
+Surfaced by `bcValidBlockTest/callRevert.json` — contract code = `0x60006000fd00` (REVERT), tx value=10 wei. Canonical: contract balance unchanged. zeth: +10 wei.
+
+Fix: split the snapshot finalization on `evm_result.success` — commit on true, revert on false. Plus: gas_refund counter discarded on REVERT.
+
+Corpus delta: cancun_passed 367 → 368, BalanceDiff 141 → 138.
+
+**Wave-7 session total: 19 PRs merged on zerotheta-evm** + 1 on rippled-zig. **368 / 441 = 83.4% Cancun pass.**
+
 **Doctrine banked**:
 - The `>=` vs `>` gas-limit check is a one-character bug that gated dozens of fixtures. Pre-op checks should be permissive ("let it try"); the post-op check inside each handler catches actual overrun.
 - When SSTORE-class writes "succeed but disappear," the cause is usually a snapshot revert downstream. Trace with a readback immediately after the write to localize.
