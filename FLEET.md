@@ -383,6 +383,38 @@ bash validation/bctests/run_corpus.sh ethereum-tests/BlockchainTests/ValidBlocks
 
 **Wave-7 session total: 11 PRs merged on zerotheta-evm** (#27, #29, #33, #34, #35, #37, #39, #40, #41, #42, #43) + 1 on rippled-zig (#73). Issues: 5 filed, 2 closed.
 
+### Followup wave (2026-05-20/21) — 7 more PRs
+
+The 364/441 baseline opened the door to a series of targeted findings, each with a measurable corpus delta:
+
+| PR | Move | Corpus delta |
+|---|---|---|
+| [#44](https://github.com/SMC17/zerotheta-evm/pull/44) | CREATE/CREATE2 nonce bump survives init-code revert (YP §7 / EIP-684) | NonceDiff 9 → 5 |
+| [#45](https://github.com/SMC17/zerotheta-evm/pull/45) | bctests adapter passes EIP-4844 blob tx fields through liftTx | Execution 1 → 0, +1 pass |
+| [#46](https://github.com/SMC17/zerotheta-evm/pull/46) | GASPRICE returns tx.effective_gas_price (was hardcoded 20 gwei) | StorageDiff 125 → 60, +3 passes |
+| [#47](https://github.com/SMC17/zerotheta-evm/pull/47) | bctests StorageDiff format includes want_lo + got_lo | (debug surface) |
+| [#48](https://github.com/SMC17/zerotheta-evm/pull/48) | Gas-limit check is strict `>` not `>=` (5 sites) | StorageDiff 60 → 29, +2 passes |
+| [#49](https://github.com/SMC17/zerotheta-evm/pull/49) | EIP-4895 (Shanghai) beacon-chain withdrawals applied at end of block | +1 pass (shanghaiExample) |
+| [#50](https://github.com/SMC17/zerotheta-evm/pull/50) | Opcode-level CREATE/CREATE2 sets new-contract nonce to 1 (EIP-161) | NonceDiff 5 → 3 |
+
+**Cancun pass trajectory**:
+- After #43 (EIP-1559 burn): 360 / 441
+- After #44 (CREATE nonce revert): 360 / 441
+- After #45 (blob tx fields): 361 / 441
+- After #46 (GASPRICE): 364 / 441
+- After #48 (gas-limit strict >): 366 / 441
+- After #49 (withdrawals): 367 / 441
+- After #50 (opcode EIP-161): 367 / 441
+
+**Wave-7 session total: 18 PRs merged on zerotheta-evm** + 1 on rippled-zig. 5 audit issues filed, 2 closed. 9 FLEET.md updates pushed.
+
+Standing residuals (each a named audit lane): BalanceDiff 141, StorageDiff 29, NonceDiff 3, Execution 0, 0 panics. **367 / 441 = 83.2% Cancun pass.**
+
+**Doctrine banked**:
+- The `>=` vs `>` gas-limit check is a one-character bug that gated dozens of fixtures. Pre-op checks should be permissive ("let it try"); the post-op check inside each handler catches actual overrun.
+- When SSTORE-class writes "succeed but disappear," the cause is usually a snapshot revert downstream. Trace with a readback immediately after the write to localize.
+- Every Type-I hardcoded value (the 20-gwei GASPRICE constant; the missing G_codedeposit charge) was protected by an internal test that asserted the wrong value. External fixtures (BlockchainTests, geth, PyEVM) are the only oracle that catches these.
+
 ## Wave-6 push — 2026-05-18 (the audit-fix-validate loop + coverage-pattern pollination)
 
 Five lanes shipped same-day across four repos, compounding on the Wave-5 zeth audit:
