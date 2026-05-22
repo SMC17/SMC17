@@ -460,6 +460,19 @@ PR [#58](https://github.com/SMC17/zerotheta-evm/pull/58) (same session): COPY-fa
 
 **Wave-7 session total: 26 PRs merged on zerotheta-evm** + 1 on rippled-zig.
 
+### Sweep 6 (2026-05-21/22) — 2 more PRs, 406 → 410 Cancun pass (93.0%)
+
+| PR | Move | Corpus delta |
+|---|---|---|
+| [#59](https://github.com/SMC17/zerotheta-evm/pull/59) | EXTCODECOPY has NO 20-gas baseline post-EIP-2929 | +3 passes, BalanceDiff -6 |
+| [#60](https://github.com/SMC17/zerotheta-evm/pull/60) | CALL +2300 stipend is FREE to caller (was charged on consumption) | +1 pass, BalanceDiff -2 |
+
+**Cancun pass rate: 406 → 410 (92.1% → 93.0%).**
+
+Pattern-finding technique that's now banked: when many fixtures show small repeating BalanceDiff deltas (±20K, ±2.3M, etc.), run a `group-by-delta` scan across the corpus. A delta repeated across 5+ fixtures with the same magnitude is a single gas-accounting bug cascading. The 2300-gas stipend was found by exactly this pattern.
+
+**Wave-7 session total: 28 PRs merged on zerotheta-evm** + 1 on rippled-zig. Standing residuals: BalanceDiff 64, StorageDiff 2, NonceDiff 3, 0 Execution.
+
 The hardcoded-constant pattern keeps producing wins:
   - #43 (legacy coinbase = full gas_price, no burn) — 7→360
   - #46 (GASPRICE = 20 gwei) — +3
