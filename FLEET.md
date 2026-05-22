@@ -473,6 +473,31 @@ Pattern-finding technique that's now banked: when many fixtures show small repea
 
 **Wave-7 session total: 28 PRs merged on zerotheta-evm** + 1 on rippled-zig. Standing residuals: BalanceDiff 64, StorageDiff 2, NonceDiff 3, 0 Execution.
 
+### Headline summary — Wave-7 close
+
+**410 / 441 Cancun cases passing = 93.0%.** Starting from 0 (in-process panic masking the real count) through this single push session:
+
+| Stage | Pass rate |
+|---|---|
+| Initial (panic-masked) | 0 / ? |
+| After corpus runner #39 | 5 / 438 (1.1%) |
+| After PR #43 (EIP-1559 burn — single line) | 360 / 441 (81.6%) |
+| After PR #54 (MULMOD precision) | 395 / 441 (89.6%) |
+| **After PR #60 (CALL stipend) — current** | **410 / 441 (93.0%)** |
+
+**29 PRs merged on zerotheta-evm in this session + 1 on rippled-zig**, plus 5 audit issues filed and 2 closed, plus 14 FLEET.md updates pushed.
+
+**Doctrine banked**:
+1. Internal tests written alongside the implementation catch regressions, never miscalibrations from canonical (recurring pattern across PRs #43, #44, #46, #55, #59, #60). Spec-authoritative fixtures (BlockchainTests, geth, PyEVM) are the only oracles that catch placeholders and "looked-right" semantics.
+2. Failure-handler asymmetry (REVERT vs OOG vs CREATE-OOG) is a common bug source. All paths must revert post-snapshot state identically.
+3. U256 stack parameters MUST check upper limbs before using `.limbs[0]` as a memory/code offset — silent truncation produces wrong-but-plausible behavior.
+4. Modular arithmetic opcodes need full-precision intermediates; `(a OP b).mod(m)` silently truncates 256-bit overflow.
+5. Hardcoded "for now" placeholders are Type-I bugs waiting to be caught by external fixtures. Audit all `// hardcoded` / `// fixed` / `// for now` comments.
+6. Gas-cost subtleties (per-opcode baselines, stipend semantics, refund caps) need spec-table cross-references; generic helpers that work for one opcode often double-charge for another.
+7. BalanceDiff distribution analysis (group-by-delta across the corpus) is the right tool for finding cascading gas miscalculations.
+
+Remaining 31 failures: small per-fixture gas-precision deltas in complex bytecode-fuzz contracts (bcRandomBlockhashTest cluster) and multi-tx wallet/SELFDESTRUCT scenarios. Each is its own next-session investigation lane.
+
 The hardcoded-constant pattern keeps producing wins:
   - #43 (legacy coinbase = full gas_price, no burn) — 7→360
   - #46 (GASPRICE = 20 gwei) — +3
