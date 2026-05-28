@@ -1,143 +1,153 @@
-```
-                              |    |    |
-                             )_)  )_)  )_)
-                            )___))___))___)\
-                           )____)____)_____)\\
-                         _____|____|____|____\\\__
-                ~~~~~~~~ \                         /  ~~~~~~~~~
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-```
+# Sean Collins · SMC17
 
-```
-███████╗███╗   ███╗ ██████╗ ██╗███████╗
-██╔════╝████╗ ████║██╔════╝███║╚════██║
-███████╗██╔████╔██║██║     ╚██║    ██╔╝
-╚════██║██║╚██╔╝██║██║      ██║   ██╔╝
-███████║██║ ╚═╝ ██║╚██████╗ ██║   ██║
-╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝   ╚═╝
-```
+> Substrate engineering in Zig — inference, quant validation, cognitive architecture,
+> supply-chain integrity, physical-systems intelligence. AGPL-3.0 across the board.
 
-# SEAN COLLINS
-
-**Skate to where the puck is going.**
-
-I'm building **ZeroTheta** — a sovereign Layer-0 hyperstructure. Zig at the metal, Elixir on the wire. Single binaries, formal specs, no vendors in the critical path.
-
-§
-
-## PRINCIPLES — QUANTITATIVE MERCANTILISM
-
-1. **Durable wealth flows to whoever owns the bottleneck.** Scalp spreads and you depend on the spread; own the substrate and the spread comes to you. Direct flows. Don't scalp.
-2. **The substrate is the moat. The audit is the proof. Tests are the spec.** Sequence matters: substrate before distribution.
-3. **Foundation-first.** No upper layer until the layer beneath is solid. Parallel within a layer; never across.
-4. **Evidence vocabulary is fixed.** `sketch · scaffold · compiled · unit-tested · integration-tested · audited · benchmarked · hardware-verified`. The words *verified*, *production*, *safe*, *complete* require the specific evidence that makes them true. Used decoratively, they are lies.
-5. **Type I and Type II are the two failure modes.** Type I — accepting a false claim. Type II — missing real value or real risk. Audit for both. Name both.
-6. **Single binaries. Formal specs. No vendors in the critical path.**
-7. **Update priors when proved wrong, same session.** Loyalty is to evidence, not to old doctrine.
-
-§
-
-## ARCHITECTURE — FOUR PILLARS
-
-| Pillar | Function | Substrate |
-|:---|:---|:---|
-| **`cells/`** | Compute units. Single-binary Zig kernels. Editor, EVM, sentinel, edge. | Zig 0.16 |
-| **`nervous_system/`** | Orchestration. Soft-realtime fan-out, supervision, hot-reload. | Elixir / OTP |
-| **`protocols/`** | Wire formats. COBS, framed binary, EVM bytecode, XRPL, SPDX. | Zig + TLA+ |
-| **`blueprints/`** | NixOS modules. Reproducible iron, declarative edge, audited closure. | Nix flakes |
-
-§
-
-## FLAGSHIP — PUBLIC
-
-| Repo | Function | Status |
-|:---|:---|:---|
-| [**mast**](https://github.com/SMC17/mast) 🚢 | Single-binary editor kernel. Buffer-as-protocol. Janet embedded. AGPL. 7,200-trial property corpus + buffer-protocol benchmark. | `v1.2.0` |
-| [**zig-h3**](https://github.com/SMC17/zig-h3) | H3 v4 spatial index. Idiomatic Zig wrapper covering all 70 public functions + 7,280-line pure-Zig port. 190 tests across wrapper, cross-validation matrix, fuzz, property, mutation, resolution sweep. CI on Linux x86_64 + Linux aarch64 + macOS arm64. | `v1.4.1` |
-| [**sovereign-edge**](https://github.com/SMC17/sovereign-edge) | Cloudflare-shaped edge in NixOS modules. Caddy + Coraza WAF + nftables + Knot DNS + CrowdSec. Multi-scenario `nixos-test` integration matrix. | `v1.4.0` |
-| [**sentinel-sbom**](https://github.com/SMC17/sentinel-sbom) | Nix `flake.lock` → SPDX 2.3 SBOM. Single Zig binary. 64 tests + 1,500-trial determinism harness + in-tree narHash verify. | `v1.1.0` |
-| [**sovereign-offense-harness**](https://github.com/SMC17/sovereign-offense-harness) | Adversary-emulation runner. Refuse-by-default unless `--target <IP>` matches a whitelist. Deterministic-shape JSON audit envelopes with per-stream SHA-256. EXPERIMENTAL Atomic Red Team adapter. | `v1.0.0` |
-| [**agent-app-control**](https://github.com/SMC17/agent-app-control) | Linux desktop computer-use CLI. Hyprland + wtype + ydotool substrate. Capability gates, intent flags, trace log. | `v0.6.0` |
-
-Full ledger with Honest-1.0 contract per repo: [`FLEET.md`](FLEET.md).
-
-§
-
-## STAX EDITIONS — DROP HOUSE
-
-Quarterly capsule format: object + essay + software + audio, the same idea expressed in four substrates.
-
-| № | Capsule | Object spec | Companion essay | Software | Audio | Status |
-|:---|:---|:---|:---|:---|:---|:---|
-| **I** | Phonograph | [/objects/phonograph](https://stax.dev/objects/phonograph) | [Sonos S2 touchscreen monoculture](https://stax.dev/posts/sonos-s2-touchscreen-monoculture) | Music client PWA (AGPL) | Phonograph Object Lesson (40 min) | shipped |
-| **II** | Almanac | [/objects/almanac](https://stax.dev/objects/almanac) | [Daily page as computation](https://stax.dev/posts/daily-page-as-computation) | Almanac universal display | January Rockefeller (34 min); Feb-Apr in production | spec + display + 1/12 audio |
-| **III** | Lineage Album Vol I | [/objects/lineage-album-vol-i-anti-edison](https://stax.dev/objects/lineage-album-vol-i-anti-edison) | [10-essay Anti-Edison arc](https://stax.dev/canon/anti-edison/) | — | 90-min LP in production | spec + arc shipped |
-| **IV** | The Codex Deck | [/objects/codex-deck](https://stax.dev/objects/codex-deck) | The card as the smallest useful unit of canon | Companion PWA | 12 figure-audios | spec only |
-
-§
-
-## METHODOLOGY
-
-| Repo | Function | Status |
-|:---|:---|:---|
-| [**stax-harness**](https://github.com/SMC17/stax-harness) | Public methodology for multi-agent engineering. Three docs: operating model, response standard, 8-level proof vocabulary + Type-I/Type-II audit lens. The substrate the fleet runs on. | `v0.1.0` |
-| [**stax-experiment**](https://github.com/SMC17/stax-experiment) | Append-only experiment register. Single Zig binary, flock-protected JSONL. Forces pre-registered hypothesis + falsifier before tests, tracks Type-1 (overclaim) and Type-2 (missed-risk) catches on the agent's own work. | `v0.2.0` |
-
-§
-
-## SUBSTRATE PRIMITIVES
-
-| Repo | Function | Status |
-|:---|:---|:---|
-| [**zig-cobs**](https://github.com/SMC17/zig-cobs) | Consistent Overhead Byte Stuffing in pure Zig. Zero alloc, no deps. 22 tests + 117k-trial fuzz/push. | `v1.2.0` |
-| [**zig-frame-protocol**](https://github.com/SMC17/zig-frame-protocol) | Versioned binary frame protocol on COBS. CRC32, opaque kind byte. 100k random-wire fuzz + ~11k bit-flip sweep at 98.4% catch. | `v0.2.0` |
-| [**zig-graph**](https://github.com/SMC17/zig-graph) | Sparse undirected graph + spectral algorithms (centrality, PageRank, conductance). 50 tests + 10k random-graph property suite. Closed-form `λ₁` match to 1e-6 on canonical graphs. | `v1.2.0` |
-| [**fleet-sbom-index**](https://github.com/SMC17/fleet-sbom-index) | Cross-fleet SPDX SBOM divergence detector. Companion to `sentinel-sbom`. Exits non-zero on any `(name, version) → SHA256` disagreement across documents (CI gate). | `v0.2.0` |
-| [**aac-launch**](https://github.com/SMC17/aac-launch) | Zig-native argv-safe app launcher. Parses `.desktop` `Exec=` into real argv. Replaces eval/setsid shell-string launchers. | `v0.4.0` |
-
-§
-
-## WRITING
-
-[**stax-blog**](https://github.com/SMC17/stax-blog) — *The Journal of Quantitative Mercantilism.* Essays + audits backing the appliance-layer thesis. AGPL.
-
-§
-
-## NOW
-
-Currently shipping: **rippled-zig** Zig 0.14.1 → 0.16.0 toolchain upgrade (PR #72, local test-green, ~80 ArrayList API sites, std.io / std.crypto.random / Ed25519.generate / std.time.Timer all migrated). **zerotheta-evm** Type-I differential fix loop in progress (26 → 20 → 10 residuals across two rounds). Next: rpc.zig std.net → std.Io.net follow-up + zerotheta-evm BN256 math.
-
-§
-
-## INSTRUMENTATION
-
-<p>
-  <img src="https://img.shields.io/github/followers/SMC17?label=followers&style=flat-square&color=FFD6A0&labelColor=121212" alt="followers" />
-  <img src="https://img.shields.io/github/stars/SMC17?affiliations=OWNER&style=flat-square&color=FFD6A0&labelColor=121212" alt="stars" />
-  <img src="https://img.shields.io/github/last-commit/SMC17/mast?style=flat-square&label=mast&color=FFD6A0&labelColor=121212" alt="mast last commit" />
-  <img src="https://img.shields.io/github/last-commit/SMC17/zig-h3?style=flat-square&label=zig-h3&color=FFD6A0&labelColor=121212" alt="zig-h3 last commit" />
-  <img src="https://img.shields.io/github/last-commit/SMC17/sovereign-edge?style=flat-square&label=sovereign-edge&color=FFD6A0&labelColor=121212" alt="sovereign-edge last commit" />
-</p>
-
-<p>
-  <img src="https://img.shields.io/badge/Zig-0.16.0-orange?style=flat-square&labelColor=121212" alt="Zig 0.16.0" />
-  <img src="https://img.shields.io/badge/license-AGPL--3.0-blue?style=flat-square&labelColor=121212" alt="AGPL-3.0" />
-  <img src="https://img.shields.io/badge/substrate-Zig%20%2B%20Elixir%20%2B%20Nix-FFD6A0?style=flat-square&labelColor=121212" alt="substrate: Zig + Elixir + Nix" />
-  <img src="https://img.shields.io/badge/discipline-evidence%20vocabulary-FFD6A0?style=flat-square&labelColor=121212" alt="discipline: evidence vocabulary" />
-</p>
-
-<p>
-  <img src="https://github-profile-trophy.vercel.app/?username=SMC17&theme=nord&no-frame=true&no-bg=true&margin-w=6&column=7" alt="trophies" />
-</p>
-
-§
-
-## CONTACT
-
-`sean@sunlitmoon.online`
-
-[**sunlitmoon.online**](https://sunlitmoon.online) · [**LinkedIn**](https://www.linkedin.com/in/sean-collins17/) · [**Twitter / X**](https://x.com/staxxxx17)
+sean@sunlitmoon.online · https://sunlitmoon.online
 
 ---
 
-*Calculemus.*
+## Portfolio Map
+
+```mermaid
+flowchart TB
+    subgraph Inference["Inference and ML"]
+        VLLM[vllm-zig]
+        TK[triton-kernels]
+        AB[autogen_beam]
+        MIL[mech_interp_liveview]
+    end
+
+    subgraph Quant["Quant Validation"]
+        QVZ[quant-validation-zig]
+        SX[stax-experiment]
+        PFL[predmkt-forecast-log]
+    end
+
+    subgraph QRG["QRG-stack Cognitive Architecture"]
+        QPE[qpe-zig]
+        MFV[mac-fac-vector]
+        SME[sme-zig]
+        QPE --> MFV --> SME
+    end
+
+    subgraph Supply["Supply-chain Integrity"]
+        SSB[sentinel-sbom]
+        FSI[fleet-sbom-index]
+        SOH[sovereign-offense-harness]
+        SSB --> FSI
+    end
+
+    subgraph Primitives["Substrate Primitives"]
+        ZH3[zig-h3]
+        ZG[zig-graph]
+        SZ[symbols-zig]
+    end
+
+    subgraph Physical["Physical Systems"]
+        ST[steam · NYISO energy]
+        CR[carreir · HVAC]
+        OM[oceanman · cables]
+        MAN[manifest · live entertainment]
+        GR[gradient · momentum platformer]
+    end
+
+    OM --> ZH3
+    OM --> ZG
+    VLLM --> AB
+    QVZ --> PFL
+    SX --> QVZ
+
+    click VLLM "https://github.com/SMC17/vllm-zig"
+    click TK "https://github.com/SMC17/triton-kernels"
+    click AB "https://github.com/SMC17/autogen_beam"
+    click MIL "https://github.com/SMC17/mech_interp_liveview"
+    click QVZ "https://github.com/SMC17/quant-validation-zig"
+    click SX "https://github.com/SMC17/stax-experiment"
+    click PFL "https://github.com/SMC17/predmkt-forecast-log"
+    click QPE "https://github.com/SMC17/qpe-zig"
+    click MFV "https://github.com/SMC17/mac-fac-vector"
+    click SME "https://github.com/SMC17/sme-zig"
+    click SSB "https://github.com/SMC17/sentinel-sbom"
+    click FSI "https://github.com/SMC17/fleet-sbom-index"
+    click SOH "https://github.com/SMC17/sovereign-offense-harness"
+    click ZH3 "https://github.com/SMC17/zig-h3"
+    click ZG "https://github.com/SMC17/zig-graph"
+    click SZ "https://github.com/SMC17/symbols-zig"
+    click ST "https://github.com/SMC17/steam"
+    click CR "https://github.com/SMC17/carreir"
+    click OM "https://github.com/SMC17/oceanman"
+    click MAN "https://github.com/SMC17/manifest"
+    click GR "https://github.com/SMC17/gradient"
+```
+
+## Lanes
+
+### Inference and ML
+
+| Repo | What it ships |
+|---|---|
+| [vllm-zig](https://github.com/SMC17/vllm-zig) | Pure-Zig LLM serving substrate — paged attention, BF16 kernels, persistent thread-pool dispatch. v0.0.6 toy batch-1 generator (NOT vLLM-equivalent) |
+| [triton-kernels](https://github.com/SMC17/triton-kernels) | 8 autotuned Triton kernels — fused softmax, fused RMSNorm, flash-attention v2 forward + backward (fp32 + fp16); correctness + benchmark harness vs PyTorch |
+| [autogen_beam](https://github.com/SMC17/autogen_beam) | BEAM/OTP multi-agent orchestration substrate; supervised GenServer agents, Registry + DynamicSupervisor, pluggable LLM `@behaviour` |
+| [mech_interp_liveview](https://github.com/SMC17/mech_interp_liveview) | BEAM-native data layer + static HTML dashboard for LLM activation traces; Phoenix LiveView path is v0.0.3 work, not yet shipped |
+
+### Quant Validation
+
+| Repo | What it ships |
+|---|---|
+| [quant-validation-zig](https://github.com/SMC17/quant-validation-zig) | Bailey & López de Prado bias-defence stack — Probabilistic Sharpe Ratio, Deflated Sharpe Ratio, Purged K-Fold CV, CPCV; 30/30 tests |
+| [stax-experiment](https://github.com/SMC17/stax-experiment) | Append-only pre-registration + verdict CLI; register the falsifier BEFORE testing; tracks Type-1 (overclaim) and Type-2 (missed-risk) catches on the agent's own work |
+| [predmkt-forecast-log](https://github.com/SMC17/predmkt-forecast-log) | Calibrated-forecast logger for prediction-market work; JSONL schema + Brier score primitives |
+
+### QRG-stack · Cognitive Architecture
+
+| Repo | What it ships |
+|---|---|
+| [qpe-zig](https://github.com/SMC17/qpe-zig) | Qualitative Process Engine (Forbus 1984) — upstream of the QRG-stack lineage; Phase 1 process compiler integration-tested over 3 canonical scenarios |
+| [mac-fac-vector](https://github.com/SMC17/mac-fac-vector) | MAC/FAC analogue retrieval (Forbus/Gentner/Law 1995) — middle layer; FNV-1a embedder + cosine top-K MAC stage integration-tested vs the sme-zig 13-analogy corpus |
+| [sme-zig](https://github.com/SMC17/sme-zig) | Structure-Mapping Engine (Falkenhainer/Forbus/Gentner) — reproduces SME v4 reference on the canonical analogy corpus (12/13 set-equal, 1/13 symmetric-tie partial, 0/13 divergent) |
+
+### Supply-chain Integrity
+
+| Repo | What it ships |
+|---|---|
+| [sentinel-sbom](https://github.com/SMC17/sentinel-sbom) | Nix `flake.lock` + `build.zig.zon` → SPDX 2.3 SBOM divergence detector; single Zig binary, 93/93 tests |
+| [fleet-sbom-index](https://github.com/SMC17/fleet-sbom-index) | Cross-fleet SPDX 2.3 SBOM index — divergence, drift, fleet-snapshot, layered tree, Ed25519-signed manifests; consumer of sentinel-sbom |
+| [sovereign-offense-harness](https://github.com/SMC17/sovereign-offense-harness) | Adversary-emulation runner with refuse-by-default operator-error gate; signed audit envelopes; EXPERIMENTAL Atomic Red Team adapter. Authorized-use only; CFAA / CMA equivalents apply |
+
+### Substrate Primitives
+
+| Repo | What it ships |
+|---|---|
+| [zig-h3](https://github.com/SMC17/zig-h3) | H3 v4 spatial index — idiomatic Zig wrapper over all 70 public libh3 functions + 7,280-line pure-Zig port; wrapper + cross-validation + fuzz + property + resolution-sweep test surface; CI on Linux x86_64, Linux aarch64, macOS arm64 |
+| [zig-graph](https://github.com/SMC17/zig-graph) | Sparse graph algorithms in pure Zig — traversal, centrality (PageRank / Brandes / closeness / eigenvector), spectral (Fiedler), community (Louvain), max-flow (Edmonds-Karp); closed-form λ₁ match to 1e-6 on canonical graphs |
+| [symbols-zig](https://github.com/SMC17/symbols-zig) | Reproducible decipherment methodology — corpus loaders, entropy, n-gram LM, hillclimb substitution solver, stationary bootstrap; methodology is the artifact, findings are claims |
+
+### Physical Systems
+
+| Repo | What it ships |
+|---|---|
+| [steam](https://github.com/SMC17/steam) | NYISO energy market research engine — bronze→silver→ClickHouse→gold pipeline; scoped bronze validation, silver manifests, idempotent ClickHouse loads, typed LBMP facts, regime/outlier validation |
+| [carreir](https://github.com/SMC17/carreir) | Physical-intelligence substrate for HVAC + cold-chain in Zig; 54 tests; pre-1.0 explicit tag posture |
+| [oceanman](https://github.com/SMC17/oceanman) | Submarine cable knowledge base + analysis methodology — 693 cables, reproducible 7-step pipeline |
+| [manifest](https://github.com/SMC17/manifest) | Live-entertainment revenue substrate — seat inventory state machines, event unit economics, sponsorship-yield, holdback-release timing, secondary-market spread detection; 147/147 tests |
+| [gradient](https://github.com/SMC17/gradient) | Momentum-platformer + AI archetype substrate; Zig + raylib-zig 6.0 client; S1 movement-feel prototype |
+
+---
+
+## Discipline
+
+Everything in this portfolio runs under three rules:
+
+1. **Pre-register the falsifier before the test.** [stax-experiment](https://github.com/SMC17/stax-experiment) is the audit substrate.
+2. **Pre-1.0 vocabulary until the substrate earns the words.** Zig itself is pre-1.0; no v1.x semver claim on a Zig substrate until Zig 1.0 ships. Earlier v1.x tags on these repos are preserved for changelog continuity but called out in each repo's `STATUS.md` as Type-I corrections.
+3. **Honest non-claims.** Every repo ships with an explicit "what does NOT ship yet" section and a non-claims list.
+
+## License
+
+All public repos in the portfolio: AGPL-3.0-or-later.
+
+## Contact
+
+sean@sunlitmoon.online · [sunlitmoon.online](https://sunlitmoon.online)
