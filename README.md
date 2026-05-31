@@ -1,6 +1,8 @@
 # Sean Collins
 
-Zig + Elixir/BEAM. Alignment-econ research. Quantitative Mercantilism.
+Zig + Elixir/BEAM. 
+Alignment-econ research. 
+Quantitative Mercantilism.
 
 [sunlitmoon.online](https://sunlitmoon.online) · sean@sunlitmoon.online
 
