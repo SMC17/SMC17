@@ -10,7 +10,8 @@ Quantitative Mercantilism.
 
 ## How this profile works
 
-This GitHub account is the upstream-contribution surface. Active  development happens on sovereign infrastructure. Public distribution + the canon of essays + the audit register live at **[sunlitmoon.online](https://sunlitmoon.online)**.
+This GitHub account is the upstream-contribution surface.
+Public distribution + the canon of essays + the audit register live at **[sunlitmoon.online](https://sunlitmoon.online)**.
 
 
 ## License
