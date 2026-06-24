@@ -2,6 +2,8 @@
 
 Data Science & Economics @ Northwestern. I build correctness-first systems in **Zig** and **Elixir** — quantitative validation tooling, high-performance search, and developer infrastructure — and contribute to the open-source projects underneath them.
 
+*The bet: when confident, unverifiable output costs nothing, the only thing that compounds is the opposite — claims that survive checking.*
+
 📍 Evanston, IL · ✉️ sean@sunlitmoon.online · 🔗 [sunlitmoon.online](https://sunlitmoon.online)
 
 ---
