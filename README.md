@@ -1,5 +1,4 @@
-#### Systems engineer building ML infrastructure from first principles. 
-#### Inference kernels, vector search, tokenization, agentic verification, and quant tooling. 
+Systems engineer building ML infrastructure from first principles. 
 
 **Zig**/**Elixir**/**OCaml**.
 
