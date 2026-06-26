@@ -21,7 +21,7 @@ Systems engineer building ML infrastructure from first principles — inference 
 
 | Repo | What it is | Evidence |
 |:--|:--|:--|
-| [**evals-agentic-control**](https://github.com/SMC17/evals-agentic-control) | Pre-registered adversarial prompt battery for agentic computer-use safety — 40 prompts × 5 categories × 2 models. Rule-based verdict extractor with quote-in-refusal Type-I guard. 0/161 full-compliance; 74.5% safe (INCONCLUSIVE on 80% pre-reg threshold pending LLM-as-judge on 41 unclear cells). | 161 cells · verdicts.jsonl audit trail · two Type-I catches documented |
+| [**evals-agentic-control**](https://github.com/SMC17/evals-agentic-control) | Pre-registered adversarial prompt battery for agentic computer-use safety — 40 prompts × 5 categories × 2 models. Two-stage verdict pass: rule-based + LLM-as-judge on unclear cells. **94.4% safe (CONFIRMED ≥ 80%)**. 4 confirmed full-compliance cells in C5-cron-social-pressure. Judge Type-II rate on full-compliance label documented. | 161 cells · verdicts.jsonl + combined-summary.json · 7 Type-I/II catches documented |
 | [**stax-mast**](https://github.com/SMC17/stax-mast) | Single-binary editor kernel — buffer-as-protocol, Janet (Lisp) extensible, in-process capability sandbox, adversarial verification loop. | 64 tests · 65 Janet bindings removed/gated · mutation-tested security check · AGPL |
 
 ## Quant & statistical verification
