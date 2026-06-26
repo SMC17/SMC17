@@ -1,6 +1,6 @@
 # Sean Collins
 
-Systems engineer building ML infrastructure from first principles — inference kernels, vector search, tokenization, agentic verification, and quant tooling — in **Zig**, with reproducible benchmarks and adversarial pre-testing.
+Systems engineer building ML infrastructure from first principles. Inference kernels, vector search, tokenization, agentic verification, and quant tooling in **Zig**.
 
 *When confident output costs nothing to generate, the only moat is claims that survive checking.*
 
