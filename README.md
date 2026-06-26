@@ -1,5 +1,3 @@
-# Sean Collins
-
 Systems engineer building ML infrastructure from first principles. Inference kernels, vector search, tokenization, agentic verification, and quant tooling. **Zig**/**Elixir**/**OCaml**.
 
 ✉️ sean@sunlitmoon.online · 🔗 [sunlitmoon.online](https://sunlitmoon.online)
