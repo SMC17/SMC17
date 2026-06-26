@@ -1,8 +1,6 @@
 # Sean Collins
 
-Systems engineer building ML infrastructure from first principles. Inference kernels, vector search, tokenization, agentic verification, and quant tooling in **Zig**.
-
-*When confident output costs nothing to generate, the only moat is claims that survive checking.*
+Systems engineer building ML infrastructure from first principles. Inference kernels, vector search, tokenization, agentic verification, and quant tooling. **Zig**,**Elixir**,**OCaml**.
 
 ✉️ sean@sunlitmoon.online · 🔗 [sunlitmoon.online](https://sunlitmoon.online)
 
