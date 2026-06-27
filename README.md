@@ -27,7 +27,7 @@ Systems engineer building ML infrastructure from first principles.
 | Repo | What it is | Evidence |
 |:--|:--|:--|
 | [**quant-validation-zig**](https://github.com/SMC17/quant-validation-zig) | Bailey–López de Prado bias-defense: Probabilistic & Deflated Sharpe Ratio, Purged + Combinatorial-Purged K-fold, CPCV backtest path distribution (positive_fraction anti-luck check). | 46 tests · `erfc` to ~3×10⁻⁸ vs scipy · reproducible Nix builds |
-| [**zsym**](https://github.com/SMC17/zsym) | Rigorous statistical cryptanalysis substrate — Miller-Madow entropy, n-gram LMs, monoalphabetic hill-climber, polyalphabetic (Vigenère) IC period detection + per-position solver, stationary bootstrap CIs. Applied to Voynich EVA. | 37 tests · **bit-exact parallel/serial parity** · deterministic seeding · Python parity verified |
+| [**zsym**](https://github.com/SMC17/zsym) | Rigorous statistical cryptanalysis substrate — Miller-Madow entropy, n-gram LMs, monoalphabetic hill-climber, polyalphabetic (Vigenère) IC period detection + per-position solver, **homophonic** (variable-symbol) cipher + freq-match hill-climb, stationary bootstrap CIs. Applied to Voynich EVA. | 44 tests · **bit-exact parallel/serial parity** · deterministic seeding · Python parity verified |
 | [**zig-h3**](https://github.com/SMC17/zig-h3) | Uber H3 v4 geospatial index — idiomatic wrapper + pure-Zig port of all 70 public functions. | 211 tests · **27k+ cross-validation cases** · 94.4% coverage · property/fuzz/mutation |
 | [**rippled-zig**](https://github.com/SMC17/rippled-zig) | XRPL protocol toolkit — canonical tx encoding, secp256k1/Ed25519 sign+verify, live testnet RPC conformance. | 5-gate gated process (build → serialize → crypto parity → live RPC → security) |
 
