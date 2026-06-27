@@ -12,7 +12,7 @@ Systems engineer building ML infrastructure from first principles.
 |:--|:--|:--|
 | [**inference**](https://github.com/SMC17/inference) | Pure-Zig LLM serving — paged KV-cache, BF16 kernels, persistent thread pool, safetensors integration. TinyLlama-1.1B end-to-end on CPU. | 77 tests · **6.17× decode speedup** at M=8 vs baseline · STATUS.md canonical |
 | [**tokenizers-zig**](https://github.com/SMC17/tokenizers-zig) | Pure-Zig HF tokenizers — BPE, WordPiece, Unigram, full pipeline, offsets, `tokenizer.json` compat. | 189 tests + 600-iter fuzz · **~5.3× faster on WordPiece** · parity verified vs 🤗 tokenizers |
-| [**faiss-zig**](https://github.com/SMC17/faiss-zig) | Pure-Zig ANN — Flat, HNSW, IVFFlat, IVFPQ; SIMD `@Vector` distance kernels, multi-threaded `searchBatch`. | 68 tests · **16.94× memory compression on IVFPQ** at reference recall · cross-validated vs FAISS C++ |
+| [**faiss-zig**](https://github.com/SMC17/faiss-zig) | Pure-Zig ANN — Flat, HNSW, IVFFlat, IVFPQ; L2/cosine/IP metrics across all four families; SIMD `@Vector` kernels, multi-threaded `searchBatch`. | 76 tests · **16.94× memory compression on IVFPQ** at reference recall · cross-validated vs FAISS C++ |
 | [**safetensors-zig**](https://github.com/SMC17/safetensors-zig) | Pure-Zig safetensors reader — `@Vector(32,u8)` structural scan, BF16/F32/I8, libc-only. | 21 tests · 241µs parse on 201-tensor TinyLlama fixture · upstream fixture contribution |
 
 ## Agentic systems & safety
