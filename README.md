@@ -13,4 +13,4 @@ Writing: [sunlitmoon.online](https://sunlitmoon.online) · Models & datasets: [h
 - [zkdb](https://github.com/SMC17/zkdb) — columnar time-series database with q/kdb+ semantics: typed vectors, SIMD aggregation, asof join, q IPC protocol. 24 tests.
 - [zig-h3](https://github.com/SMC17/zig-h3) — Uber H3 v4 geospatial index: idiomatic wrapper + pure-Zig port. 211 tests, 27k+ cross-validation cases, 94.4% coverage.
 
-Everything above builds on Zig 0.16 with `zig build test` green. Claims stay at proof level: test counts come from the runner, performance numbers ship with the benchmark that produced them.
+Claims ship at proof level: test counts come from the runner, performance numbers ship with the benchmark that produced them.
