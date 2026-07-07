@@ -6,7 +6,7 @@ Writing: [sunlitmoon.online](https://sunlitmoon.online) · Models & datasets: [h
 
 ## Selected work
 
-- [inference](https://github.com/SMC17/inference) — pure-Zig LLM serving: paged attention, BF16 kernels, persistent thread pool, safetensors integration. TinyLlama-1.1B end-to-end. 77 tests.
+- [inference](https://github.com/SMC17/inference) — pure-Zig LLM serving: paged attention, BF16 kernels, persistent thread pool, safetensors integration. TinyLlama-1.1B end-to-end. 115 tests.
 - [tokenizers-zig](https://github.com/SMC17/tokenizers-zig) — BPE, WordPiece, Unigram with tokenizer.json compatibility and offsets. 189 tests + 600-iteration fuzz.
 - [faiss-zig](https://github.com/SMC17/faiss-zig) — Flat/HNSW/IVFFlat/IVFPQ ANN with SIMD kernels. 16.94× memory compression on IVFPQ. 76 tests. No C/C++ dependency.
 - [safetensors-zig](https://github.com/SMC17/safetensors-zig) — safetensors reader with @Vector structural scan. 241µs parse on a 201-tensor TinyLlama fixture. 21 tests.
