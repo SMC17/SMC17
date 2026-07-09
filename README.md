@@ -2,7 +2,7 @@
 
 Systems engineer. Pure-Zig ML infrastructure, inference kernels, and verifiable tooling.
 
-Writing: [sunlitmoon.online](https://sunlitmoon.online) · Models & datasets: [huggingface.co/SMC17](https://huggingface.co/SMC17) · sean@sunlitmoon.online
+Writing: [sunlitmoon.online](https://sunlitmoon.online) · [huggingface.co/SMC17](https://huggingface.co/SMC17) · sean@sunlitmoon.online
 
 ## Selected work
 
