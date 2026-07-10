@@ -12,6 +12,7 @@ Writing: [sunlitmoon.online](https://sunlitmoon.online) · [huggingface](https:/
 - [safetensors-zig](https://github.com/SMC17/safetensors-zig) — safetensors reader with @Vector structural scan. 241µs parse on a 201-tensor TinyLlama fixture. 21 tests.
 - [zkdb](https://github.com/SMC17/zkdb) — columnar time-series database with q/kdb+ semantics: typed vectors, SIMD aggregation, asof join, q IPC protocol. 24 tests.
 - [zig-h3](https://github.com/SMC17/zig-h3) — Uber H3 v4 geospatial index: idiomatic wrapper + pure-Zig port. 211 tests, 27k+ cross-validation cases, 94.4% coverage.
+- [lean-quantfinance](https://huggingface.co/datasets/seancollins/lean-quantfinance) — **2,074 machine-checked Lean 4 theorems** on Hugging Face (99.8% sorry-free): quantitative finance, game theory, mechanism design, information theory. Statement–proof pairs.
 - [formal-refutations](https://huggingface.co/datasets/seancollins/formal-refutations) — Lean 4 / Mathlib refutation database on Hugging Face: 7 formally-refuted financial-engineering claims + 40 confirmed results.
 - [voynich-eva-stats](https://huggingface.co/datasets/seancollins/voynich-eva-stats) — Voynich EVA corpus statistics on Hugging Face: glyph/bigram frequencies + Shannon/Miller–Madow entropy over the Takahashi transcription.
 
