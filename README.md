@@ -4,9 +4,8 @@ ML systems and performance engineer. Inference kernels, model-runtime infrastruc
 
 [sunlitmoon.online](https://sunlitmoon.online) · sean@sunlitmoon.online
 
-**Hiring thesis:** verified kernel optimization + inference systems — not repository count.  
+**Hiring thesis:** verified kernel optimization + inference systems.
 **Tools:** Python / PyTorch / Triton / CUDA where the problem needs them; Zig for CPU references, harnesses, and binary formats.  
-**Not claiming:** GPU production serving, distributed training at scale, Research Scientist track, or “Pure-Zig everything.”
 
 ---
 
@@ -20,13 +19,9 @@ ML systems and performance engineer. Inference kernels, model-runtime infrastruc
 | [safetensors-zig](https://github.com/SMC17/safetensors-zig) | Safetensors reader | Structural scan + dtype coverage on TinyLlama fixture | Read path; not a full HF ecosystem port |
 | [sme-zig](https://github.com/SMC17/sme-zig) | Structure-Mapping Engine reproduction | Canonical analogies + falsification notes | Classical algorithm — research value needs a modern LM experiment |
 
-Aerospace / naval workbench (`strip`, `yard`, `sovereign-experience`) is a **separate** product narrative — not the frontier-lab pin set.
+
 
 ---
-
-## Next empirical bet
-
-**Verified Kernel Optimization Environment** — agents propose kernels; graders enforce compile, functional/numerical correctness, and performance under shape distributions. Report first; more libraries later.
 
 Plan: [`FRONTIER_LAB_PLAN.md`](FRONTIER_LAB_PLAN.md) · Claims ledger: [`EVIDENCE_LEDGER.md`](EVIDENCE_LEDGER.md)
 
