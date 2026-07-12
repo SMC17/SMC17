@@ -1,7 +1,5 @@
 # Sean Collins
 
-**Hosting is not proof.**
-
 ML systems and verifiable fleet engineering — inference kernels, model-runtime infrastructure, signed receipts, rigorous evaluation.
 
 [sunlitmoon.pages.dev](https://sunlitmoon.pages.dev) · [Verify a receipt](https://sunlitmoon.pages.dev/try.html) · [Dispatch 001](https://sunlitmoon.pages.dev/dispatch/001.html)
