@@ -1,67 +1,99 @@
-# Sean Collins
+<div align="center">
 
-**Hosting is not proof.**
+# SMC17 · Sovereign Stack
 
-ML systems & verifiable engineering — inference kernels, model runtimes, and signed receipts. I build things that leave evidence you can falsify, not dashboards you have to trust.
+**403 repositories** · **221 Zig libraries** · **269 active** · **273 stars**
 
-```
-NY  ·  systems@sunlitmoon.online  ·  sunlitmoon.online
-```
+[![Zig](https://img.shields.io/badge/Zig-F7A41D?style=for-the-badge&logo=zig&logoColor=white)](https://ziglang.org)
+[![Elixir](https://img.shields.io/badge/Elixir-4B275F?style=for-the-badge&logo=elixir&logoColor=white)](https://elixir-lang.org)
+[![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 
----
-
-### The one idea
-
-Most software asks you to *believe* it works — green badges, uptime, a nice README. I'd rather hand you a receipt you can check yourself. Every claim below is meant to survive a clean clone and a skeptical reader. Where I can't back a number, I don't print it.
-
-I keep a public [**evidence ledger**](https://github.com/SMC17/SMC17/blob/main/EVIDENCE_LEDGER.md): every numeric claim gets a row, and a claim with no artifact gets deleted. It flags my *own* overstatements before you do. That's the whole discipline.
+</div>
 
 ---
 
-### ML systems — the primary track
+## What I Build
 
-A pure-Zig inference stack, built kernel-up to understand the machine, not to hide from it.
+**17S Capital LLC** — software infrastructure for sovereign computation, quantitative finance, and naval architecture simulation.
 
-| Repo | What it is |
-|------|------------|
-| [**inference**](https://github.com/SMC17/inference) | LLM serving — paged attention, BF16 kernels, persistent thread pool, safetensors integration. TinyLlama-1.1B end-to-end. |
-| [**tokenizers-zig**](https://github.com/SMC17/tokenizers-zig) | HF-compatible tokenizers — BPE, WordPiece, Unigram, full pipeline, offsets, `tokenizer.json` compat. |
-| [**safetensors-zig**](https://github.com/SMC17/safetensors-zig) | safetensors reader — `@Vector(32,u8)` structural scan, BF16/F32/I8. |
-| [**faiss-zig**](https://github.com/SMC17/faiss-zig) | ANN — Flat, HNSW, IVFFlat, IVFPQ; L2 / cosine / inner-product; SIMD kernels, multi-threaded batch search. No C/C++ dependency. |
-| [**zkdb**](https://github.com/SMC17/zkdb) | Columnar time-series DB with q/kdb+ semantics — typed vectors, SIMD aggregation, asof join, q IPC protocol. |
-
-*Performance numbers live in each repo's README with commit, hardware, and script attached — or not at all.*
+The stack is built on a core thesis: **own your compute, own your primitives, own your data**.
 
 ---
 
-### Verifiable systems — proof as a primitive
+## Ecosystems
 
-Where "it compiles" isn't enough and the guarantee has to be structural.
+### 🔵 ZeroTheta — Sovereign Monolith
+> Zig × Elixir Layer-0 hyperstructure
 
-- [**stax-proof**](https://github.com/SMC17/stax-proof) · [**proof-gate-zig**](https://github.com/SMC17/proof-gate-zig) — Zig `comptime` gates that refuse to build unless a formal claim holds.
-- [**cfr-solver-zig**](https://github.com/SMC17/cfr-solver-zig) — CFR solver with an exploitability bound (ε ≤ 2U/√T) encoded as a *type invariant*.
-- [**scd-zig**](https://github.com/SMC17/scd-zig) — SCD Type-2 backfill + incremental parity: both paths must produce identical state from identical inputs.
-- [**rippled-zig**](https://github.com/SMC17/rippled-zig) — XRPL toolkit — canonical tx encoding, secp256k1/Ed25519 sign+verify, live testnet RPC conformance.
-- [**sentinel-sbom**](https://github.com/SMC17/sentinel-sbom) — SBOM divergence detector + integrity primitives.
+The core operating system for sovereign computation. Zig for performance-critical primitives, Elixir/OTP for fault-tolerant orchestration.
+
+| Component | Repo | Role |
+|-----------|------|------|
+| Core | [ZeroTheta](https://github.com/SMC17/ZeroTheta) | OTP supervisor tree |
+| EVM Engine | [zerotheta-evm](https://github.com/SMC17/zerotheta-evm) | Ethereum VM in Zig |
+| File System | [0theta-filez](https://github.com/SMC17/0theta-filez) | Sovereign FS primitives |
+| MCP | [0theta-mcp](https://github.com/SMC17/0theta-mcp) | Model context protocol |
+
+### ⚓ Yard — Naval Architecture (77 modules)
+> Full marine engineering simulation stack in pure Zig
+
+77 independent Zig modules covering the complete naval architecture domain — from hydrostatics to propulsion to seakeeping.
+
+| Domain | Modules |
+|--------|---------|
+| Core | [yard-naval-arch-zig](https://github.com/SMC17/yard-naval-arch-zig) |
+| Hydrostatics | stability, freeboard, grounding, mass |
+| Hydrodynamics | BEM, strip theory, RAO spectra, seakeeping |
+| Propulsion | resistance, azipod, ITTC-78, shaft design |
+| Maneuvering | Fossen 6-DOF, DP, AUV |
+| Environment | wind/aero, Flettner, ice, routing |
+
+→ [See full Yard ecosystem](https://github.com/SMC17/yard-naval-arch-zig)
+
+### ⚡ Zig Libraries
+> Zero-alloc, no-deps primitives
+
+| Repo | Description |
+|------|-------------|
+| [zig-cobs](https://github.com/SMC17/zig-cobs) | COBS byte-stuffing framing |
+| [zig-frame-protocol](https://github.com/SMC17/zig-frame-protocol) | Versioned binary frame protocol |
+| [zig-graph](https://github.com/SMC17/zig-graph) | Sparse graph algorithms |
+| [zig-h3](https://github.com/SMC17/zig-h3) | H3 geospatial index |
+| [zig-bean](https://github.com/SMC17/zig-bean) | Plain-text accounting |
+| [zkdb](https://github.com/SMC17/zkdb) | Columnar time-series DB |
+| [ztop](https://github.com/SMC17/ztop) | System monitor (htop successor) |
+
+### 🧠 Muscle — FFI Bindings
+> Sovereign Zig wrappers for native libraries
+
+[FAISS](https://github.com/SMC17/muscle-faiss-zig) · [CRPC](https://github.com/SMC17/muscle-crpc-core) · [AMX](https://github.com/SMC17/muscle-amx-zig) · [QPE](https://github.com/SMC17/muscle-qpe-zig) · [Rippled](https://github.com/SMC17/muscle-rippled-zig)
+
+### 🏗 Stax Platform
+> Sovereign infrastructure stack
+
+27 repositories covering: control plane, networking, observability, secrets, storage, CI/CD.
+
+### 📐 Formal Methods
+- [aristotle-lean](https://github.com/SMC17/aristotle-lean) — formal proofs in Lean 4
+- [aristotle-pipeline](https://github.com/SMC17/aristotle-pipeline) — reasoning pipelines
+- [zerotheta-evm](https://github.com/SMC17/zerotheta-evm) — 263 tests, 142/143 opcodes
+
+### 📊 Finance & Capital
+- [17sCapital](https://github.com/SMC17/17sCapital) — trading infrastructure
+- [zig-bean](https://github.com/SMC17/zig-bean) — accounting primitives
+- [zig-actuary](https://github.com/SMC17/zig-actuary) — actuarial math
 
 ---
 
-### Domain substrates — engineering as a body of knowledge
+## Philosophy
 
-Deep verticals where the code encodes the discipline itself.
-
-- [**yard**](https://github.com/SMC17/yard) — naval architecture & marine engineering: hydrostatics, seakeeping, propulsion, IACS CSR structures, stability, ports.
-- [**strip**](https://github.com/SMC17/strip) — evidence-bearing aerospace computation & simulation substrate.
-- [**zsym**](https://github.com/SMC17/zsym) — statistical decipherment: Miller-Madow entropy, n-gram LMs, mono/poly/homophonic solvers, bootstrap CIs. Applied to Voynich EVA.
-- [**zig-graph**](https://github.com/SMC17/zig-graph) — sparse graph algorithms: centrality, spectral, Louvain, max-flow.
+- **Zig first** — correctness, comptime, zero-alloc hot paths
+- **Elixir/OTP** — fault-tolerant supervisors, distributed by default
+- **No cloud lock-in** — sovereign compute from Layer-0 up
+- **Formal verification** — proofs where it matters (EVM, finance)
 
 ---
 
-### Two surfaces, one discipline
-
-- 🌗 **[Sunlit Moon](https://sunlitmoon.online)** — the studio. Systems, objects, and public experiments about ownership and evidence. *Hosting is not proof* began here.
-- **[17S Capital](https://17scapital.com)** — the private side. Underwriting measurable bottlenecks — compute, inference, capacity. Constraint before narrative.
-
----
-
-<sub>Zig where it earns its place, Python/Triton/CUDA where they do. If a claim here doesn't have a receipt behind it, tell me — that's a bug, and it goes in the ledger.</sub>
+<div align="center">
+<sub>17S Capital LLC · Building the sovereign stack</sub>
+</div>
