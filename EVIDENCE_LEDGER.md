@@ -1,31 +1,30 @@
 # Public evidence ledger (SMC17)
 
-Date: 2026-07-12  
+Date: 2026-08-17
 Rule: every public numerical claim needs a row. Missing artifact → remove claim.
+Proof: `audited` against live GitHub API + local git scan. Not a line-by-line review of every private repo.
 
-| Repo | Claim | Status | Artifact / fix |
-|------|-------|--------|----------------|
-| inference | Badge tests 77/77 | **CONFLICT** | Body + `zig build test` say 115 — fix badge |
-| inference | 2.2–15.6× vs OpenBLAS on decode | UNVERIFIED here | Need commit+machine+script in README |
-| inference | 6.17× decode speedup (profile README) | UNVERIFIED / inconsistent with repo README range | Reconcile or delete |
-| tokenizers-zig | ~5.3× WordPiece vs HF | **OVERSTATED presentation** | README admits synthetic fixture — demote headline |
-| tokenizers-zig | 189 tests + 600-iter fuzz | PLAUSIBLE | Keep if `zig build test` green on clean clone |
-| faiss-zig | 16.94× IVFPQ memory compression | NEEDS METHOD | Compression vs what baseline/params? |
-| faiss-zig | 76 tests (profile) vs README 44 expected | **CONFLICT** | Reconcile |
-| safetensors-zig | 241µs parse / 21 tests | NEEDS FIXTURE SIZE + HW | Keep only with machine class |
-| zkdb | 24 vs 41 tests | **CONFLICT** (prior audit) | Reconcile |
-| poker | 40M hands/s, AVX2/NEON, CUDA cmds | **LIABILITY** | Archive / rewrite from zero |
-| crpc-core | Prior PTX/MSL overclaim + self-note | **LIABILITY** | Archive or narrow to DotProduct-only |
-| aqe-replanner-zig | “ports Spark AQE / Materialize / Catalyst” | **OVERCLAIM** | Rewrite to 7-test Thompson prototype |
-| SMC17 bio | Pure-Zig identity | **HURTS HIRING** | Retarget ML systems tools-as-appropriate |
+## Public surface (live)
 
-## Upstream PRs (fill as accepted)
+| Artifact | Claim | Status |
+|---|---|---|
+| GitHub public repo count | 3 active public originals/forks after 2026-08-17 hygiene | **audited** — `finance-segway`, `logic-zig`, `lean-action` fork. `MarketDataSimulator` archived. `strata` made private (default branch was a `claude/*` agent branch). |
+| Archived this pass | 53 repos archived, 0 archive failures | **audited** — empties, 0theta brand family except `zerotheta-evm`, `muscle-*` mirrors, `stax-stax-*` clones, stale 2024–2025 names. Token lacks `delete_repo`; archive used instead of delete. |
+| Hygiene issues closed | 40 "Quality & Documentation Checklist" issues | **audited** — two Isles_Lab hits skipped (real issues, body-only match). |
+| `lean-action` #168 | rebase onto current `main` | **local compiled rebase** — GitHub push blocked: OAuth token missing `workflow` scope. |
 
-| Upstream | Title | Merged? | Link |
-|----------|-------|---------|------|
-| TQEC (cited historically) | coordinate transform + tests | claimed | verify URL |
-| HF tokenizers | BPE legacy-merge | claimed on profile | verify open/merged |
-| FAISS | IVFPQ docs | claimed | verify |
-| nixpkgs | CrowdSec / ydotool | claimed | verify |
+## Private flagships — do not treat as public proof
 
-Target: 5 accepted **code** PRs in PyTorch / Triton / vLLM / HF Tokenizers / FAISS / llama.cpp class systems.
+| Repo | Local vs origin | Do not claim |
+|---|---|---|
+| `vllm-zig` | 39 commits unpushed | production / faster than vLLM |
+| `zerotheta-evm` | 27 commits unpushed (field clone) | EELS parity / client-ready |
+| `tokenizers-zig` | 12 commits unpushed | 5.3× vs HF (synthetic fixture) |
+| `safetensors-zig` | 7 commits unpushed | µs parse numbers without fixture+hw |
+| `faiss-zig` | 6 commits unpushed | 16.94× compression without method |
+| `poker` | stale public-era claims | 40M hands/s, AVX2/NEON, CUDA |
+
+## Type I / Type II
+
+- Type I: the previous profile README claimed 403 repos / 273 stars / 77 yard modules as a public portfolio.
+- Type II: several private trees have real tests and should be cleaned and placed, not deleted.
