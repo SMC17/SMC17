@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+<title id="title">Sean Collins — Systems with receipts</title>
+<desc id="desc">An engineering studio for logic, markets, and tools for people and agents.</desc>
+<rect width="1200" height="300" fill="#101714"/>
+<g stroke="#26352e" stroke-width="1"><path d="M0 60H1200M0 120H1200M0 180H1200M0 240H1200M900 0V300M960 0V300M1020 0V300M1080 0V300M1140 0V300"/></g>
+<rect x="48" y="48" width="10" height="10" fill="#d8ff76"/>
+<text x="74" y="59" fill="#d8ff76" font-family="monospace" font-size="14" letter-spacing="3">SMC17 / ENGINEERING STUDIO</text>
+<text x="48" y="145" fill="#f3f1e7" font-family="Georgia,serif" font-size="64">Systems with receipts.</text>
+<text x="50" y="196" fill="#b7c6bb" font-family="monospace" font-size="18">Logic. Markets. Tools for people and agents.</text>
+<path d="M50 240H850" stroke="#607365"/>
+<text x="50" y="267" fill="#b7c6bb" font-family="monospace" font-size="13">BUILD / REPLAY / CHECK / EXPLAIN</text>
+<g fill="none" stroke="#d8ff76" stroke-width="2"><circle cx="1040" cy="147" r="65"/><path d="M975 147H1105M1040 82V212M994 101L1086 193M994 193L1086 101"/><circle cx="1040" cy="147" r="30"/></g></svg>

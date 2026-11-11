@@ -1,23 +1,14 @@
-# Public evidence ledger (SMC17)
+# Public evidence ledger
 
-Date: 2026-08-20
-Rule: every public numerical claim needs a row. Missing artifact → remove claim.
+Reviewed: 11 November 2026.
 
-## Public surface (live)
+This ledger describes the profile's public links. Each repository owns its technical evidence, current scope, and limitations. Repository descriptions and test badges are not independent validation.
 
-| Artifact | Claim | Status |
-|---|---|---|
-| Public originals/forks | 5: `finance-segway`, `logic-zig`, `SMC17`, `lean-action` fork, `MarketDataSimulator` | **audited** gh api |
-| Profile README | Knight Lab studio voice; no repo-count vanity | **audited** commit eb8924fa |
-| Archived | 101 / 413 owned | **audited** 2026-08-20 wave-2 |
-| lean-action | #187 MERGEABLE vs leanprover/lean-action | **audited** gh pr view |
-| finance-segway evidence CI | green on derived restore | **audited** 2026-08-17/18 runs |
+| Profile statement | Inspectable source | Limit |
+| --- | --- | --- |
+| logic-zig exposes reasoning engines and certificates | [README](https://github.com/SMC17/logic-zig), [status](https://github.com/SMC17/logic-zig/blob/main/STATUS.md) | Maturity varies by logical system; external proof tools have separate gates |
+| finance-segway includes reproducible models and historical cases | [README](https://github.com/SMC17/finance-segway), [model inventory](https://github.com/SMC17/finance-segway/blob/main/standards/model_inventory.json) | Historical reconstructions do not establish production underwriting or forecast performance |
+| zag records engineering work and applies local policy | [README](https://github.com/SMC17/zag), [platform support](https://github.com/SMC17/zag/blob/main/docs/platform-support.md) | Linux is the development platform; macOS and Windows have compile-only evidence in the repository's platform matrix |
+| MarketDataSimulator is an exchange and recovery laboratory | [README](https://github.com/SMC17/MarketDataSimulator) | Research system; no production-venue or regulatory-compliance claim |
 
-## Not public proof
-
-oceanman, faiss-zig, tokenizers-zig, safetensors-zig, zerotheta-evm, mast, znap, sentinel-sbom stay private until clean-clone + five-minute README.
-
-## Type I / Type II
-
-- Type I: 403-repo portfolio README.
-- Type II: hiding oceanman (StoryMap-class dataset) and logic-zig (Learn-class museum) behind vanity counts.
+The profile makes no portfolio-size, performance, production-adoption, or certification claim. Numbers and hardware results belong beside the artifacts and commands that support them.
