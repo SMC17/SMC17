@@ -12,3 +12,5 @@ This ledger describes the profile's public links. Each repository owns its techn
 | MarketDataSimulator is an exchange and recovery laboratory | [README](https://github.com/SMC17/MarketDataSimulator) | Research system; no production-venue or regulatory-compliance claim |
 
 The profile makes no portfolio-size, performance, production-adoption, or certification claim. Numbers and hardware results belong beside the artifacts and commands that support them.
+
+The [portable trust-gate preview](https://github.com/SMC17/logic-zig/releases/tag/revival-2026-11-11) records 391 passing tests on each of macOS ARM64 and Ubuntu ARM64, with five DRAT verifications and 25 CaDiCaL comparisons per runtime. Those are finite local acceptance runs. Hosted CI is blocked, and ABC delta agreement remains unknown. The release links the commands, source changes and validation artifact.
