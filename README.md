@@ -18,6 +18,14 @@ The [portable CLI preview](https://github.com/SMC17/logic-zig/releases/tag/porta
 | [zag](https://github.com/SMC17/zag) | A terminal, block model, and agent runtime in one Zig program, no network deps. | 613 Linux tests · recorded-task acceptance |
 | [MarketDataSimulator](https://github.com/SMC17/MarketDataSimulator) | A deterministic teaching exchange: matching, recovery, wire integrity. | .NET 10 · 392 tests per measured runtime · Linux feed smoke |
 
+## Upstream work in review
+
+- [PyO3: explain buffered stdout when embedding Python](https://github.com/PyO3/pyo3/pull/6577)
+- [Faiss: explain how data structure affects IVFPQ recall](https://github.com/facebookresearch/faiss/pull/5901)
+- [NixOS: make CrowdSec hub refresh optional at startup](https://github.com/NixOS/nixpkgs/pull/586947)
+
+These are open contributions, pending upstream checks and review.
+
 ## Shipping next (one per week)
 zig-h3 · zkdb · tokenizers-zig · safetensors-zig · faiss-zig · sentinel-sbom
 
@@ -28,5 +36,3 @@ after a clean clone builds on Zig 0.16.0 and a five-minute README exists.
 ## How to read claims
 sketch / scaffold / compiled / unit-tested / integration-tested / audited / benchmarked.
 Speedups without commit, hardware class, workload, and script are not claims.
-
-<!-- facts: regenerated weekly by .github/workflows/facts.yml -->
