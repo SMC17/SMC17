@@ -1,25 +1,27 @@
-<img src="./assets/studio.svg" alt="Sean Collins — Systems with receipts. Logic, markets, and tools for people and agents." width="100%">
+# Sean Collins · SMC17
 
-I’m **Sean Collins**. I build systems you can inspect: reasoning with checkable evidence, markets you can replay, and engineering workspaces that record what happened.
+Verifiable systems in Zig for markets, proofs, and infrastructure.
+Hosting is not proof: every public claim below has a command that reproduces it.
 
-### Enter through a working question
+## Public tools
 
-| If you want to… | Start here | What to inspect |
-| :--- | :--- | :--- |
-| Check a reasoning result | **[logic-zig](https://github.com/SMC17/logic-zig)** | Named logical systems, SAT and model-checking engines, certificates, and explicit maturity levels |
-| Follow a number back to its source | **[finance-segway](https://github.com/SMC17/finance-segway)** | Reproducible financial models and historical cases with source snapshots and workbook receipts |
-| Record work by people and agents | **[zag](https://github.com/SMC17/zag)** | A Zig workbench with an event log, typed tool requests, and local policy decisions; Linux is the development platform |
-| Understand a broken market-data feed | **[MarketDataSimulator](https://github.com/SMC17/MarketDataSimulator)** | A .NET exchange and recovery laboratory: matching, sequencing, explicit stale state, and deterministic replay |
+| Tool | One sentence | Proof |
+|---|---|---|
+| [logic-zig](https://github.com/SMC17/logic-zig) | An executable museum of logic and a fail-closed trust kernel (CDCL, BMC, DRAT). | CI · v0.24 |
+| [finance-segway](https://github.com/SMC17/finance-segway) | Governed financial-model archetypes with hashed historical cases, not forecasts. | 22 workflows |
+| [jevy](https://github.com/SMC17/jevy) | Options market-making laboratory: Zig hot path, Python research layer, paper only. | CI |
+| [zag](https://github.com/SMC17/zag) | A terminal, block model, and agent runtime in one Zig program, no network deps. | CI |
+| [MarketDataSimulator](https://github.com/SMC17/MarketDataSimulator) | A deterministic teaching exchange: matching, recovery, wire integrity. | CI |
 
-### The thread
+## Shipping next (one per week)
+zig-h3 · zkdb · tokenizers-zig · safetensors-zig · faiss-zig · sentinel-sbom
 
-A claim should lead to an artifact. The artifact should lead to a command you can run.
+## What stays private, and why
+A large private corpus is not a portfolio. Repos become public one at a time,
+after a clean clone builds on Zig 0.16.0 and a five-minute README exists.
 
-These are research and development projects. Each repository owns its scope, limitations, and evidence; a prototype, a passing test, and a production system are different milestones.
+## How to read claims
+sketch / scaffold / compiled / unit-tested / integration-tested / audited / benchmarked.
+Speedups without commit, hardware class, workload, and script are not claims.
 
-### Start small
-
-Try one example. Break one assumption. Bring the command, input, expected result, and actual result to the relevant repository’s issue tracker.
-
-[Follow the work on GitHub](https://github.com/SMC17?tab=repositories) · [Find me on X](https://x.com/staxxxx17)
-
+<!-- facts: regenerated weekly by .github/workflows/facts.yml -->
