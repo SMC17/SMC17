@@ -21,3 +21,9 @@ The [portable trust-gate preview](https://github.com/SMC17/logic-zig/releases/ta
 |---|---|
 | GitHub is the canonical remote for every SMC17 repository. The Forgejo mirror program (2026-05) is retired. READMEs that still name sunlitmoon.online or Forgejo as canonical are stale until rewritten. | **decided** |
 | Public surface: finance-segway, logic-zig, jevy, zag, MarketDataSimulator, SMC17, lean-action fork. Empty stubs made private 2026-11-11. | **audited** gh api |
+
+## Task entry points
+
+[TASKS.md](TASKS.md) links nine small jobs across the existing public cores. The [seven-CLI pack](https://github.com/SMC17/logic-zig/releases/tag/portable-clis-2026-11-11) passes clean-source acceptance on macOS/Linux ARM64, 391 tests each; packaged binaries also run after stripping. macOS binaries require 26.4. External checker installs are separate.
+
+[MarketDataSimulator PR #5](https://github.com/SMC17/MarketDataSimulator/pull/5) moves the public labs to .NET 10 and gates real test discovery. Core tests pass 392/392 on macOS ARM64 and Linux x86-64; the Linux run used amd64 emulation, so it is no hardware-speed measurement. Both Linux feed paths and generated-doc checks pass. The repository currently has no license file. Hosted workflows remain blocked by account billing.
