@@ -14,6 +14,7 @@ cores; each repository owns its supported platforms, evidence and limitations.
 | Inspect matching and risk workloads | [Market matching lab](https://github.com/SMC17/MarketDataSimulator/blob/master/docs/SELF_SERVE_LABS.md#1-follow-one-matching-workload) | A reproducible workload; local timings stay separate from published benchmarks |
 | Inspect packet-integrity work | [Protocol lab](https://github.com/SMC17/MarketDataSimulator/blob/master/docs/SELF_SERVE_LABS.md#2-inspect-packet-integrity-work) | Encoding/sealing/validation; feed runtime remains a separate task |
 | Learn why finite-depth replay can diverge | [Observability lab](https://github.com/SMC17/MarketDataSimulator/blob/master/docs/SELF_SERVE_LABS.md#3-see-what-finite-depth-cannot-tell-you) | Single-step comparisons and cumulative reconstruction reported separately |
+| Challenge a sourced financial-model integration | [Current review packet](https://github.com/SMC17/finance-segway/blob/19dd9ca97c40be5723537a45f26cdfefa0494220/docs/reviews/CORRECTNESS_PR125.md) | Six source/formula/coverage challenges and fresh reproduction commands; independent review is still required |
 
 The CLI download preview provides macOS ARM64 binaries requiring macOS 26.4
 and Linux ARM64 binaries tested on Ubuntu 24.04. Source is included; other
@@ -26,3 +27,7 @@ redistribution terms, production readiness or measured adoption.
 
 Bring a failure to the repository issue tracker with the source revision,
 platform/toolchain, minimal input, exact command and expected/actual outcome.
+
+The finance task asks for technical and source challenge, not reliance on a
+model for a financial decision. Approval belongs to a named reviewer other
+than the PR author, against the current head. No M3 sign-off is implied.
