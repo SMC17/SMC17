@@ -15,6 +15,9 @@ cores; each repository owns its supported platforms, evidence and limitations.
 | Inspect packet-integrity work | [Protocol lab](https://github.com/SMC17/MarketDataSimulator/blob/master/docs/SELF_SERVE_LABS.md#2-inspect-packet-integrity-work) | Encoding/sealing/validation; feed runtime remains a separate task |
 | Learn why finite-depth replay can diverge | [Observability lab](https://github.com/SMC17/MarketDataSimulator/blob/master/docs/SELF_SERVE_LABS.md#3-see-what-finite-depth-cannot-tell-you) | Single-step comparisons and cumulative reconstruction reported separately |
 | Challenge a sourced financial-model integration | [Current review packet](https://github.com/SMC17/finance-segway/blob/9710a168a93fa2c2936baab0f87cbbb2b41277a7/docs/reviews/CORRECTNESS_PR125.md) | Six source/formula/coverage challenges and fresh reproduction commands; owner-accepted secondary AI review is recorded |
+| Compare tokenizer IDs against a fixed reference | [Original WordPiece task](https://github.com/SMC17/tokenizers-zig/blob/main/docs/WORDPIECE_TASK.md) | 48 original inputs; optional pinned BERT/TinyLlama corpus checks; T5 mismatch remains visible |
+| Inspect a tiny tensor file without model downloads | [Original safetensors inspector](https://github.com/SMC17/safetensors-zig#one-original-input-task) | A 128-byte original fixture and explicit malformed-input refusals |
+| Keep and query a small column file | [zkdb close/reopen exercise](https://github.com/SMC17/zkdb#one-column-file-task) | Four synthetic integers survive write/close/reopen and sum to 17; crash durability is separate |
 
 The CLI download preview provides macOS ARM64 binaries requiring macOS 26.4
 and Linux ARM64 binaries tested on Ubuntu 24.04. Source is included; other
