@@ -8,6 +8,11 @@ Hosting is not proof: every public claim below has a command that reproduces it.
 [Start with a small reasoning, recording or market-data task](TASKS.md).
 The [portable CLI preview](https://github.com/SMC17/logic-zig/releases/tag/portable-clis-2026-11-11) includes seven CLIs, matching source, recorded checks and checksums. Choose the matching platform or build from source.
 
+## Field notes
+
+[Make missing evidence fail](FIELD_NOTES.md): a runnable solver-checking lab,
+with exact status handling, refusal tests and an inspectable record.
+
 ## Public work, by system
 
 Three systems that share one rule: Zig for the hot path, the BEAM for the
@@ -27,7 +32,7 @@ control plane, a proof for every claim.
 
 | Repo | What it is | Proof |
 |---|---|---|
-| [tokenizers-zig](https://github.com/SMC17/tokenizers-zig) | HuggingFace `tokenizer.json`: BPE, WordPiece, Unigram. | 164 pass, 29 need model files · [known gaps vs Rust](https://github.com/SMC17/tokenizers-zig/blob/main/COMPATIBILITY.md) |
+| [tokenizers-zig](https://github.com/SMC17/tokenizers-zig) | HuggingFace `tokenizer.json`: BPE, WordPiece, Unigram. | 195 pass with pinned files · [48-input task](https://github.com/SMC17/tokenizers-zig/blob/main/docs/WORDPIECE_TASK.md) · T5 gap retained |
 | [safetensors-zig](https://github.com/SMC17/safetensors-zig) | safetensors reader with header and overlap validation. | 19 pass, 2 optional skipped |
 | [faiss-zig](https://github.com/SMC17/faiss-zig) | Flat, HNSW, IVFFlat and IVFPQ vector search. | 76/76 tests |
 | [znap](https://github.com/SMC17/znap) | Zero-allocation inference: 30→6 policy in 32 ns, stories15M at ~700 tok/s. | 625/625 tests · M2 Max, `zig build bench` |
