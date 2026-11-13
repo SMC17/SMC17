@@ -80,6 +80,14 @@ Repos may add `area: ...` labels for their own parts.
 
 Each repo has a **Next** milestone holding what is committed to for its next release. Nothing outside it is promised.
 
+## Branches
+
+Each repo keeps its default branch plus branches with open pull requests. Merged branches are deleted. Unmerged work that has gone stale is not thrown away: it is kept under a hidden ref, `refs/archive/<branch>`, which you can fetch with
+
+```sh
+git fetch origin 'refs/archive/*:refs/archive/*'
+```
+
 ## Making a repo public
 
 A repo goes public only when a fresh clone builds and passes its tests on the pinned toolchain, it has a LICENSE, STATUS.md and a README that gets someone started in five minutes, and nothing in its files or history exposes private information.
@@ -97,14 +105,14 @@ Verified 2026-11-12 from fresh clones on an Apple M2 Max unless noted.
 | [faiss-zig](https://github.com/SMC17/faiss-zig) | ML infrastructure | unit-tested | 76/76 tests pass |
 | [qsr-zig](https://github.com/SMC17/qsr-zig) | ML infrastructure | unit-tested | 4/4 tests pass, including 800 differential trials |
 | [safetensors-zig](https://github.com/SMC17/safetensors-zig) | ML infrastructure | unit-tested | 19 pass, 2 optional real-model tests skip |
-| [tokenizers-zig](https://github.com/SMC17/tokenizers-zig) | ML infrastructure | unit-tested | 164 pass, 29 skip (need HuggingFace tokenizer.json fixtures) |
+| [tokenizers-zig](https://github.com/SMC17/tokenizers-zig) | ML infrastructure | unit-tested | 166 pass, 29 skip (need HuggingFace tokenizer.json fixtures) |
 | [znap](https://github.com/SMC17/znap) | ML infrastructure | benchmarked (one machine) | 631/631 tests pass |
 | [MarketDataSimulator](https://github.com/SMC17/MarketDataSimulator) | Markets and data | integration-tested | 392/392 tests pass |
 | [finance-segway](https://github.com/SMC17/finance-segway) | Markets and data | unit-tested (quickstart checks) | reference engines 11/11, reconciled engines PASS, consulting real-data policy 3/3 (README quickstart checks only) |
-| [jevy](https://github.com/SMC17/jevy) | Markets and data | unit-tested (Zig hot path) | 151/151 Zig tests pass; Python layer not re-run in this check |
+| [jevy](https://github.com/SMC17/jevy) | Markets and data | unit-tested | Zig 153/153; Python (clean venv from requirements.lock) 194 passed, 12 skipped |
 | [zkdb](https://github.com/SMC17/zkdb) | Markets and data | unit-tested | 47/47 tests pass |
 | [zkdb-elixir](https://github.com/SMC17/zkdb-elixir) | Markets and data | unit-tested | 5/5 ExUnit tests pass; mix builds the Zig NIF |
-| [logic-zig](https://github.com/SMC17/logic-zig) | Proofs and tools | unit-tested | 391/391 tests pass |
+| [logic-zig](https://github.com/SMC17/logic-zig) | Proofs and tools | unit-tested | 541/541 tests pass |
 | [method-wagwan](https://github.com/SMC17/method-wagwan) | Proofs and tools | sketch | design and process; engine not yet built (Phase 1) |
-| [zag](https://github.com/SMC17/zag) | Proofs and tools | unit-tested | macOS: 594 pass, 19 Linux-only skip, 0 fail; Linux: not re-run in this check |
+| [zag](https://github.com/SMC17/zag) | Proofs and tools | unit-tested | macOS: 707 pass, 25 Linux-only skip, 0 fail; Linux: not re-run in this check |
 | [zig-h3](https://github.com/SMC17/zig-h3) | Proofs and tools | benchmarked | 211/211 tests pass |
