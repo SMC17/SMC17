@@ -51,6 +51,7 @@ control plane, a proof for every claim.
 
 - **[Public roadmap board](https://github.com/users/SMC17/projects/16):** every open issue in every public repo, by system and priority.
 - **[STANDARDS.md](STANDARDS.md):** proof levels, labels, how an issue moves, and what every repo contains.
+- **[OPS.md](OPS.md):** last night's fresh-clone gates, depth meters and open regressions for every public repo.
 - **Want to help?** Each repo's README starts with links to its Status, Roadmap and Contributing guide. Issues labelled [`status: ready`](https://github.com/search?q=user%3ASMC17+label%3A%22status%3A+ready%22+state%3Aopen&type=issues) or [`good first issue`](https://github.com/search?q=user%3ASMC17+label%3A%22good+first+issue%22+state%3Aopen&type=issues) are scoped and waiting.
 - **Found a number that does not reproduce?** Every repo has a "Challenge a claim" issue template.
 
