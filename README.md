@@ -47,16 +47,24 @@ control plane, a proof for every claim.
 | [zig-h3](https://github.com/SMC17/zig-h3) | Uber H3 v4: all 70 functions, pure-Zig and C-wrapper paths. | 211 tests cross-checked against libh3 v4.1.0 |
 | [zag](https://github.com/SMC17/zag) | A terminal, block model and agent runtime in one Zig program. | 613 Linux tests |
 
+## How work is tracked
+
+- **[Public roadmap board](https://github.com/users/SMC17/projects/16):** every open issue in every public repo, by system and priority.
+- **[STANDARDS.md](STANDARDS.md):** proof levels, labels, how an issue moves, and what every repo contains.
+- **Want to help?** Each repo's README starts with links to its Status, Roadmap and Contributing guide. Issues labelled [`status: ready`](https://github.com/search?q=user%3ASMC17+label%3A%22status%3A+ready%22+state%3Aopen&type=issues) or [`good first issue`](https://github.com/search?q=user%3ASMC17+label%3A%22good+first+issue%22+state%3Aopen&type=issues) are scoped and waiting.
+- **Found a number that does not reproduce?** Every repo has a "Challenge a claim" issue template.
+
 ## Upstream work in review
 
 - [PyO3: explain buffered stdout when embedding Python](https://github.com/PyO3/pyo3/pull/6577)
 - [Faiss: explain how data structure affects IVFPQ recall](https://github.com/facebookresearch/faiss/pull/5901)
 - [NixOS: make CrowdSec hub refresh optional at startup](https://github.com/NixOS/nixpkgs/pull/586947)
+- [H3: list zig-h3 on the community bindings page](https://github.com/uber/h3/pull/1303)
 
 These are open contributions, pending upstream checks and review.
 
 ## Shipping next
-method-wagwan Phase 1 (replaying zig-h3) · Hex package for zkdb-elixir · Zig 0.16 migration notes
+method-wagwan Phase 1 (replaying Ghostty; zig-h3 as smoke test) · Hex package for zkdb-elixir · Zig 0.16 migration notes
 
 ## What stays private, and why
 A large private corpus is not a portfolio. Repos become public one at a time,
@@ -65,3 +73,4 @@ after a clean clone builds on Zig 0.16.0 and a five-minute README exists.
 ## How to read claims
 sketch / scaffold / compiled / unit-tested / integration-tested / audited / benchmarked.
 Speedups without commit, hardware class, workload, and script are not claims.
+Definitions and rules: [STANDARDS.md](STANDARDS.md).
