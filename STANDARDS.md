@@ -43,6 +43,16 @@ A level is a claim like any other: it must be reproducible from a fresh clone.
 
 Run `python3 tools/standards_check.py` (needs the `gh` CLI) to see how every public repo measures against this table.
 
+## Ops: how the system checks and repairs itself
+
+[`ops/smc17ops.py`](ops/smc17ops.py) runs nightly and publishes [OPS.md](OPS.md):
+
+- **Sense:** every repo is cloned fresh and its gate from [`ops/registry.json`](ops/registry.json) is run; standard files, open issues, untriaged issues and stale PRs are counted; depth meters (for example finance-segway's workbook completeness) are measured.
+- **Heal (allow-list only):** the roadmap board is kept in sync with issues, and Dependabot PRs are merged only if the repo's gate passes on their branch.
+- **Report:** a ratchet compares each run with [`ops/baseline.json`](ops/baseline.json). A failing gate, fewer passing tests, a missing standard file or a worse depth meter opens an `ops: … regressed` issue (P1, ready) in that repo; the issue closes itself when the check recovers. Baselines only move up.
+
+Anything outside the allow-list becomes an issue for a person, not an automatic change.
+
 ## Labels
 
 | Label | Meaning |
