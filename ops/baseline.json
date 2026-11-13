@@ -1,0 +1,44 @@
+{
+ "MarketDataSimulator": {
+  "passed": 392
+ },
+ "faiss-zig": {
+  "passed": 76
+ },
+ "finance-segway": {
+  "formula_computed_pct": 67.32,
+  "passed": 14,
+  "placeholders": 1145
+ },
+ "jevy": {
+  "passed": 347
+ },
+ "logic-zig": {
+  "passed": 541
+ },
+ "method-wagwan": {},
+ "qsr-zig": {
+  "passed": 4
+ },
+ "safetensors-zig": {
+  "passed": 19
+ },
+ "tokenizers-zig": {
+  "passed": 166
+ },
+ "zag": {
+  "passed": 707
+ },
+ "zig-h3": {
+  "passed": 211
+ },
+ "zkdb": {
+  "passed": 47
+ },
+ "zkdb-elixir": {
+  "passed": 5
+ },
+ "znap": {
+  "passed": 631
+ }
+}
