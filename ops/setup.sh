@@ -20,6 +20,12 @@ fi
 python3 -m venv "$OPS/.venv"
 "$OPS/.venv/bin/pip" install -q --disable-pip-version-check openpyxl
 
+# LibreOffice for workbook checks: nix's bin/soffice wrapper returns before work is
+# done (it calls `open -na`), so link the real binary inside the app bundle.
+mkdir -p "$OPS/.bin"
+if LO="$(nix build --no-link --print-out-paths nixpkgs#libreoffice-bin 2>/dev/null)"; then
+  ln -sf "$LO/Applications/LibreOffice.app/Contents/MacOS/soffice" "$OPS/.bin/soffice"
+fi
 mkdir -p "$LOGS" "$(dirname "$PLIST")"
 cat > "$PLIST" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
