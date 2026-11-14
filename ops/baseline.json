@@ -6,8 +6,11 @@
   "passed": 76
  },
  "finance-segway": {
+  "cells_needing_work": 4142,
   "formula_computed_pct": 67.32,
-  "passed": 14,
+  "fully_accounted": 2,
+  "mean_accounted_pct": 22.3,
+  "passed": 599,
   "placeholders": 1145
  },
  "jevy": {
@@ -33,10 +36,10 @@
   "passed": 211
  },
  "zkdb": {
-  "passed": 47
+  "passed": 50
  },
  "zkdb-elixir": {
-  "passed": 5
+  "passed": 8
  },
  "znap": {
   "passed": 631
