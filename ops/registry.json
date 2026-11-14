@@ -1,16 +1,104 @@
 {
- "zkdb":                {"system": "Markets and data",  "gate": ["zig build test --summary all"], "timeout": 900},
- "zkdb-elixir":         {"system": "Markets and data",  "gate": ["mix test"], "timeout": 900},
- "jevy":                {"system": "Markets and data",  "gate": ["cd zig && zig build test --summary all", "cd zig && zig build -Doptimize=ReleaseFast", "python3 -m venv .ops-venv && .ops-venv/bin/pip install -q -r requirements.lock && .ops-venv/bin/pip install -q -e . --no-deps && .ops-venv/bin/python -m pytest -q"], "timeout": 1800},
- "finance-segway":      {"system": "Markets and data",  "gate": ["python3 tools/test_reference_engines.py && PYTHONPATH=tools python3 tools/test_reconciled_reference_engines.py && PYTHONPATH=. python3 -m unittest tests.test_consulting_real_data_policy"], "meters": ["workbooks"], "timeout": 900},
- "MarketDataSimulator": {"system": "Markets and data",  "gate": ["nix shell nixpkgs#dotnet-sdk_10 -c dotnet test MarketDataSimulator.sln"], "timeout": 1800},
- "tokenizers-zig":      {"system": "ML infrastructure", "gate": ["zig build test --summary all"], "timeout": 900},
- "safetensors-zig":     {"system": "ML infrastructure", "gate": ["zig build test --summary all"], "timeout": 900},
- "faiss-zig":           {"system": "ML infrastructure", "gate": ["zig build test --summary all"], "timeout": 900},
- "znap":                {"system": "ML infrastructure", "gate": ["zig build test --summary all"], "timeout": 1200},
- "qsr-zig":             {"system": "ML infrastructure", "gate": ["zig build test --summary all"], "timeout": 600},
- "method-wagwan":       {"system": "Proofs and tools",  "gate": [], "timeout": 60},
- "logic-zig":           {"system": "Proofs and tools",  "gate": ["zig build test --summary all"], "timeout": 2400},
- "zig-h3":              {"system": "Proofs and tools",  "gate": ["zig build test --summary all"], "timeout": 900},
- "zag":                 {"system": "Proofs and tools",  "gate": ["zig build test --summary all"], "timeout": 1200}
+ "zkdb": {
+  "system": "Markets and data",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "zkdb-elixir": {
+  "system": "Markets and data",
+  "gate": [
+   "mix test"
+  ],
+  "timeout": 900
+ },
+ "jevy": {
+  "system": "Markets and data",
+  "gate": [
+   "cd zig && zig build test --summary all",
+   "cd zig && zig build -Doptimize=ReleaseFast",
+   "python3 -m venv .ops-venv && .ops-venv/bin/pip install -q -r requirements.lock && .ops-venv/bin/pip install -q -e . --no-deps && .ops-venv/bin/python -m pytest -q"
+  ],
+  "timeout": 1800
+ },
+ "finance-segway": {
+  "system": "Markets and data",
+  "gate": [
+   "python3 -m venv .ops-venv && .ops-venv/bin/pip install -q -r requirements.txt && .ops-venv/bin/python -m unittest discover -s tests -q",
+   ".ops-venv/bin/python tools/build_all_models.py > .ops-bam.json && grep -q '\"parity_failed\": 0' .ops-bam.json && grep -q '\"presentation_parity_failed\": 0' .ops-bam.json && echo parity-27-27"
+  ],
+  "meters": [
+   "exhaustion"
+  ],
+  "timeout": 1800
+ },
+ "MarketDataSimulator": {
+  "system": "Markets and data",
+  "gate": [
+   "nix shell nixpkgs#dotnet-sdk_10 -c dotnet test MarketDataSimulator.sln"
+  ],
+  "timeout": 1800
+ },
+ "tokenizers-zig": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "safetensors-zig": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "faiss-zig": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "znap": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 1200
+ },
+ "qsr-zig": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 600
+ },
+ "method-wagwan": {
+  "system": "Proofs and tools",
+  "gate": [],
+  "timeout": 60
+ },
+ "logic-zig": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 2400
+ },
+ "zig-h3": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "zag": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 1200
+ }
 }

@@ -47,8 +47,9 @@ def log(*a):
 
 
 def sh(cmd, cwd=None, timeout=600, check=False, input=None):
+    env = dict(os.environ, PATH=f"{HERE / '.bin'}:{os.environ.get('PATH', '')}")
     r = subprocess.run(cmd, cwd=cwd, shell=isinstance(cmd, str), capture_output=True, text=True,
-                       timeout=timeout, input=input, executable="/bin/bash" if isinstance(cmd, str) else None)
+                       timeout=timeout, input=input, env=env, executable="/bin/bash" if isinstance(cmd, str) else None)
     if check and r.returncode:
         raise RuntimeError(f"{cmd}: {r.stderr.strip()[:300]}")
     return r
@@ -125,6 +126,17 @@ def gate(repo: str, spec: dict, workdir: Path) -> dict:
     return res
 
 
+def meter_exhaustion(dest: Path) -> dict:
+    """finance-segway's own check of how much of each public case is real data."""
+    py = HERE / ".venv" / "bin" / "python"
+    p = sh([str(py), "tools/verify_template_exhaustion.py"], cwd=dest, timeout=900)
+    m = re.search(r"Cases: (\d+)\s+Mean real: ([\d.]+)%\s+Mean accounted: ([\d.]+)%\s+Cells still needing work: (\d+)\s+Fully accounted: (\d+)/(\d+)", p.stdout)
+    if not m:
+        return {"error": (p.stderr or p.stdout).strip()[-200:]}
+    return {"cases": int(m.group(1)), "mean_real_pct": float(m.group(2)), "mean_accounted_pct": float(m.group(3)),
+            "cells_needing_work": int(m.group(4)), "fully_accounted": int(m.group(5))}
+
+
 def meter_workbooks(dest: Path) -> dict:
     py = HERE / ".venv" / "bin" / "python"
     tool = dest / "tools" / "workbook_completeness.py"
@@ -177,6 +189,8 @@ def sense(only=None):
                 entry["standards"] = meter_standards(dest)
                 if "workbooks" in spec.get("meters", []):
                     entry["workbooks"] = meter_workbooks(dest)
+                if "exhaustion" in spec.get("meters", []):
+                    entry["exhaustion"] = meter_exhaustion(dest)
             entry["tracker"] = meter_tracker(repo)
             run["repos"][repo] = entry
             log(f"  {repo}: ok={g.get('ok')} passed={g.get('passed')} failed={g.get('failed')} skipped={g.get('skipped')}")
@@ -194,7 +208,10 @@ def summarize(run):
         s["repos"][r] = {"ok": g.get("ok"), "passed": g.get("passed"), "failed": g.get("failed"),
                          "skipped": g.get("skipped"), "missing": len(e.get("standards", {}).get("missing", [])),
                          **({"formula_computed_pct": e["workbooks"].get("formula_computed_pct"),
-                             "placeholders": e["workbooks"].get("placeholders")} if "workbooks" in e and "error" not in e["workbooks"] else {})}
+                             "placeholders": e["workbooks"].get("placeholders")} if "workbooks" in e and "error" not in e["workbooks"] else {}),
+                         **({"mean_accounted_pct": e["exhaustion"]["mean_accounted_pct"],
+                             "cells_needing_work": e["exhaustion"]["cells_needing_work"],
+                             "fully_accounted": e["exhaustion"]["fully_accounted"]} if "exhaustion" in e and "error" not in e["exhaustion"] else {})}
     return s
 
 
@@ -292,6 +309,14 @@ def regressions(latest, baseline):
                 found.append(("workbooks-computed", f"Computed formulas fell from {b['formula_computed_pct']}% to {wb['formula_computed_pct']}%."))
             if wb["placeholders"] > b["placeholders"]:
                 found.append(("workbooks-placeholders", f"Placeholder cells rose from {b['placeholders']} to {wb['placeholders']}."))
+        ex = e.get("exhaustion")
+        if ex and "error" not in ex:
+            if b.get("mean_accounted_pct") is not None and ex["mean_accounted_pct"] < b["mean_accounted_pct"]:
+                found.append(("exhaustion-accounted", f"Mean accounted coverage fell from {b['mean_accounted_pct']}% to {ex['mean_accounted_pct']}%."))
+            if b.get("cells_needing_work") is not None and ex["cells_needing_work"] > b["cells_needing_work"]:
+                found.append(("exhaustion-cells", f"Input cells still needing work rose from {b['cells_needing_work']} to {ex['cells_needing_work']}."))
+            if b.get("fully_accounted") is not None and ex["fully_accounted"] < b["fully_accounted"]:
+                found.append(("exhaustion-cases", f"Fully accounted cases fell from {b['fully_accounted']} to {ex['fully_accounted']}."))
         out[repo] = found
     return out
 
@@ -307,6 +332,11 @@ def ratchet_baseline(latest, baseline):
         if wb and "error" not in wb:
             b["formula_computed_pct"] = max(b.get("formula_computed_pct", 0), wb["formula_computed_pct"])
             b["placeholders"] = min(b.get("placeholders", wb["placeholders"]), wb["placeholders"])
+        ex = e.get("exhaustion")
+        if ex and "error" not in ex:
+            b["mean_accounted_pct"] = max(b.get("mean_accounted_pct", 0), ex["mean_accounted_pct"])
+            b["cells_needing_work"] = min(b.get("cells_needing_work", ex["cells_needing_work"]), ex["cells_needing_work"])
+            b["fully_accounted"] = max(b.get("fully_accounted", 0), ex["fully_accounted"])
         nb[repo] = b
     return nb
 
@@ -352,6 +382,14 @@ def render_ops(latest, found):
         lines.append(f"| [{repo}](https://github.com/{OWNER}/{repo}) | {gate_txt} | {g.get('passed', '')} | {g.get('failed', '')} | "
                      f"{g.get('skipped', '')} | {t.get('open_issues', '')} ({t.get('p0', 0)}/{t.get('p1', 0)}) | {t.get('untriaged', '')} | "
                      f"{t.get('stale_prs', '')} | {len(found.get(repo, []))} |")
+    ex = latest["repos"].get("finance-segway", {}).get("exhaustion")
+    if ex and "error" not in ex:
+        lines += ["", "## Depth meters", "",
+                  "**finance-segway public cases** (`tools/verify_template_exhaustion.py`): "
+                  f"{ex['cases']} cases, **{ex['mean_accounted_pct']}% of model inputs accounted for** by real data or grounded drivers "
+                  f"({ex['mean_real_pct']}% real), {ex['cells_needing_work']} input cells still needing work, "
+                  f"**{ex['fully_accounted']}/{ex['cases']} cases fully accounted**.",
+                  f"Trend (accounted %): {trend('finance-segway', 'mean_accounted_pct')}"]
     wb = latest["repos"].get("finance-segway", {}).get("workbooks")
     if wb and "error" not in wb:
         lines += ["", "## Depth meters", "",
