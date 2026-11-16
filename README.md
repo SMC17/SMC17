@@ -20,7 +20,14 @@ Systems programmer writing zero-allocation libraries and tools in Zig and Elixir
 - [strip](https://github.com/SMC17/strip) — Evidence-bearing 6-DOF aerospace simulation substrate in Zig (WGS84, US76, MAVLink, FMI 3.0).
 - [yard](https://github.com/SMC17/yard) — Naval architecture and marine hydrodynamics in Zig (72 modules).
 - [distro-blog-builder](https://github.com/SMC17/distro-blog-builder) — Fast static-site, RSS, and sitemap generator in Zig.
-- **Smaller primitives**: [qsr-zig](https://github.com/SMC17/qsr-zig) (GF(2) SIMD rank) · [zig-cobs](https://github.com/SMC17/zig-cobs) (COBS framing) · [cfr-solver-zig](https://github.com/SMC17/cfr-solver-zig) (CFR+) · [thompson-bandit-zig](https://github.com/SMC17/thompson-bandit-zig) · [dsp-zig](https://github.com/SMC17/dsp-zig) · [stemmer-zig](https://github.com/SMC17/stemmer-zig) · [datelist-zig](https://github.com/SMC17/datelist-zig) · [tableformat-zig](https://github.com/SMC17/tableformat-zig) · [cow-branch-zig](https://github.com/SMC17/cow-branch-zig)
+- [ztop](https://github.com/SMC17/ztop) — `htop` + `nvtop` (`ztop-g`) system monitor in Zig with per-PID IPC (`perf_event_open`), temporal rewind, and VRAM velocity tracking.
+- [vllm-zig](https://github.com/SMC17/vllm-zig) — Pure-Zig LLM serving substrate with PagedAttention KV, BF16 `lm_head`, and futex thread-pool dispatch.
+- [triton-kernels](https://github.com/SMC17/triton-kernels) — Autotuned Triton GPU kernels (softmax, RMSNorm, FlashAttention-v2 fwd/bwd) with PyTorch reference checks.
+- [zig-graph](https://github.com/SMC17/zig-graph) — Sparse graph algorithms in pure Zig (PageRank, Brandes, Louvain, Fiedler, max-flow), cross-checked against `networkx`.
+- [fleet-sbom-index](https://github.com/SMC17/fleet-sbom-index) & [sentinel-sbom](https://github.com/SMC17/sentinel-sbom) — SPDX 2.3 SBOM emitter, divergence/drift index, and Ed25519-signed manifests in Zig.
+- [mccarthy](https://github.com/SMC17/mccarthy) — Sound 10-primitive LCF HOL theorem prover kernel in Common Lisp.
+- [proof-gate-zig](https://github.com/SMC17/proof-gate-zig) — Zero-runtime-cost `comptime` proof gates in Zig (`@compileError` on Lean 4–refuted claims).
+- **Smaller primitives**: [qsr-zig](https://github.com/SMC17/qsr-zig) (GF(2) SIMD rank) · [zig-cobs](https://github.com/SMC17/zig-cobs) (COBS framing) · [cfr-solver-zig](https://github.com/SMC17/cfr-solver-zig) (CFR+) · [thompson-bandit-zig](https://github.com/SMC17/thompson-bandit-zig) · [dsp-zig](https://github.com/SMC17/dsp-zig) · [stemmer-zig](https://github.com/SMC17/stemmer-zig) · [datelist-zig](https://github.com/SMC17/datelist-zig) · [tableformat-zig](https://github.com/SMC17/tableformat-zig) · [cow-branch-zig](https://github.com/SMC17/cow-branch-zig) · [zig-frame-protocol](https://github.com/SMC17/zig-frame-protocol)
 
 ### Upstream contributions (open PRs)
 
