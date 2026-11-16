@@ -58,7 +58,7 @@ control plane, a proof for every claim.
 
 | Repo | What it is |
 |---|---|
-| [strip](https://github.com/SMC17/strip) | Evidence-bearing aerospace computation and 6-DOF flight simulation substrate in Zig (WGS84, US76, FMI 3.0, MAVLink). |
+| [strip](https://github.com/SMC17/strip) | Evidence-bearing aerospace computation and 6-DOF flight simulation substrate in Zig ([live docs](https://smc17.github.io/strip/)). |
 | [yard](https://github.com/SMC17/yard) | Naval architecture and marine engineering in Zig: 72 primitive modules (BEM hydrodynamics, AUVs, AIS, seakeeping). |
 | [evals-agentic-control](https://github.com/SMC17/evals-agentic-control) | Deterministic evaluation harness and control benchmarks for agentic coding workflows. |
 | [sentinel-sbom](https://github.com/SMC17/sentinel-sbom) | High-speed SBOM auditing and supply-chain verification CLI. |
@@ -81,6 +81,10 @@ control plane, a proof for every claim.
 - [H3: list zig-h3 on the community bindings page](https://github.com/uber/h3/pull/1303)
 - [H3: fix `polygonToCells` CLI dropping vertices with whitespace before `]`](https://github.com/uber/h3/pull/1314)
 - [H3: honor `CMAKE_INSTALL_INCLUDEDIR` for header install destination](https://github.com/uber/h3/pull/1315)
+- [H3: parse zero-padded decimal child positions in `childPosToCell` CLI](https://github.com/uber/h3/pull/1318)
+- [llama.cpp: fix `iq3_s` zero sub-block pointer advancement in quantization](https://github.com/ggml-org/llama.cpp/pull/32414)
+- [awesome-zig: add `strip`, `yard`, and `zinging`](https://github.com/zigcc/awesome-zig/pull/308)
+- [awesome-quant: add `zinging`](https://github.com/wilsonfreitas/awesome-quant/pull/1035)
 
 These are open contributions, pending upstream checks and review.
 
