@@ -31,6 +31,7 @@ Systems programmer writing zero-allocation libraries and tools in Zig and Elixir
 - [carreir](https://github.com/SMC17/carreir) — Physical-intelligence substrate for HVAC & cold-chain in Zig with TLA+-model-checked HMAC audit logs.
 - [stax-cert](https://github.com/SMC17/stax-cert) — Lean 4 formalization seed for categorical foundations of gradient-based learning (Para, Lens, CRDC).
 - [formal-counterex-zig](https://github.com/SMC17/formal-counterex-zig) — Zig CLI over a Lean 4 / Mathlib database of refuted and confirmed quantitative-finance claims.
+- [oceanman](https://github.com/SMC17/oceanman) — Submarine cable network resilience analysis in Zig (693 cables, H3, graph centrality).
 - **Smaller primitives**: [qsr-zig](https://github.com/SMC17/qsr-zig) (GF(2) SIMD rank) · [zig-cobs](https://github.com/SMC17/zig-cobs) (COBS framing) · [cfr-solver-zig](https://github.com/SMC17/cfr-solver-zig) (CFR+) · [thompson-bandit-zig](https://github.com/SMC17/thompson-bandit-zig) · [dsp-zig](https://github.com/SMC17/dsp-zig) · [stemmer-zig](https://github.com/SMC17/stemmer-zig) · [datelist-zig](https://github.com/SMC17/datelist-zig) · [tableformat-zig](https://github.com/SMC17/tableformat-zig) · [cow-branch-zig](https://github.com/SMC17/cow-branch-zig) · [zig-frame-protocol](https://github.com/SMC17/zig-frame-protocol)
 
 ### Upstream contributions (open PRs)
