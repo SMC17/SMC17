@@ -27,6 +27,10 @@ Systems programmer writing zero-allocation libraries and tools in Zig and Elixir
 - [fleet-sbom-index](https://github.com/SMC17/fleet-sbom-index) & [sentinel-sbom](https://github.com/SMC17/sentinel-sbom) — SPDX 2.3 SBOM emitter, divergence/drift index, and Ed25519-signed manifests in Zig.
 - [mccarthy](https://github.com/SMC17/mccarthy) — Sound 10-primitive LCF HOL theorem prover kernel in Common Lisp.
 - [proof-gate-zig](https://github.com/SMC17/proof-gate-zig) — Zero-runtime-cost `comptime` proof gates in Zig (`@compileError` on Lean 4–refuted claims).
+- [mast](https://github.com/SMC17/mast) — Single-binary editor kernel with buffer-as-protocol and Janet extensibility in Zig.
+- [carreir](https://github.com/SMC17/carreir) — Physical-intelligence substrate for HVAC & cold-chain in Zig with TLA+-model-checked HMAC audit logs.
+- [stax-cert](https://github.com/SMC17/stax-cert) — Lean 4 formalization seed for categorical foundations of gradient-based learning (Para, Lens, CRDC).
+- [formal-counterex-zig](https://github.com/SMC17/formal-counterex-zig) — Zig CLI over a Lean 4 / Mathlib database of refuted and confirmed quantitative-finance claims.
 - **Smaller primitives**: [qsr-zig](https://github.com/SMC17/qsr-zig) (GF(2) SIMD rank) · [zig-cobs](https://github.com/SMC17/zig-cobs) (COBS framing) · [cfr-solver-zig](https://github.com/SMC17/cfr-solver-zig) (CFR+) · [thompson-bandit-zig](https://github.com/SMC17/thompson-bandit-zig) · [dsp-zig](https://github.com/SMC17/dsp-zig) · [stemmer-zig](https://github.com/SMC17/stemmer-zig) · [datelist-zig](https://github.com/SMC17/datelist-zig) · [tableformat-zig](https://github.com/SMC17/tableformat-zig) · [cow-branch-zig](https://github.com/SMC17/cow-branch-zig) · [zig-frame-protocol](https://github.com/SMC17/zig-frame-protocol)
 
 ### Upstream contributions (open PRs)
