@@ -3,6 +3,13 @@
 Verifiable systems in Zig and Elixir for markets, ML infrastructure and proofs.
 Hosting is not proof: every public claim below has a command that reproduces it.
 
+## Flagship unified substrate
+
+**[zinging (`zig-substrate` v3.12.0)](https://github.com/SMC17/zinging)** — Zero-allocation computational substrate unifying 7 Zig 0.15.2 engines (`core`, `lob`, `seqab`, `vecdb`, `infer`, `quant`, `ioflow`, `chess`) behind **199 C ABI symbols**, standalone **Python wheels**, **JSON-RPC daemon** (`stdio` / `--unix` / `--tcp`), and **WebAssembly** (`wasm32-freestanding`):
+- **Measured**: `49.3 M` ITCH msg/s · `1.23 M` pure-Zig H3 cells/s · `90.6 M` chess `perft(5)` nps · `1.09 M` Black-Scholes opts/s · `24 KB` WASM
+- **Proof**: `700/700` unit tests · `67/67` differential & real-dataset `substrate verify all` · `341/341` 5-tier E2E · `14`-parser mutation fuzzer (`0` panics, `0` leaks)
+- **Quickstarts**: [30s Python & C11 quickstarts](https://github.com/SMC17/zinging#-30-second-quickstarts--public-proof-scorecard) · [v3.12.0 Release + Wheel](https://github.com/SMC17/zinging/releases/tag/v3.12.0) · [Open Starter Issues](https://github.com/SMC17/zinging/issues)
+
 ## Choose one task
 
 [Start with a small reasoning, recording or market-data task](TASKS.md).
