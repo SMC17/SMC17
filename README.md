@@ -1,101 +1,31 @@
-# Sean Collins · SMC17
+# Sean Collins
 
-Verifiable systems in Zig and Elixir for markets, ML infrastructure and proofs.
-Hosting is not proof: every public claim below has a command that reproduces it.
+Systems programmer writing zero-allocation libraries and tools in Zig and Elixir.
 
-## Flagship unified substrate
+- **Try in browser**: [zig-substrate WASM playground](https://smc17.github.io/zinging/) (`33 KB` `wasm32-freestanding`) · [Strip aerospace docs](https://smc17.github.io/strip/)
+- **Install**: `brew install smc17/tap/substrate` · [Releases & Python wheels](https://github.com/SMC17/zinging/releases/tag/v3.12.0)
+- **Writing**: [sunlitmoon.online](https://sunlitmoon.online)
 
-**[zinging (`zig-substrate` v3.12.0)](https://github.com/SMC17/zinging)** — Zero-allocation computational substrate unifying 7 Zig 0.15.2 engines (`core`, `lob`, `seqab`, `vecdb`, `infer`, `quant`, `ioflow`, `chess`) behind **202 C ABI symbols**, standalone **Python wheels**, **Homebrew** (`brew install smc17/tap/substrate`), **JSON-RPC daemon** (`stdio` / `--unix` / `--tcp`), native **`substrate mcp`** stdio server, and **WebAssembly** ([live browser playground](https://smc17.github.io/zinging/)):
-- **Measured**: `49.3 M` ITCH msg/s · `1.23 M` pure-Zig H3 cells/s · `90.6 M` chess `perft(5)` nps · `1.09 M` Black-Scholes opts/s · `33 KB` WASM
-- **Proof**: `701/701` unit tests · `67/67` differential & real-dataset `substrate verify all` · `341/341` 5-tier E2E · `14`-parser mutation fuzzer (`0` panics, `0` leaks)
-- **Quickstarts**: [Live WASM Playground](https://smc17.github.io/zinging/) · `brew install smc17/tap/substrate` · [30s Python & C11 quickstarts](https://github.com/SMC17/zinging#-30-second-quickstarts--public-proof-scorecard) · [v3.12.0 Release + Wheel](https://github.com/SMC17/zinging/releases/tag/v3.12.0)
+### Zig libraries & systems
 
-## Choose one task
+- [zinging (`zig-substrate`)](https://github.com/SMC17/zinging) — Unified zero-alloc substrate (ITCH LOB, sequential A/B, HNSW/IVF-PQ, pure-Zig H3, GGUF/WordPiece/Unigram, Black-Scholes/SABR/Heston, Leontief LU, NNUE chess) behind a 202-symbol C ABI, `py3-none` wheels, native `substrate mcp` server, and 33 KB WASM.
+- [zig-h3](https://github.com/SMC17/zig-h3) — Uber H3 v4 in pure Zig (all 70 public functions, cross-checked against `libh3` v4.1.0).
+- [zkdb](https://github.com/SMC17/zkdb) & [zkdb-elixir](https://github.com/SMC17/zkdb-elixir) — Columnar time-series engine with `q/kdb+` `aj`/`wj` semantics, SIMD aggregations, and Erlang NIF supervision.
+- [znap](https://github.com/SMC17/znap) — Zero-allocation neural inference in Zig (30→6 policies in ~32 ns, `stories15M` at ~700 tok/s on M2 Max).
+- [tokenizers-zig](https://github.com/SMC17/tokenizers-zig) — HuggingFace `tokenizer.json` (BPE, WordPiece, Unigram) in Zig.
+- [safetensors-zig](https://github.com/SMC17/safetensors-zig) — Zero-dependency `safetensors` reader with header and overlap validation.
+- [faiss-zig](https://github.com/SMC17/faiss-zig) — Flat, HNSW, IVFFlat, and IVFPQ vector search in Zig.
+- [zag](https://github.com/SMC17/zag) — Terminal emulator, block model, and agent runtime in one Zig binary.
+- [logic-zig](https://github.com/SMC17/logic-zig) — SAT/CDCL, bounded model checking, and DRAT proof-checking kernel in Zig.
+- [strip](https://github.com/SMC17/strip) — Evidence-bearing 6-DOF aerospace simulation substrate in Zig (WGS84, US76, MAVLink, FMI 3.0).
+- [yard](https://github.com/SMC17/yard) — Naval architecture and marine hydrodynamics in Zig (72 modules).
+- [distro-blog-builder](https://github.com/SMC17/distro-blog-builder) — Fast static-site, RSS, and sitemap generator in Zig.
+- **Smaller primitives**: [qsr-zig](https://github.com/SMC17/qsr-zig) (GF(2) SIMD rank) · [zig-cobs](https://github.com/SMC17/zig-cobs) (COBS framing) · [cfr-solver-zig](https://github.com/SMC17/cfr-solver-zig) (CFR+) · [thompson-bandit-zig](https://github.com/SMC17/thompson-bandit-zig) · [dsp-zig](https://github.com/SMC17/dsp-zig) · [stemmer-zig](https://github.com/SMC17/stemmer-zig) · [datelist-zig](https://github.com/SMC17/datelist-zig) · [tableformat-zig](https://github.com/SMC17/tableformat-zig) · [cow-branch-zig](https://github.com/SMC17/cow-branch-zig)
 
-[Start with a small reasoning, recording or market-data task](TASKS.md).
-The [portable CLI preview](https://github.com/SMC17/logic-zig/releases/tag/portable-clis-2026-11-11) includes seven CLIs, matching source, recorded checks and checksums. Choose the matching platform or build from source.
+### Upstream contributions (open PRs)
 
-## Field notes
-
-[Make missing evidence fail](FIELD_NOTES.md): a runnable solver-checking lab,
-with exact status handling, refusal tests and an inspectable record.
-
-## Public work, by system
-
-Three systems that share one rule: Zig for the hot path, the BEAM for the
-control plane, a proof for every claim.
-
-**Markets and data**
-
-| Repo | What it is | Proof |
-|---|---|---|
-| [zkdb](https://github.com/SMC17/zkdb) | Columnar time-series database with q/kdb+ semantics: SIMD aggregation, asof and window joins. | 47/47 tests, fresh clone |
-| [zkdb-elixir](https://github.com/SMC17/zkdb-elixir) | The same kernels as an Erlang NIF, so OTP can supervise them. | `mix test` 5/5, builds the NIF itself |
-| [jevy](https://github.com/SMC17/jevy) | Options market-making laboratory: Zig hot path, Python research layer, paper only. | Publicly viewable research · [proprietary terms](https://github.com/SMC17/jevy/blob/main/LICENSE) |
-| [finance-segway](https://github.com/SMC17/finance-segway) | Governed financial-model archetypes with hashed historical cases, not forecasts. | 596 strict tests · [secondary review](https://github.com/SMC17/finance-segway/blob/main/docs/reviews/PR125_SECONDARY_TECHNICAL_REVIEW.md) |
-| [MarketDataSimulator](https://github.com/SMC17/MarketDataSimulator) | A deterministic teaching exchange: matching, recovery, wire integrity. | .NET 10 · 392 tests per measured runtime |
-
-**ML infrastructure in Zig**
-
-| Repo | What it is | Proof |
-|---|---|---|
-| [tokenizers-zig](https://github.com/SMC17/tokenizers-zig) | HuggingFace `tokenizer.json`: BPE, WordPiece, Unigram. | 195 pass with pinned files · [48-input task](https://github.com/SMC17/tokenizers-zig/blob/main/docs/WORDPIECE_TASK.md) · T5 gap retained |
-| [safetensors-zig](https://github.com/SMC17/safetensors-zig) | safetensors reader with header and overlap validation. | 19 pass, 2 optional skipped |
-| [faiss-zig](https://github.com/SMC17/faiss-zig) | Flat, HNSW, IVFFlat and IVFPQ vector search. | 76/76 tests |
-| [znap](https://github.com/SMC17/znap) | Zero-allocation inference: 30→6 policy in 32 ns, stories15M at ~700 tok/s. | 625/625 tests · M2 Max, `zig build bench` |
-| [qsr-zig](https://github.com/SMC17/qsr-zig) | GF(2) matrix rank with SIMD elimination. | 800 differential trials vs a naive reference |
-
-**Proofs and tools**
-
-| Repo | What it is | Proof |
-|---|---|---|
-| [method-wagwan](https://github.com/SMC17/method-wagwan) | Replay a repository's history; models propose, deterministic programs decide. | Design + roadmap; Phase 1 pre-registration in progress |
-| [logic-zig](https://github.com/SMC17/logic-zig) | An executable museum of logic and a fail-closed trust kernel (CDCL, BMC, DRAT). | 391 tests per native ARM64 runtime · [CLI preview](https://github.com/SMC17/logic-zig/releases/tag/portable-clis-2026-11-11) |
-| [zig-h3](https://github.com/SMC17/zig-h3) | Uber H3 v4: all 70 functions, pure-Zig and C-wrapper paths. | 211 tests cross-checked against libh3 v4.1.0 |
-| [zag](https://github.com/SMC17/zag) | A terminal, block model and agent runtime in one Zig program. | 613 Linux tests |
-
-**Aerospace, marine & systems tooling (newly public)**
-
-| Repo | What it is |
-|---|---|
-| [strip](https://github.com/SMC17/strip) | Evidence-bearing aerospace computation and 6-DOF flight simulation substrate in Zig ([live docs](https://smc17.github.io/strip/)). |
-| [yard](https://github.com/SMC17/yard) | Naval architecture and marine engineering in Zig: 72 primitive modules (BEM hydrodynamics, AUVs, AIS, seakeeping). |
-| [evals-agentic-control](https://github.com/SMC17/evals-agentic-control) | Deterministic evaluation harness and control benchmarks for agentic coding workflows. |
-| [sentinel-sbom](https://github.com/SMC17/sentinel-sbom) | High-speed SBOM auditing and supply-chain verification CLI. |
-| [distro-blog-builder](https://github.com/SMC17/distro-blog-builder) | Standalone Zig static-site and RSS/sitemap builder. |
-| [cfr-solver-zig](https://github.com/SMC17/cfr-solver-zig) · [zig-cobs](https://github.com/SMC17/zig-cobs) | Counterfactual Regret Minimization solver & zero-alloc COBS wire framing in Zig. |
-
-## How work is tracked
-
-- **[Public roadmap board](https://github.com/users/SMC17/projects/16):** every open issue in every public repo, by system and priority.
-- **[STANDARDS.md](STANDARDS.md):** proof levels, labels, how an issue moves, and what every repo contains.
-- **[OPS.md](OPS.md):** last night's fresh-clone gates, depth meters and open regressions for every public repo.
-- **Want to help?** Each repo's README starts with links to its Status, Roadmap and Contributing guide. Issues labelled [`status: ready`](https://github.com/search?q=user%3ASMC17+label%3A%22status%3A+ready%22+state%3Aopen&type=issues) or [`good first issue`](https://github.com/search?q=user%3ASMC17+label%3A%22good+first+issue%22+state%3Aopen&type=issues) are scoped and waiting.
-- **Found a number that does not reproduce?** Every repo has a "Challenge a claim" issue template.
-
-## Upstream work in review
-
-- [PyO3: explain buffered stdout when embedding Python](https://github.com/PyO3/pyo3/pull/6577)
-- [NixOS: make CrowdSec hub refresh optional at startup](https://github.com/NixOS/nixpkgs/pull/586947)
-- [H3: list zig-h3 on the community bindings page](https://github.com/uber/h3/pull/1303)
-- [H3: fix `polygonToCells` CLI dropping vertices with whitespace before `]`](https://github.com/uber/h3/pull/1314)
-- [H3: honor `CMAKE_INSTALL_INCLUDEDIR` for header install destination](https://github.com/uber/h3/pull/1315)
-- [H3: parse zero-padded decimal child positions in `childPosToCell` CLI](https://github.com/uber/h3/pull/1318)
-- [llama.cpp: fix `iq3_s` zero sub-block pointer advancement in quantization](https://github.com/ggml-org/llama.cpp/pull/32414)
-- [awesome-zig: add `strip`, `yard`, and `zinging`](https://github.com/zigcc/awesome-zig/pull/308)
-- [awesome-quant: add `zinging`](https://github.com/wilsonfreitas/awesome-quant/pull/1035)
-- [awesome-mcp-servers: add `SMC17/zinging` (`zig-substrate-mcp`)](https://github.com/punkpeye/awesome-mcp-servers/pull/19703)
-
-These are open contributions, pending upstream checks and review.
-
-## Shipping next
-method-wagwan Phase 1 (replaying Ghostty; zig-h3 as smoke test) · Hex package for zkdb-elixir · Zig 0.16 migration notes
-
-## What stays private, and why
-A large private corpus is not a portfolio. Repos become public one at a time,
-after a clean clone builds on Zig 0.16.0 and a five-minute README exists.
-
-## How to read claims
-sketch / scaffold / compiled / unit-tested / integration-tested / audited / benchmarked.
-Speedups without commit, hardware class, workload, and script are not claims.
-Definitions and rules: [STANDARDS.md](STANDARDS.md).
+- [`ggml-org/llama.cpp#32414`](https://github.com/ggml-org/llama.cpp/pull/32414) — fix `iq3_s` zero sub-block pointer advancement in quantization
+- [`uber/h3#1303`](https://github.com/uber/h3/pull/1303) · [`#1314`](https://github.com/uber/h3/pull/1314) · [`#1315`](https://github.com/uber/h3/pull/1315) · [`#1318`](https://github.com/uber/h3/pull/1318) — `zig-h3` community listing, CLI parser/decimal fixes, and `CMAKE_INSTALL_INCLUDEDIR` packaging
+- [`PyO3/pyo3#6577`](https://github.com/PyO3/pyo3/pull/6577) — document buffered stdout when embedding Python
+- [`NixOS/nixpkgs#586947`](https://github.com/NixOS/nixpkgs/pull/586947) — `services.crowdsec.hub.updateOnStart` option
+- [`punkpeye/awesome-mcp-servers#19703`](https://github.com/punkpeye/awesome-mcp-servers/pull/19703) · [`mbasso/awesome-wasm#376`](https://github.com/mbasso/awesome-wasm/pull/376) · [`zigcc/awesome-zig#308`](https://github.com/zigcc/awesome-zig/pull/308) · [`wilsonfreitas/awesome-quant#1035`](https://github.com/wilsonfreitas/awesome-quant/pull/1035) · [`sshuair/awesome-gis#336`](https://github.com/sshuair/awesome-gis/pull/336) · [`ai-boost/awesome-harness-engineering#437`](https://github.com/ai-boost/awesome-harness-engineering/pull/437)
