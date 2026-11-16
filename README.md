@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.svg" alt="Sean Collins (SMC17) - Zero-allocation Zig and Elixir systems" width="100%" />
+</p>
+
 # Sean Collins
 
 Systems programmer writing zero-allocation libraries and tools in Zig and Elixir.
