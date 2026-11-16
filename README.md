@@ -24,7 +24,7 @@ Systems programmer writing zero-allocation libraries and tools in Zig and Elixir
 
 ### Upstream contributions (open PRs)
 
-- [`ggml-org/llama.cpp#32414`](https://github.com/ggml-org/llama.cpp/pull/32414) — fix `iq3_s` zero sub-block pointer advancement in quantization
+- [`ggml-org/llama.cpp#32414`](https://github.com/ggml-org/llama.cpp/pull/32414) · [`#32423`](https://github.com/ggml-org/llama.cpp/pull/32423) — `iq3_s` zero sub-block quantization fix & JSON parse error redaction
 - [`uber/h3#1303`](https://github.com/uber/h3/pull/1303) · [`#1314`](https://github.com/uber/h3/pull/1314) · [`#1315`](https://github.com/uber/h3/pull/1315) · [`#1318`](https://github.com/uber/h3/pull/1318) · [`#1320`](https://github.com/uber/h3/pull/1320) — `zig-h3` community listing, CLI parser/decimal/`cellAreaRads2` precision fixes, and `CMAKE_INSTALL_INCLUDEDIR` packaging
 - [`PyO3/pyo3#6577`](https://github.com/PyO3/pyo3/pull/6577) — document buffered stdout when embedding Python
 - [`NixOS/nixpkgs#586947`](https://github.com/NixOS/nixpkgs/pull/586947) — `services.crowdsec.hub.updateOnStart` option
