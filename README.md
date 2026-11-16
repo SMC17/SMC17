@@ -79,6 +79,8 @@ control plane, a proof for every claim.
 - [Faiss: explain how data structure affects IVFPQ recall](https://github.com/facebookresearch/faiss/pull/5901)
 - [NixOS: make CrowdSec hub refresh optional at startup](https://github.com/NixOS/nixpkgs/pull/586947)
 - [H3: list zig-h3 on the community bindings page](https://github.com/uber/h3/pull/1303)
+- [H3: fix `polygonToCells` CLI dropping vertices with whitespace before `]`](https://github.com/uber/h3/pull/1314)
+- [H3: honor `CMAKE_INSTALL_INCLUDEDIR` for header install destination](https://github.com/uber/h3/pull/1315)
 
 These are open contributions, pending upstream checks and review.
 
