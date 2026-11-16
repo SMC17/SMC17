@@ -1,6 +1,16 @@
-<p align="center">
-  <img src="assets/banner.svg" alt="Sean Collins (SMC17) - Zero-allocation Zig and Elixir systems" width="100%" />
-</p>
+```text
+███████╗███╗   ███╗ ██████╗ ██╗███████╗
+██╔════╝████╗ ████║██╔════╝███║╚════██║   zero-allocation zig
+███████╗██╔████╔██║██║     ╚██║    ██╔╝   beam supervision
+╚════██║██║╚██╔╝██║██║      ██║   ██╔╝    machine-checked proofs
+███████║██║ ╚═╝ ██║╚██████╗ ██║  ██╔╝
+╚══════╝╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═╝
+┌────────────────────────────────────────────────────────────────────┐
+│  zig hot paths ──▶ 202-symbol C ABI · py3-none · wasm32 · mcp      │
+│  domains       ──▶ lob/itch · h3 · gguf · hnsw · 6-dof · sat/drat  │
+└────────────────────────────────────────────────────────────────────┘
+$ brew install smc17/tap/substrate && substrate mcp
+```
 
 # Sean Collins
 
