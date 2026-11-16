@@ -5,9 +5,9 @@ Hosting is not proof: every public claim below has a command that reproduces it.
 
 ## Flagship unified substrate
 
-**[zinging (`zig-substrate` v3.12.0)](https://github.com/SMC17/zinging)** — Zero-allocation computational substrate unifying 7 Zig 0.15.2 engines (`core`, `lob`, `seqab`, `vecdb`, `infer`, `quant`, `ioflow`, `chess`) behind **202 C ABI symbols**, standalone **Python wheels**, **Homebrew** (`brew install smc17/tap/substrate`), **JSON-RPC daemon** (`stdio` / `--unix` / `--tcp`), and **WebAssembly** ([live browser playground](https://smc17.github.io/zinging/)):
-- **Measured**: `49.3 M` ITCH msg/s · `1.23 M` pure-Zig H3 cells/s · `90.6 M` chess `perft(5)` nps · `1.09 M` Black-Scholes opts/s · `24 KB` WASM
-- **Proof**: `700/700` unit tests · `67/67` differential & real-dataset `substrate verify all` · `341/341` 5-tier E2E · `14`-parser mutation fuzzer (`0` panics, `0` leaks)
+**[zinging (`zig-substrate` v3.12.0)](https://github.com/SMC17/zinging)** — Zero-allocation computational substrate unifying 7 Zig 0.15.2 engines (`core`, `lob`, `seqab`, `vecdb`, `infer`, `quant`, `ioflow`, `chess`) behind **202 C ABI symbols**, standalone **Python wheels**, **Homebrew** (`brew install smc17/tap/substrate`), **JSON-RPC daemon** (`stdio` / `--unix` / `--tcp`), native **`substrate mcp`** stdio server, and **WebAssembly** ([live browser playground](https://smc17.github.io/zinging/)):
+- **Measured**: `49.3 M` ITCH msg/s · `1.23 M` pure-Zig H3 cells/s · `90.6 M` chess `perft(5)` nps · `1.09 M` Black-Scholes opts/s · `33 KB` WASM
+- **Proof**: `701/701` unit tests · `67/67` differential & real-dataset `substrate verify all` · `341/341` 5-tier E2E · `14`-parser mutation fuzzer (`0` panics, `0` leaks)
 - **Quickstarts**: [Live WASM Playground](https://smc17.github.io/zinging/) · `brew install smc17/tap/substrate` · [30s Python & C11 quickstarts](https://github.com/SMC17/zinging#-30-second-quickstarts--public-proof-scorecard) · [v3.12.0 Release + Wheel](https://github.com/SMC17/zinging/releases/tag/v3.12.0)
 
 ## Choose one task
@@ -76,7 +76,6 @@ control plane, a proof for every claim.
 ## Upstream work in review
 
 - [PyO3: explain buffered stdout when embedding Python](https://github.com/PyO3/pyo3/pull/6577)
-- [Faiss: explain how data structure affects IVFPQ recall](https://github.com/facebookresearch/faiss/pull/5901)
 - [NixOS: make CrowdSec hub refresh optional at startup](https://github.com/NixOS/nixpkgs/pull/586947)
 - [H3: list zig-h3 on the community bindings page](https://github.com/uber/h3/pull/1303)
 - [H3: fix `polygonToCells` CLI dropping vertices with whitespace before `]`](https://github.com/uber/h3/pull/1314)
