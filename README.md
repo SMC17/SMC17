@@ -85,6 +85,7 @@ control plane, a proof for every claim.
 - [llama.cpp: fix `iq3_s` zero sub-block pointer advancement in quantization](https://github.com/ggml-org/llama.cpp/pull/32414)
 - [awesome-zig: add `strip`, `yard`, and `zinging`](https://github.com/zigcc/awesome-zig/pull/308)
 - [awesome-quant: add `zinging`](https://github.com/wilsonfreitas/awesome-quant/pull/1035)
+- [awesome-mcp-servers: add `SMC17/zinging` (`zig-substrate-mcp`)](https://github.com/punkpeye/awesome-mcp-servers/pull/19703)
 
 These are open contributions, pending upstream checks and review.
 
