@@ -5,10 +5,10 @@ Hosting is not proof: every public claim below has a command that reproduces it.
 
 ## Flagship unified substrate
 
-**[zinging (`zig-substrate` v3.12.0)](https://github.com/SMC17/zinging)** — Zero-allocation computational substrate unifying 7 Zig 0.15.2 engines (`core`, `lob`, `seqab`, `vecdb`, `infer`, `quant`, `ioflow`, `chess`) behind **199 C ABI symbols**, standalone **Python wheels**, **JSON-RPC daemon** (`stdio` / `--unix` / `--tcp`), and **WebAssembly** (`wasm32-freestanding`):
+**[zinging (`zig-substrate` v3.12.0)](https://github.com/SMC17/zinging)** — Zero-allocation computational substrate unifying 7 Zig 0.15.2 engines (`core`, `lob`, `seqab`, `vecdb`, `infer`, `quant`, `ioflow`, `chess`) behind **202 C ABI symbols**, standalone **Python wheels**, **Homebrew** (`brew install smc17/tap/substrate`), **JSON-RPC daemon** (`stdio` / `--unix` / `--tcp`), and **WebAssembly** ([live browser playground](https://smc17.github.io/zinging/)):
 - **Measured**: `49.3 M` ITCH msg/s · `1.23 M` pure-Zig H3 cells/s · `90.6 M` chess `perft(5)` nps · `1.09 M` Black-Scholes opts/s · `24 KB` WASM
 - **Proof**: `700/700` unit tests · `67/67` differential & real-dataset `substrate verify all` · `341/341` 5-tier E2E · `14`-parser mutation fuzzer (`0` panics, `0` leaks)
-- **Quickstarts**: [30s Python & C11 quickstarts](https://github.com/SMC17/zinging#-30-second-quickstarts--public-proof-scorecard) · [v3.12.0 Release + Wheel](https://github.com/SMC17/zinging/releases/tag/v3.12.0) · [Open Starter Issues](https://github.com/SMC17/zinging/issues)
+- **Quickstarts**: [Live WASM Playground](https://smc17.github.io/zinging/) · `brew install smc17/tap/substrate` · [30s Python & C11 quickstarts](https://github.com/SMC17/zinging#-30-second-quickstarts--public-proof-scorecard) · [v3.12.0 Release + Wheel](https://github.com/SMC17/zinging/releases/tag/v3.12.0)
 
 ## Choose one task
 
@@ -53,6 +53,17 @@ control plane, a proof for every claim.
 | [logic-zig](https://github.com/SMC17/logic-zig) | An executable museum of logic and a fail-closed trust kernel (CDCL, BMC, DRAT). | 391 tests per native ARM64 runtime · [CLI preview](https://github.com/SMC17/logic-zig/releases/tag/portable-clis-2026-11-11) |
 | [zig-h3](https://github.com/SMC17/zig-h3) | Uber H3 v4: all 70 functions, pure-Zig and C-wrapper paths. | 211 tests cross-checked against libh3 v4.1.0 |
 | [zag](https://github.com/SMC17/zag) | A terminal, block model and agent runtime in one Zig program. | 613 Linux tests |
+
+**Aerospace, marine & systems tooling (newly public)**
+
+| Repo | What it is |
+|---|---|
+| [strip](https://github.com/SMC17/strip) | Evidence-bearing aerospace computation and 6-DOF flight simulation substrate in Zig (WGS84, US76, FMI 3.0, MAVLink). |
+| [yard](https://github.com/SMC17/yard) | Naval architecture and marine engineering in Zig: 72 primitive modules (BEM hydrodynamics, AUVs, AIS, seakeeping). |
+| [evals-agentic-control](https://github.com/SMC17/evals-agentic-control) | Deterministic evaluation harness and control benchmarks for agentic coding workflows. |
+| [sentinel-sbom](https://github.com/SMC17/sentinel-sbom) | High-speed SBOM auditing and supply-chain verification CLI. |
+| [distro-blog-builder](https://github.com/SMC17/distro-blog-builder) | Standalone Zig static-site and RSS/sitemap builder. |
+| [cfr-solver-zig](https://github.com/SMC17/cfr-solver-zig) · [zig-cobs](https://github.com/SMC17/zig-cobs) | Counterfactual Regret Minimization solver & zero-alloc COBS wire framing in Zig. |
 
 ## How work is tracked
 
