@@ -278,6 +278,9 @@ def exposure_scan(full_history: bool) -> dict:
             head_hits = count(dest, terms, ["HEAD"])
             hist_others = hist_own = 0
             if full_history:
+                # Pull-request refs pin old commits forever (a rewrite cannot reach them), so scan them too.
+                sh(["git", "-C", str(dest), "fetch", "-q", f"https://github.com/{OWNER}/{r['name']}.git",
+                    "+refs/pull/*/head:refs/pull/*/head"], timeout=900)
                 revs = sh(["git", "-C", str(dest), "rev-list", "--all"]).stdout.split() or ["HEAD"]
                 hist_others = count(dest, others, revs)
                 hist_own = count(dest, own, revs)
