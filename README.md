@@ -18,7 +18,7 @@ Systems programmer writing zero-allocation libraries and tools in Zig and Elixir
 
 - **Try in browser**: [zig-substrate WASM playground](https://smc17.github.io/zinging/) (`33 KB` `wasm32-freestanding`) · [Strip aerospace docs](https://smc17.github.io/strip/)
 - **Install**: `brew install smc17/tap/substrate` · [Releases & Python wheels](https://github.com/SMC17/zinging/releases/tag/v3.12.0)
-- **Writing**: [sunlitmoon.online](https://sunlitmoon.online) · **Ops & baselines**: [OPS.md](OPS.md) · [EVIDENCE_LEDGER.md](EVIDENCE_LEDGER.md)
+- **Writing**: [sunlitmoon.online](https://sunlitmoon.online) · **Ops & baselines**: [OPS.md](OPS.md) · [EVIDENCE_LEDGER.md](EVIDENCE_LEDGER.md) · **Forecasts**: [FORECASTS.md](FORECASTS.md)
 
 ### Featured 2026–2027 AI Systems & Infrastructure
 
