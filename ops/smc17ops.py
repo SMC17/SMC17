@@ -239,8 +239,63 @@ def summarize(run):
 
 # ---------------------------------------------------------------- heal (allow-list)
 
+DENYLIST = Path.home() / ".config" / "smc17-ops" / "denylist.txt"
+
+
+def exposure_scan(full_history: bool) -> dict:
+    """Scan every public, non-fork repo against a private local denylist of strings
+    that must never be public. Policy: any hit in current files, or any hit on a
+    third party's identity anywhere in history, makes the repo private at once
+    (containment first; a person cleans it). The owner's own contact details
+    found only in history are reported for a history rewrite, not hidden.
+    Only repo names and counts are recorded, never the matched text."""
+    if not DENYLIST.exists():
+        return {"error": "no denylist at ~/.config/smc17-ops/denylist.txt"}
+    terms = [l.strip() for l in DENYLIST.read_text().splitlines() if l.strip() and not l.startswith("#")]
+    own = [x for x in terms if "@" in x]          # the owner's own addresses
+    others = [x for x in terms if "@" not in x]   # third parties' names and handles
+    repos = gh_json("repo", "list", OWNER, "--visibility", "public", "-L", "500", "--json", "name,isFork")
+    result = {"scanned": 0, "mode": "history" if full_history else "head", "made_private": {}, "history_rewrite_needed": {}}
+
+    def count(dest, pats, revs):
+        if not pats:
+            return 0
+        n = 0
+        for i in range(0, len(revs), 200):
+            out = sh(["git", "-C", str(dest), "grep", "-I", "-F", "-l", *sum([["-e", x] for x in pats], []), *revs[i:i + 200]], timeout=900).stdout
+            n += len(out.split())
+        return n
+
+    with tempfile.TemporaryDirectory(prefix="smc17ops-exposure-") as tmp:
+        for r in repos:
+            if r["isFork"]:
+                continue
+            dest = Path(tmp) / r["name"]
+            depth = [] if full_history else ["--depth", "1"]
+            if sh(["git", "clone", "-q", "--bare", *depth, f"https://github.com/{OWNER}/{r['name']}.git", str(dest)], timeout=900).returncode:
+                continue
+            result["scanned"] += 1
+            head_hits = count(dest, terms, ["HEAD"])
+            hist_others = hist_own = 0
+            if full_history:
+                revs = sh(["git", "-C", str(dest), "rev-list", "--all"]).stdout.split() or ["HEAD"]
+                hist_others = count(dest, others, revs)
+                hist_own = count(dest, own, revs)
+            if head_hits or hist_others:
+                result["made_private"][r["name"]] = {"current_files": head_hits, "third_party_history": hist_others}
+                log(f"EXPOSURE in {r['name']}: current files {head_hits}, third-party history {hist_others}; making it private")
+                write("gh", "repo", "edit", f"{OWNER}/{r['name']}", "--visibility", "private",
+                      "--accept-visibility-change-consequences")
+            elif hist_own:
+                result["history_rewrite_needed"][r["name"]] = hist_own
+    return result
+
+
 def heal():
     """Allow-listed, reversible fixes. Anything else is left to report() as an issue."""
+    exp = exposure_scan(full_history=dt.date.today().weekday() == 6)
+    (STATE / "exposure.json").write_text(json.dumps(exp, indent=1))
+    log(f"exposure: {exp}")
     board_sync()
     merge_green_dependabot()
 
@@ -424,6 +479,18 @@ def render_ops(latest, found):
                   f"{wb['workbooks']} workbooks, {wb['formulas']} formulas, **{wb['formula_computed_pct']}% computed**, "
                   f"{wb['never_computed_workbooks']} never computed, {wb['placeholders']} placeholder cells, {wb['errors']} error values.",
                   f"Trend (computed %): {trend('finance-segway', 'formula_computed_pct')}"]
+    exp_path = STATE / "exposure.json"
+    if exp_path.exists():
+        exp = json.loads(exp_path.read_text())
+        if "error" in exp:
+            lines += ["", "## Exposure check", "", f"Not run: {exp['error']}."]
+        else:
+            made = ", ".join(sorted(exp["made_private"])) or "none"
+            rewrite = ", ".join(sorted(exp.get("history_rewrite_needed", {}))) or "none"
+            lines += ["", "## Exposure check", "",
+                      f"Every public repository is scanned ({exp['mode']}) against a private local list of strings that must "
+                      f"never be public. Scanned: {exp['scanned']}. Made private tonight: {made}. "
+                      f"History rewrite still needed (owner's own details in old file versions): {rewrite}."]
     lines += ["", "## Passing tests, last runs", "", "| Repo | Trend |", "|---|---|"]
     for repo in latest["repos"]:
         lines.append(f"| {repo} | {trend(repo, 'passed')} |")
