@@ -1,0 +1,24 @@
+{
+ "id": "ust10y-2026-11-30-at-least-5pct",
+ "question": "Will the 10-year Treasury yield close at or above 5.00% on 30 November 2026?",
+ "resolution_criteria": "Yes if FRED series DGS10 for 2026-11-30 is >= 5.00. If 2026-11-30 has no observation, use the last observation before it.",
+ "resolution_source": "https://fred.stlouisfed.org/series/DGS10",
+ "resolve_by": "2026-12-04",
+ "forecaster": "agent:claude-opus-5.5",
+ "created": "2026-11-17",
+ "platform": null,
+ "updates": [
+  {
+   "at": "2026-11-17",
+   "p": 0.78,
+   "reasoning": {
+    "outside_view": "Last close 5.15% (2026-11-13). Daily changes: sd 5.49bp over 60 days, 6.39bp over 20. A driftless random walk over the 10 remaining trading days (sd 17-20bp) gives 0.77-0.81 for staying at or above 5.00%. Over the last five years, 10-day falls of 15bp or more happened 17.7% of the time (base rate for No).",
+    "decomposition": "No requires a fall of more than 15bp in 10 trading days, around the Thanksgiving holiday, with the FOMC not meeting until December.",
+    "inside_view": "The Fed has been raising rates (effective funds rate 3.63% in August to 3.88% in October) and the 10-year rose 31bp in the week to 13 November, so the trend runs toward Yes; a sharp weekly jump also mean-reverts partly. These roughly cancel; shading slightly toward the empirical base rate.",
+    "what_would_change_my_mind": "A soft October CPI or payrolls surprise, or a 10bp+ daily rally, would move this toward 0.6; a further rise above 5.25% toward 0.9."
+   },
+   "prev_sha256": null
+  }
+ ],
+ "resolution": null
+}

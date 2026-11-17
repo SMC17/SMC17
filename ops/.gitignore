@@ -2,3 +2,4 @@
 state/latest.json
 __pycache__/
 .bin/
+.venv-finance/

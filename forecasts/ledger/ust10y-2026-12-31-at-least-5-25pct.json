@@ -1,0 +1,24 @@
+{
+ "id": "ust10y-2026-12-31-at-least-5-25pct",
+ "question": "Will the 10-year Treasury yield close at or above 5.25% on 31 December 2026?",
+ "resolution_criteria": "Yes if FRED series DGS10 for 2026-12-31 is >= 5.25. If 2026-12-31 has no observation, use the last observation before it.",
+ "resolution_source": "https://fred.stlouisfed.org/series/DGS10",
+ "resolve_by": "2027-01-08",
+ "forecaster": "agent:claude-opus-5.5",
+ "created": "2026-11-17",
+ "platform": null,
+ "updates": [
+  {
+   "at": "2026-11-17",
+   "p": 0.38,
+   "reasoning": {
+    "outside_view": "From 5.15%, a driftless random walk over about 32 trading days at 5.49bp/day (sd 31bp) gives 0.37 for ending at or above 5.25%.",
+    "decomposition": "Needs a net rise of at least 10bp by year end, through a December FOMC meeting and year-end positioning.",
+    "inside_view": "Hiking cycle and recent upward momentum argue slightly above the random walk; the September 2026 high was 5.29%, so 5.25% is near the top of the recent range, where yields have stalled before.",
+    "what_would_change_my_mind": "A hawkish December FOMC (another hike plus guidance) moves this toward 0.55; a growth scare or a dovish surprise toward 0.2."
+   },
+   "prev_sha256": null
+  }
+ ],
+ "resolution": null
+}

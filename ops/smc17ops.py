@@ -437,15 +437,31 @@ def report():
     sync_issues(found)
     (HERE / "baseline.json").write_text(json.dumps(ratchet_baseline(latest, baseline), indent=1, sort_keys=True) + "\n")
     (ROOT / "OPS.md").write_text(render_ops(latest, found))
+    forecasts_nightly()
     publish()
     n = sum(len(v) for v in found.values() if v)
     infra = [r for r, v in found.items() if v is None]
     log(f"report: {n} open regressions across {sum(1 for v in found.values() if v)} repos; infra failures: {infra or 'none'}")
 
 
+def forecasts_nightly():
+    """Verify the forecast ledger's hash chains and regenerate FORECASTS.md."""
+    tool = HERE / "forecasts.py"
+    if not tool.exists():
+        return
+    chk = sh([sys.executable, str(tool), "check"], cwd=ROOT)
+    if chk.returncode:
+        log("forecast ledger check FAILED:", chk.stdout.strip()[-300:])
+        existing = gh_json("issue", "list", "-R", f"{OWNER}/{OWNER}", "--state", "open", "--search", 'in:title "ops: forecast ledger"', "--json", "number")
+        if not existing:
+            write("gh", "issue", "create", "-R", f"{OWNER}/{OWNER}", "-t", "ops: forecast ledger integrity check failed",
+                  "-b", "`python3 ops/forecasts.py check` failed:\n\n```\n" + chk.stdout.strip()[-1500:] + "\n```")
+    sh([sys.executable, str(tool), "report"], cwd=ROOT)
+
+
 def publish():
     """Commit OPS.md, baseline and history to the profile repo if they changed."""
-    files = ["OPS.md", "ops/baseline.json", "ops/state/history.jsonl"]
+    files = ["OPS.md", "ops/baseline.json", "ops/state/history.jsonl", "FORECASTS.md", "forecasts"]
     if not sh(["git", "-C", str(ROOT), "status", "--porcelain", "--", *files]).stdout.strip():
         return
     if DRY:

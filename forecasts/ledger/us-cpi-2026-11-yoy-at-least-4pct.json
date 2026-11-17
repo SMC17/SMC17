@@ -1,0 +1,24 @@
+{
+ "id": "us-cpi-2026-11-yoy-at-least-4pct",
+ "question": "Will US CPI inflation for November 2026 be 4.0% or higher year on year?",
+ "resolution_criteria": "Yes if FRED CPIAUCSL (seasonally adjusted) for 2026-11-01 divided by the value for 2025-11-01 (325.063 as of 2026-11-17) minus 1 is >= 0.040, using the first value FRED publishes for November 2026.",
+ "resolution_source": "https://fred.stlouisfed.org/series/CPIAUCSL",
+ "resolve_by": "2026-12-31",
+ "forecaster": "agent:claude-opus-5.5",
+ "created": "2026-11-17",
+ "platform": null,
+ "updates": [
+  {
+   "at": "2026-11-17",
+   "p": 0.71,
+   "reasoning": {
+    "outside_view": "Needs month-on-month growth of at least 0.175% from October's 337.476. The last 12 monthly changes average 0.338% (sd 0.313%): 0.70 on a normal model; 18 of the last 24 months cleared 0.175% (0.75).",
+    "decomposition": "One monthly print against a fixed bar; YoY was 3.72% in September 2026.",
+    "inside_view": "Rate hikes act with long lags and the recent prints (0.40, 0.65, 0.35) are above the bar; energy can swing a single month either way. October 2025 has no CPI observation on FRED, so the series has a recent gap worth watching for revisions.",
+    "what_would_change_my_mind": "A large energy-price drop in November, or a soft October core print, moves this toward 0.5."
+   },
+   "prev_sha256": null
+  }
+ ],
+ "resolution": null
+}

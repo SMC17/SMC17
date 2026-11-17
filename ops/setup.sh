@@ -34,6 +34,12 @@ if [[ ! -e "$OPS/.bin/dotnet-sdk-10" ]]; then
   fi
 fi
 [[ -e "$OPS/.bin/dotnet-sdk-10" ]] && ln -sf dotnet-sdk-10/bin/dotnet "$OPS/.bin/dotnet"
+# wagwan-score (method-wagwan's scoring CLI) scores the forecast ledger.
+WG="$(mktemp -d)"
+if gh repo clone SMC17/method-wagwan "$WG/mw" -- -q --depth 1 && (cd "$WG/mw" && zig build -Doptimize=ReleaseSafe >/dev/null); then
+  cp "$WG/mw/zig-out/bin/wagwan-score" "$OPS/.bin/wagwan-score"
+fi
+rm -rf "$WG"
 mkdir -p "$LOGS" "$(dirname "$PLIST")"
 cat > "$PLIST" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
