@@ -16,8 +16,7 @@ $ brew install smc17/tap/substrate && substrate mcp
 
 Systems programmer writing zero-allocation libraries and tools in Zig and Elixir.
 
-- **Try in browser**: [zig-substrate WASM playground](https://smc17.github.io/zinging/) (`33 KB` `wasm32-freestanding`) · [Strip aerospace docs](https://smc17.github.io/strip/)
-- **Install**: `brew install smc17/tap/substrate` · [Releases & Python wheels](https://github.com/SMC17/zinging/releases/tag/v3.12.0)
+- **Try in browser**: [Strip aerospace docs](https://smc17.github.io/strip/)
 - **Writing**: [sunlitmoon.online](https://sunlitmoon.online) · **Ops & baselines**: [OPS.md](OPS.md) · [EVIDENCE_LEDGER.md](EVIDENCE_LEDGER.md) · **Forecasts**: [FORECASTS.md](FORECASTS.md)
 
 ### Featured 2026–2027 AI Systems & Infrastructure
@@ -36,7 +35,6 @@ Systems programmer writing zero-allocation libraries and tools in Zig and Elixir
 
 ### Zig libraries & systems
 
-- [zinging (`zig-substrate`)](https://github.com/SMC17/zinging) — Unified zero-alloc substrate (ITCH LOB, sequential A/B, HNSW/IVF-PQ, pure-Zig H3, GGUF/WordPiece/Unigram, Black-Scholes/SABR/Heston, Leontief LU, NNUE chess) behind a 202-symbol C ABI, `py3-none` wheels, native `substrate mcp` server, `33 KB` (`34,088 B`) WASM, and 701 unit tests.
 - [zig-h3](https://github.com/SMC17/zig-h3) — Uber H3 v4 in pure Zig (all 70 public functions, 211 tests cross-checked against `libh3` v4.1.0).
 - [zkdb](https://github.com/SMC17/zkdb) (50 tests) & [zkdb-elixir](https://github.com/SMC17/zkdb-elixir) (8 tests) — Columnar time-series engine with `q/kdb+` `aj`/`wj` semantics, SIMD aggregations, and Erlang NIF supervision.
 - [znap](https://github.com/SMC17/znap) — Zero-allocation neural inference in Zig (30→6 policies in ~32 ns, `stories15M` at ~700 tok/s on M2 Max; 631 tests).
