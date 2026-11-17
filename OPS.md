@@ -20,6 +20,14 @@ Regressions open a `ops: … regressed` issue in that repo and close it on recov
 | [logic-zig](https://github.com/SMC17/logic-zig) | pass | 541 | 0 | 0 | 4 (0/0) | 0 | 0 | 0 |
 | [zig-h3](https://github.com/SMC17/zig-h3) | pass | 211 | 0 | 0 | 1 (0/0) | 0 | 0 | 0 |
 | [zag](https://github.com/SMC17/zag) | pass | 707 | 0 | 25 | 2 (0/1) | 0 | 0 | 0 |
+| [zinging](https://github.com/SMC17/zinging) | pending | 701 | 0 | 0 | — | — | — | 0 |
+| [strip](https://github.com/SMC17/strip) | pending |  |  |  | — | — | — | 0 |
+| [yard](https://github.com/SMC17/yard) | pending |  |  |  | — | — | — | 0 |
+| [agentfork](https://github.com/SMC17/agentfork) | pending |  |  |  | — | — | — | 0 |
+| [specdecode](https://github.com/SMC17/specdecode) | pending |  |  |  | — | — | — | 0 |
+| [swarmbus](https://github.com/SMC17/swarmbus) | pending |  |  |  | — | — | — | 0 |
+| [physkernel](https://github.com/SMC17/physkernel) | pending |  |  |  | — | — | — | 0 |
+| [attestinfer](https://github.com/SMC17/attestinfer) | pending |  |  |  | — | — | — | 0 |
 
 ## Depth meters
 

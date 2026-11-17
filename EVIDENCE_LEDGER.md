@@ -6,8 +6,9 @@ Each statement the profile makes, where to check it, and where it stops. Every r
 
 | Statement | Check it | Limit |
 |---|---|---|
-| zkdb is a columnar time-series library with q/kdb+ semantics | [STATUS](https://github.com/SMC17/zkdb/blob/main/STATUS.md): 47/47 tests | No durability beyond clean close and reopen; no comparison with other databases |
-| zkdb-elixir runs zkdb's kernels as an Erlang NIF | [STATUS](https://github.com/SMC17/zkdb-elixir/blob/main/STATUS.md): `mix test` 5/5 | Kernels are ported, not imported from zkdb; joins run on normal schedulers |
+| zinging (`zig-substrate`) exposes a unified zero-alloc substrate across 202 C ABI symbols and 33 KB freestanding WASM | [README](https://github.com/SMC17/zinging): 701 unit tests, 67 verify checks, 341 E2E checks; `34,088 B` (`33 KB`) `wasm32-freestanding` release artifact | Requires Zig 0.15.2 for `land_check.sh`; oracle datasets fetched separately |
+| zkdb is a columnar time-series library with q/kdb+ semantics | [STATUS](https://github.com/SMC17/zkdb/blob/main/STATUS.md): 50/50 tests | No durability beyond clean close and reopen; no comparison with other databases |
+| zkdb-elixir runs zkdb's kernels as an Erlang NIF | [STATUS](https://github.com/SMC17/zkdb-elixir/blob/main/STATUS.md): `mix test` 8/8 | Kernels are ported, not imported from zkdb; joins run on normal schedulers |
 | jevy is an options market-making laboratory | [STATUS](https://github.com/SMC17/jevy/blob/main/STATUS.md): Zig 153/153, Python 194 pass | Simulation and paper only; no venue connectivity |
 | finance-segway holds governed financial models and hashed historical cases | [README](https://github.com/SMC17/finance-segway), [model inventory](https://github.com/SMC17/finance-segway/blob/main/standards/model_inventory.json) | Historical reconstructions, not forecasts; open model-correctness findings are tracked as P1 issues |
 | MarketDataSimulator is an exchange and recovery laboratory | [STATUS](https://github.com/SMC17/MarketDataSimulator/blob/master/STATUS.md): 392/392 on .NET 10 | Research system; no production-venue or regulatory claim |

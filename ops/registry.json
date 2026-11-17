@@ -100,5 +100,61 @@
    "zig build test --summary all"
   ],
   "timeout": 1200
+ },
+ "zinging": {
+  "system": "Markets and data",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 1200
+ },
+ "strip": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build verify --summary all"
+  ],
+  "timeout": 1800
+ },
+ "yard": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test-core --summary all"
+  ],
+  "timeout": 1800
+ },
+ "agentfork": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "specdecode": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "swarmbus": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "physkernel": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "attestinfer": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
  }
 }
