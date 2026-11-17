@@ -36,7 +36,7 @@
  "MarketDataSimulator": {
   "system": "Markets and data",
   "gate": [
-   "nix shell nixpkgs#dotnet-sdk_10 -c dotnet test MarketDataSimulator.sln"
+   "dotnet test MarketDataSimulator.sln"
   ],
   "timeout": 1800
  },

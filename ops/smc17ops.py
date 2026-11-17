@@ -31,6 +31,9 @@ STATE = HERE / "state"
 REGISTRY = json.loads((HERE / "registry.json").read_text())
 BOARD = "16"
 ISSUE_PREFIX = "ops: "
+INFRA_MARKERS = ("build failed due to failed dependency", "connection reset", "could not resolve host",
+                 "timed out", "temporary failure in name resolution", "unable to download", "http error 5",
+                 "error: unable to", "rate limit")
 DRY = False
 
 STANDARD_FILES = {
@@ -99,12 +102,27 @@ def parse_tests(text: str) -> dict:
 
 # ---------------------------------------------------------------- sense
 
+def is_infra_failure(res: dict) -> bool:
+    """True when a failed gate never reached the code: no test passed or failed,
+    and the output names a toolchain-build or network failure."""
+    if res.get("ok") or res.get("failed") or res.get("passed"):
+        return False
+    tails = " ".join(" ".join(s.get("tail", [])) for s in res.get("steps", [])).lower()
+    return any(m in tails for m in INFRA_MARKERS)
+
+
 def gate(repo: str, spec: dict, workdir: Path) -> dict:
     t0 = time.time()
     dest = workdir / repo
-    r = sh(["gh", "repo", "clone", f"{OWNER}/{repo}", str(dest), "--", "--depth", "1", "-q"], timeout=600)
+    r = None
+    for attempt in range(3):  # network blips are not regressions
+        shutil.rmtree(dest, ignore_errors=True)
+        r = sh(["gh", "repo", "clone", f"{OWNER}/{repo}", str(dest), "--", "--depth", "1", "-q"], timeout=600)
+        if not r.returncode:
+            break
+        time.sleep(30 * (attempt + 1))
     if r.returncode:
-        return {"ok": False, "error": "clone failed: " + r.stderr.strip()[:200]}
+        return {"ok": False, "infra": True, "error": "clone failed after 3 attempts: " + r.stderr.strip()[:200]}
     commit = sh(["git", "-C", str(dest), "rev-parse", "--short", "HEAD"]).stdout.strip()
     res = {"commit": commit, "steps": [], "passed": 0, "failed": 0, "skipped": 0, "ok": True}
     for cmd in spec.get("gate", []):
@@ -122,6 +140,10 @@ def gate(repo: str, spec: dict, workdir: Path) -> dict:
             res["ok"] = False
     if res["failed"]:
         res["ok"] = False
+    # A failure that never reached the code (toolchain build, network) is an
+    # infrastructure failure: reported, but not a code regression.
+    if is_infra_failure(res):
+        res["infra"] = True
     res["seconds"] = round(time.time() - t0)
     return res
 
@@ -294,6 +316,9 @@ def regressions(latest, baseline):
     for repo, e in latest["repos"].items():
         g, b = e.get("gate", {}), baseline.get(repo, {})
         found = []
+        if g.get("infra"):
+            out[repo] = None  # unknown: neither opens nor closes regression issues; shown as "infra" on OPS.md
+            continue
         if REGISTRY[repo].get("gate") and not g.get("ok"):
             failing = [s for s in g.get("steps", []) if s.get("rc")]
             detail = "\n".join(f"- `{s['cmd']}` exited {s['rc']}\n  ```\n  " + "\n  ".join(s.get("tail", [])) + "\n  ```" for s in failing) or g.get("error", "")
@@ -343,6 +368,8 @@ def ratchet_baseline(latest, baseline):
 
 def sync_issues(found):
     for repo, items in found.items():
+        if items is None:
+            continue
         existing = gh_json("issue", "list", "-R", f"{OWNER}/{repo}", "-L", "200", "--state", "open", "--search", f"in:title \"{ISSUE_PREFIX}\"", "--json", "number,title")
         open_by_key = {i["title"].split(" regressed")[0].removeprefix(ISSUE_PREFIX): i for i in existing if i["title"].startswith(ISSUE_PREFIX)}
         keys = {k for k, _ in items}
@@ -378,10 +405,10 @@ def render_ops(latest, found):
     ]
     for repo, e in latest["repos"].items():
         g, t = e.get("gate", {}), e.get("tracker", {})
-        gate_txt = "n/a" if not REGISTRY[repo].get("gate") else ("pass" if g.get("ok") else "**FAIL**")
+        gate_txt = "n/a" if not REGISTRY[repo].get("gate") else ("pass" if g.get("ok") else ("infra" if g.get("infra") else "**FAIL**"))
         lines.append(f"| [{repo}](https://github.com/{OWNER}/{repo}) | {gate_txt} | {g.get('passed', '')} | {g.get('failed', '')} | "
                      f"{g.get('skipped', '')} | {t.get('open_issues', '')} ({t.get('p0', 0)}/{t.get('p1', 0)}) | {t.get('untriaged', '')} | "
-                     f"{t.get('stale_prs', '')} | {len(found.get(repo, []))} |")
+                     f"{t.get('stale_prs', '')} | {len(found.get(repo) or [])} |")
     ex = latest["repos"].get("finance-segway", {}).get("exhaustion")
     if ex and "error" not in ex:
         lines += ["", "## Depth meters", "",
@@ -411,8 +438,9 @@ def report():
     (HERE / "baseline.json").write_text(json.dumps(ratchet_baseline(latest, baseline), indent=1, sort_keys=True) + "\n")
     (ROOT / "OPS.md").write_text(render_ops(latest, found))
     publish()
-    n = sum(len(v) for v in found.values())
-    log(f"report: {n} open regressions across {sum(1 for v in found.values() if v)} repos")
+    n = sum(len(v) for v in found.values() if v)
+    infra = [r for r, v in found.items() if v is None]
+    log(f"report: {n} open regressions across {sum(1 for v in found.values() if v)} repos; infra failures: {infra or 'none'}")
 
 
 def publish():

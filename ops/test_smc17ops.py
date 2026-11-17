@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from smc17ops import parse_tests, ratchet_baseline  # noqa: E402
+from smc17ops import is_infra_failure, parse_tests, ratchet_baseline, regressions  # noqa: E402
 
 CASES = {
     "Build Summary: 3/3 steps succeeded; 47/47 tests passed": (47, 0, 0),
@@ -39,6 +39,21 @@ class Ratchet(unittest.TestCase):
         base = {"r": {"passed": 10}}
         failing = {"repos": {"r": {"gate": {"ok": False, "passed": 50}}}}
         self.assertEqual(ratchet_baseline(failing, base)["r"]["passed"], 10)
+
+
+class Infra(unittest.TestCase):
+    def test_toolchain_build_failure_is_infra(self):
+        res = {"ok": False, "passed": 0, "failed": 0,
+               "steps": [{"rc": 1, "tail": ["error: Build failed due to failed dependency"]}]}
+        self.assertTrue(is_infra_failure(res))
+
+    def test_a_real_test_failure_is_not_infra(self):
+        res = {"ok": False, "passed": 40, "failed": 7, "steps": [{"rc": 1, "tail": ["connection reset"]}]}
+        self.assertFalse(is_infra_failure(res))
+
+    def test_infra_neither_opens_nor_closes_issues(self):
+        latest = {"repos": {"r": {"gate": {"ok": False, "infra": True}}}}
+        self.assertIsNone(regressions(latest, {"r": {"passed": 8}})["r"])
 
 
 if __name__ == "__main__":

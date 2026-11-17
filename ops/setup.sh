@@ -26,6 +26,14 @@ mkdir -p "$OPS/.bin"
 if LO="$(nix build --no-link --print-out-paths nixpkgs#libreoffice-bin 2>/dev/null)"; then
   ln -sf "$LO/Applications/LibreOffice.app/Contents/MacOS/soffice" "$OPS/.bin/soffice"
 fi
+# .NET SDK 10 for MarketDataSimulator, pinned with a GC root. A moving nixpkgs
+# can lose its binary cache entry and try to compile the SDK from source.
+if [[ ! -e "$OPS/.bin/dotnet-sdk-10" ]]; then
+  if DN="$(nix build --no-link --print-out-paths nixpkgs#dotnet-sdk_10 2>/dev/null)"; then
+    nix-store --add-root "$OPS/.bin/dotnet-sdk-10" --indirect -r "$DN" >/dev/null
+  fi
+fi
+[[ -e "$OPS/.bin/dotnet-sdk-10" ]] && ln -sf dotnet-sdk-10/bin/dotnet "$OPS/.bin/dotnet"
 mkdir -p "$LOGS" "$(dirname "$PLIST")"
 cat > "$PLIST" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
