@@ -51,8 +51,7 @@ Systems programmer writing zero-allocation libraries and tools in Zig and Elixir
 
 ### Upstream contributions (open PRs)
 
-- [`ggml-org/llama.cpp#32414`](https://github.com/ggml-org/llama.cpp/pull/32414) · [`#32423`](https://github.com/ggml-org/llama.cpp/pull/32423) · [`#32426`](https://github.com/ggml-org/llama.cpp/pull/32426) — `iq3_s` zero sub-block quantization fix, JSON parse error redaction & hybrid SWA checkpoint reuse
-- [`uber/h3#1303`](https://github.com/uber/h3/pull/1303) · [`#1314`](https://github.com/uber/h3/pull/1314) · [`#1315`](https://github.com/uber/h3/pull/1315) · [`#1318`](https://github.com/uber/h3/pull/1318) · [`#1320`](https://github.com/uber/h3/pull/1320) — `zig-h3` community listing, CLI parser/decimal/`cellAreaRads2` precision fixes, and `CMAKE_INSTALL_INCLUDEDIR` packaging
+- [`uber/h3#1303`](https://github.com/uber/h3/pull/1303) · [`#1314`](https://github.com/uber/h3/pull/1314) · [`#1315`](https://github.com/uber/h3/pull/1315) · [`#1320`](https://github.com/uber/h3/pull/1320) — `zig-h3` community listing, CLI parser/decimal/`cellAreaRads2` precision fixes, and `CMAKE_INSTALL_INCLUDEDIR` packaging
 - [`PyO3/pyo3#6577`](https://github.com/PyO3/pyo3/pull/6577) — document buffered stdout when embedding Python
 - [`NixOS/nixpkgs#586947`](https://github.com/NixOS/nixpkgs/pull/586947) — `services.crowdsec.hub.updateOnStart` option
 - [`punkpeye/awesome-mcp-servers#19703`](https://github.com/punkpeye/awesome-mcp-servers/pull/19703) · [`mbasso/awesome-wasm#376`](https://github.com/mbasso/awesome-wasm/pull/376) · [`zigcc/awesome-zig#308`](https://github.com/zigcc/awesome-zig/pull/308) · [`wilsonfreitas/awesome-quant#1035`](https://github.com/wilsonfreitas/awesome-quant/pull/1035) · [`sshuair/awesome-gis#336`](https://github.com/sshuair/awesome-gis/pull/336) · [`ai-boost/awesome-harness-engineering#437`](https://github.com/ai-boost/awesome-harness-engineering/pull/437)
