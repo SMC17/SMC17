@@ -21,6 +21,10 @@ CASES = {
 
 
 class ParseTests(unittest.TestCase):
+    def test_mccarthy_suites_sum(self):
+        out = parse_tests("=== 51 passed, 0 failed ===\nok\n=== 13 passed, 1 failed ===\n\nALL SUITES GREEN")
+        self.assertEqual((out["passed"], out["failed"]), (64, 1))
+
     def test_toolchain_summaries(self):
         for text, want in CASES.items():
             r = parse_tests(text)

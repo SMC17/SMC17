@@ -268,5 +268,33 @@
    "zig build test --summary all"
   ],
   "timeout": 900
+ },
+ "triton-kernels": {
+  "system": "ML infrastructure",
+  "gate": [
+   "nix shell nixpkgs#python3Packages.pytest -c pytest -q tests"
+  ],
+  "timeout": 1800
+ },
+ "mccarthy": {
+  "system": "Proofs and tools",
+  "gate": [
+   "nix shell nixpkgs#sbcl -c bin/test"
+  ],
+  "timeout": 1800
+ },
+ "stax-cert": {
+  "system": "Proofs and tools",
+  "gate": [
+   "nix shell nixpkgs#elan -c lake build"
+  ],
+  "timeout": 1800
+ },
+ "sovereign-edge": {
+  "system": "ML infrastructure",
+  "gate": [
+   "nix flake check --no-build --all-systems"
+  ],
+  "timeout": 1800
  }
 }

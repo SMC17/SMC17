@@ -97,6 +97,8 @@ def parse_tests(text: str) -> dict:
                 out[k] += int(n)
     for m in re.finditer(r"Ran (\d+) tests?.*?\n\s*\n?(OK|FAILED \((?:failures|errors)=(\d+)\))", text, re.S):  # unittest
         failed = int(m.group(3) or 0); out["passed"] += int(m.group(1)) - failed; out["failed"] += failed
+    for m in re.finditer(r"^=== (\d+) passed, (\d+) failed ===$", text, re.M):  # mccarthy bin/test, one line per suite
+        out["passed"] += int(m.group(1)); out["failed"] += int(m.group(2))
     return out
 
 
