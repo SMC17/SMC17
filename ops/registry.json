@@ -156,5 +156,117 @@
    "zig build test --summary all"
   ],
   "timeout": 900
+ },
+ "zig-graph": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "zig-frame-protocol": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "zig-cobs": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "proof-gate-zig": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "formal-counterex-zig": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "dsp-zig": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "distro-blog-builder": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "cfr-solver-zig": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "thompson-bandit-zig": {
+  "system": "Markets and data",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "tableformat-zig": {
+  "system": "Markets and data",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "scd-zig": {
+  "system": "Markets and data",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "kpi-zig": {
+  "system": "Markets and data",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "datelist-zig": {
+  "system": "Markets and data",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "stemmer-zig": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "cow-branch-zig": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
+ },
+ "carreir": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
  }
 }
