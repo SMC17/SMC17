@@ -296,5 +296,26 @@
    "nix flake check --no-build --all-systems"
   ],
   "timeout": 1800
+ },
+ "ztop": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 1800
+ },
+ "vllm-zig": {
+  "system": "ML infrastructure",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 1800
+ },
+ "mast": {
+  "system": "Proofs and tools",
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 1800
  }
 }
