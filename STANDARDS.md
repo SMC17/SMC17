@@ -53,6 +53,8 @@ Run `python3 tools/standards_check.py` (needs the `gh` CLI) to see how every pub
 
 Anything outside the allow-list becomes an issue for a person, not an automatic change.
 
+**Pull-request gate.** `python3 ops/pr_gate.py REPO PR --post` runs the repo's registered gate on fresh clones of the PR head and of main, compares test counts and depth meters, and posts a "Gate report: PASS/FAIL" comment. A PR with fewer passing tests or a worse meter than main fails. An audit starts from this report and spends its effort on what a machine cannot check: whether the change is correct, honest and in scope.
+
 ## Labels
 
 | Label | Meaning |

@@ -113,9 +113,10 @@ def is_infra_failure(res: dict) -> bool:
     return any(m in tails for m in INFRA_MARKERS)
 
 
-def gate(repo: str, spec: dict, workdir: Path) -> dict:
+def gate(repo: str, spec: dict, workdir: Path, pr: int | None = None) -> dict:
+    """Run the registered gate on a fresh clone of the default branch, or of a pull request's head."""
     t0 = time.time()
-    dest = workdir / repo
+    dest = workdir / (repo if pr is None else f"{repo}-pr{pr}")
     r = None
     for attempt in range(3):  # network blips are not regressions
         shutil.rmtree(dest, ignore_errors=True)
@@ -125,6 +126,10 @@ def gate(repo: str, spec: dict, workdir: Path) -> dict:
         time.sleep(30 * (attempt + 1))
     if r.returncode:
         return {"ok": False, "infra": True, "error": "clone failed after 3 attempts: " + r.stderr.strip()[:200]}
+    if pr is not None:
+        f = sh(["git", "-C", str(dest), "fetch", "-q", "--depth", "1", "origin", f"pull/{pr}/head:pr-{pr}"], timeout=600)
+        if f.returncode or sh(["git", "-C", str(dest), "checkout", "-q", f"pr-{pr}"]).returncode:
+            return {"ok": False, "infra": True, "error": f"could not check out PR #{pr}: " + f.stderr.strip()[:200]}
     commit = sh(["git", "-C", str(dest), "rev-parse", "--short", "HEAD"]).stdout.strip()
     res = {"commit": commit, "steps": [], "passed": 0, "failed": 0, "skipped": 0, "ok": True}
     for cmd in spec.get("gate", []):
