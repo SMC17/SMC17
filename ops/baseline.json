@@ -2,35 +2,116 @@
  "MarketDataSimulator": {
   "passed": 392
  },
+ "agentfork": {
+  "passed": 6
+ },
+ "attestinfer": {
+  "passed": 3
+ },
+ "carreir": {
+  "passed": 54
+ },
+ "cfr-solver-zig": {
+  "passed": 9
+ },
+ "cow-branch-zig": {
+  "passed": 76
+ },
+ "datelist-zig": {
+  "passed": 25
+ },
+ "distro-blog-builder": {
+  "passed": 47
+ },
+ "dsp-zig": {
+  "passed": 16
+ },
  "faiss-zig": {
   "passed": 76
  },
  "finance-segway": {
-  "cells_needing_work": 4142,
+  "cells_needing_work": 3889,
   "formula_computed_pct": 67.32,
-  "fully_accounted": 2,
-  "mean_accounted_pct": 22.3,
-  "passed": 599,
+  "fully_accounted": 4,
+  "mean_accounted_pct": 25.8,
+  "passed": 604,
   "placeholders": 1145
+ },
+ "formal-counterex-zig": {
+  "passed": 5
  },
  "jevy": {
   "passed": 347
  },
+ "kpi-zig": {
+  "passed": 8
+ },
  "logic-zig": {
   "passed": 541
  },
+ "mast": {
+  "passed": 49
+ },
+ "mccarthy": {
+  "passed": 64
+ },
  "method-wagwan": {},
+ "physkernel": {
+  "passed": 5
+ },
+ "proof-gate-zig": {
+  "passed": 6
+ },
  "qsr-zig": {
   "passed": 4
  },
  "safetensors-zig": {
   "passed": 19
  },
+ "scd-zig": {
+  "passed": 11
+ },
+ "sovereign-edge": {},
+ "specdecode": {
+  "passed": 6
+ },
+ "stax-cert": {},
+ "stemmer-zig": {
+  "passed": 20
+ },
+ "strip": {},
+ "swarmbus": {
+  "passed": 4
+ },
+ "tableformat-zig": {
+  "passed": 52
+ },
+ "thompson-bandit-zig": {
+  "passed": 76
+ },
  "tokenizers-zig": {
-  "passed": 166
+  "passed": 168
+ },
+ "triton-kernels": {
+  "passed": 7
+ },
+ "vllm-zig": {
+  "passed": 82
+ },
+ "yard": {
+  "passed": 159
  },
  "zag": {
   "passed": 707
+ },
+ "zig-cobs": {
+  "passed": 22
+ },
+ "zig-frame-protocol": {
+  "passed": 21
+ },
+ "zig-graph": {
+  "passed": 70
  },
  "zig-h3": {
   "passed": 211
@@ -46,5 +127,8 @@
  },
  "znap": {
   "passed": 631
+ },
+ "ztop": {
+  "passed": 9
  }
 }
