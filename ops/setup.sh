@@ -12,7 +12,8 @@ LOGS="$HOME/Library/Logs/smc17-ops"
 
 if [[ "${1:-}" == "--remove" ]]; then
   launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
-  rm -f "$PLIST"
+  launchctl bootout "gui/$(id -u)/com.smc17.finance-library" 2>/dev/null || true
+  rm -f "$PLIST" "$HOME/Library/LaunchAgents/com.smc17.finance-library.plist"
   echo "removed $LABEL"
   exit 0
 fi
@@ -65,3 +66,29 @@ PLIST
 launchctl bootout "gui/$(id -u)/$LABEL" 2>/dev/null || true
 launchctl bootstrap "gui/$(id -u)" "$PLIST"
 echo "installed $LABEL: nightly at 03:17 (runs on next wake if asleep); logs in $LOGS/ops.log"
+
+# Nightly finance-segway library (every SEC XBRL filer; deterministic, no AI). SEC builds its
+# bulk archives about 04:50 UTC (22:50 in Chicago), so 01:30 local reads the fresh night.
+LIB_LABEL="com.smc17.finance-library"
+LIB_PLIST="$HOME/Library/LaunchAgents/$LIB_LABEL.plist"
+cat > "$LIB_PLIST" <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>$LIB_LABEL</string>
+  <key>ProgramArguments</key>
+  <array><string>/bin/bash</string><string>-lc</string><string>"$OPS/finance_library.sh"</string></array>
+  <key>EnvironmentVariables</key>
+  <dict><key>PATH</key><string>$PATH</string></dict>
+  <key>StartCalendarInterval</key><dict><key>Hour</key><integer>1</integer><key>Minute</key><integer>30</integer></dict>
+  <key>StandardOutPath</key><string>$LOGS/finance-library.log</string>
+  <key>StandardErrorPath</key><string>$LOGS/finance-library.log</string>
+  <key>LowPriorityIO</key><true/>
+  <key>Nice</key><integer>10</integer>
+</dict>
+</plist>
+PLIST
+launchctl bootout "gui/$(id -u)/$LIB_LABEL" 2>/dev/null || true
+launchctl bootstrap "gui/$(id -u)" "$LIB_PLIST"
+echo "installed $LIB_LABEL: nightly at 01:30; logs in $LOGS/finance-library.log"
