@@ -111,7 +111,7 @@
  "strip": {
   "system": "Proofs and tools",
   "gate": [
-   "zig build verify --summary all"
+   "JSBSIM_CMD=tools/jsbsim_cmd.sh STRIP_JSBSIM_SHIM=$PWD/zig-out/bin/strip-jsbsim-shim uv run --no-project --python 3.12 --with jsbsim==1.3.1 -- sh -c 'zig build && zig build verify --summary all'"
   ],
   "timeout": 1800
  },
