@@ -77,8 +77,10 @@
  },
  "method-wagwan": {
   "system": "Proofs and tools",
-  "gate": [],
-  "timeout": 60
+  "gate": [
+   "zig build test --summary all"
+  ],
+  "timeout": 900
  },
  "logic-zig": {
   "system": "Proofs and tools",
