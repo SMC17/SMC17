@@ -11,9 +11,6 @@
 
 Systems programmer writing zero-allocation libraries and tools in Zig and Elixir.
 
-- **Try in browser**: [Strip aerospace docs](https://smc17.github.io/strip/)
-- **Writing**: [sunlitmoon.online](https://sunlitmoon.online) · **Ops & baselines**: [OPS.md](OPS.md) · [EVIDENCE_LEDGER.md](EVIDENCE_LEDGER.md) · **Forecasts**: [FORECASTS.md](FORECASTS.md)
-
 ### Featured 2026–2027 AI Systems & Infrastructure
 
 - [agentfork](https://github.com/SMC17/agentfork) — Sub-millisecond APFS `clonefile(2)` copy-on-write agent sandbox, wire-speed HTTP taint & Blake3/HMAC Merkle receipt firewall, and Lean 4 proof-carrying merge gate in Zig.
