@@ -30,10 +30,10 @@
   "passed": 76
  },
  "finance-segway": {
-  "cells_needing_work": 3889,
+  "cells_needing_work": 3532,
   "formula_computed_pct": 67.32,
   "fully_accounted": 4,
-  "mean_accounted_pct": 25.8,
+  "mean_accounted_pct": 33.9,
   "passed": 604,
   "placeholders": 1145
  },
@@ -55,7 +55,9 @@
  "mccarthy": {
   "passed": 64
  },
- "method-wagwan": {},
+ "method-wagwan": {
+  "passed": 18
+ },
  "physkernel": {
   "passed": 5
  },
@@ -79,7 +81,9 @@
  "stemmer-zig": {
   "passed": 20
  },
- "strip": {},
+ "strip": {
+  "passed": 262
+ },
  "swarmbus": {
   "passed": 4
  },
